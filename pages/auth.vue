@@ -37,6 +37,5 @@ async function auth() {
     })
     user.setUserData(res)
     router.push('/profile')
-    console.log('ok')
 }
 </script>
