@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   ],
   ssr: false,
   
-  css: ['animate.css'],
+  css: ['animate.css', '~/public/css/config.css'],
   tailwindcss: {
     config: {
       theme: {
