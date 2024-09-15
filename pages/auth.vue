@@ -4,5 +4,8 @@
 </template>
 
 <script setup lang="ts">
-const formState = ref(true)
+const formState = ref(false)
+onMounted(() => setTimeout(() => {
+    formState.value = true
+}, 100));
 </script>

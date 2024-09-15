@@ -8,18 +8,21 @@
         />
         <div
           class="absolute top-0 left-0 w-full h-full flex justify-center items-center"
+          :class="isAnimate ? 'fadeInUp' : 'fadeOutDown'"
         >
+          <div class="flex flex-col gap-3 p-5 rounded-md bg-stone-800 text-white">
+            <slot v-if="formType === -1" />
           <form
-            v-if="formType === 0"
+            v-else-if="formType === 0"
             ref="target"
-            :class="isAnimate ? 'animate__fadeInUp' : 'animate__fadeOutDown'"
-            class="flex flex-col gap-3 p-5 rounded-md bg-stone-800 text-white animate__animated animate__duration"
             @submit.prevent="[isVisible = false, $emit('isClosed', null)]"
+            class="flex flex-col gap-5 justify-center items-center"
           >
             <p v-text="formMessage" />
-            <button type="submit">Ок</button>
+            <button class="w-full border-[1px] font-semibold text-md border-primary hover:bg-primary hover:text-black rounded-md flex gap-3 justify-center items-center duration-150" type="submit">Ок</button>
           </form>
-          <FormAuth :class="isAnimate ? 'animate__fadeInUp' : 'animate__fadeOutDown'" @is-closed="" v-else-if="formType === 1" />
+          <FormAuth @is-closed="isVisible = false" v-else-if="formType === 1" />
+          </div>
         </div>
       </div>
     </div>
@@ -48,9 +51,6 @@ const props = withDefaults(
 defineEmits(["isClosed"]);
 
 watch(isVisible, (val) => {
-  console.log(
-    `after ${isVisible.value} | ${isAnimate.value} ${isRendered.value}`
-  );
   if (val === true) {
     isAnimate.value = true;
     isRendered.value = true;
@@ -61,9 +61,6 @@ watch(isVisible, (val) => {
       isRendered.value = false;
     }, 300);
   }
-  console.log(
-    `then ${isVisible.value} | ${isAnimate.value} ${isRendered.value}`
-  );
 });
 
 // watcher fix
@@ -76,3 +73,37 @@ onClickOutside(target, () => {
   if (props.closable) isVisible.value = false;
 });
 </script>
+
+<style scoped>
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px)
+  }
+}
+
+.fadeInUp {
+  animation: fadeInUp 200ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOutDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(3px)
+  }
+}
+
+.fadeOutDown {
+  animation: fadeOutDown 200ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+</style>
