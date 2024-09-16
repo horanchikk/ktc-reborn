@@ -11,6 +11,7 @@
       class="bg-transparent border-[1px] border-white text-white border-opacity-50 focus:border-opacity-100 focus:invalid:border-red-500 invalid:border-red-800 text-lg outline-none p-3 rounded-md duration-150"
       placeholder="Логин"
       type="text"
+      autocomplete="username"
       required
     />
     <input
@@ -18,8 +19,12 @@
       class="bg-transparent border-[1px] border-white text-white border-opacity-50 focus:border-opacity-100 focus:invalid:border-red-500 invalid:border-red-800 text-lg outline-none p-3 rounded-md duration-150"
       placeholder="Пароль"
       type="password"
+      autocomplete="current-password"
       required
     />
+
+    <Message type="done" text="123" />
+
     <button
       class="border-[1px] font-semibold text-md border-primary hover:bg-primary hover:text-black rounded-md flex gap-3 justify-center items-center mt-6 duration-150"
       :class="isLoading ? 'h-10' : 'h-12'"
@@ -62,13 +67,21 @@ const authData = reactive({
 
 async function auth() {
   isLoading.value = true;
-  const res = await $fetch(`${API_URL}/user/login`, {
+  await $fetch(`${API_URL}/user/login`, {
     method: "POST",
     body: authData,
+  }).then(() => {
+    user.setUserData(res);
+    router.push("/profile");
+    emit("isClosed");
+  }).catch((err) => {
+    const res = err.response;
+    if (res) {
+      console.log(res._data.error)
+    }
   });
-  user.setUserData(res);
-  router.push("/profile");
-  emit("isClosed");
+
+  isLoading.value = false
 }
 </script>
 
