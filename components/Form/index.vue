@@ -10,18 +10,18 @@
           class="absolute top-0 left-0 w-full h-full flex justify-center items-center"
           :class="isAnimate ? 'fadeInUp' : 'fadeOutDown'"
         >
-          <div class="flex flex-col gap-3 p-5 rounded-md bg-stone-800 text-white">
+          <div class="w-96 flex flex-col gap-3 p-5 rounded-xl bg-stone-800 text-white">
             <slot v-if="formType === -1" />
-          <form
-            v-else-if="formType === 0"
-            ref="target"
-            @submit.prevent="[isVisible = false, $emit('isClosed', null)]"
-            class="flex flex-col gap-5 justify-center items-center"
-          >
-            <p v-text="formMessage" />
-            <button class="w-full border-[1px] font-semibold text-md border-primary hover:bg-primary hover:text-black rounded-md flex gap-3 justify-center items-center duration-150" type="submit">Ок</button>
-          </form>
-          <FormAuth @is-closed="isVisible = false" v-else-if="formType === 1" />
+            <form
+              v-else-if="formType === 0"
+              ref="target"
+              @submit.prevent="[isVisible = false, $emit('isClosed', null)]"
+              class="flex flex-col gap-5 justify-center items-center"
+            >
+              <p v-text="formMessage" />
+              <button class="w-full border-[1px] font-semibold text-md border-primary hover:bg-primary hover:text-black rounded-xl flex gap-3 justify-center items-center duration-150" type="submit">Ок</button>
+            </form>
+            <FormAuth @is-closed="isVisible = false" v-else-if="formType === 1" />
           </div>
         </div>
       </div>
@@ -78,11 +78,11 @@ onClickOutside(target, () => {
 @keyframes fadeInUp {
   0% {
     opacity: 0;
-    transform: translateY(3px);
+    transform: scale(110%);
   }
   100% {
     opacity: 1;
-    transform: translateY(0px)
+    transform: scale(100%)
   }
 }
 
@@ -94,11 +94,11 @@ onClickOutside(target, () => {
 @keyframes fadeOutDown {
   0% {
     opacity: 1;
-    transform: translateY(0px);
+    transform: scale(100%);
   }
   100% {
     opacity: 0;
-    transform: translateY(3px)
+    transform: scale(110%)
   }
 }
 
