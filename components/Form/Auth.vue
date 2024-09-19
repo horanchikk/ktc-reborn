@@ -8,18 +8,26 @@
     <h1 class="text-4xl font-light text-center mb-6">Войдите в аккаунт</h1>
     <input
       v-model="authData.login"
+      :class="{
+        'opacity-50 cursor-not-allowed': isLoading
+      }"
       class="mb-3 bg-transparent border-[1px] border-white text-white border-opacity-50 focus:border-opacity-100 focus:invalid:border-red-500 invalid:border-red-800 text-lg outline-none p-3 rounded-xl duration-150"
       placeholder="Логин"
       type="text"
       autocomplete="username"
+      :disabled="isLoading"
       required
     />
     <input
       v-model="authData.password"
+      :class="{
+        'opacity-50 cursor-not-allowed': isLoading
+      }"
       class="mb-3 bg-transparent border-[1px] border-white text-white border-opacity-50 focus:border-opacity-100 focus:invalid:border-red-500 invalid:border-red-800 text-lg outline-none p-3 rounded-xl duration-150"
       placeholder="Пароль"
       type="password"
       autocomplete="current-password"
+      :disabled="isLoading"
       required
     />
 
@@ -99,10 +107,13 @@ async function auth() {
     })
     .catch((err) => {
       const res = err.response;
-      if (res) {
-        errorMsg.show = true;
+      errorMsg.show = true;
+
+      if (res)
         errorMsg.msg = res._data.error;
-      }
+      else
+        errorMsg.msg = "Проблемы с подключением к серверу. Попробуйте позже"
+
     });
 
   isLoading.value = false;
