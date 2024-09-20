@@ -10,18 +10,40 @@
           class="absolute top-0 left-0 w-full h-full flex justify-center items-center"
           :class="isAnimate ? 'fadeInUp' : 'fadeOutDown'"
         >
-          <div class="w-96 flex flex-col gap-3 p-5 rounded-xl bg-stone-800 text-white">
-            <slot v-if="formType === -1" />
+          <div
+            :class="{
+              'p-5': formType !== 1,
+            }"
+            class="w-[440px] flex flex-col gap-3 rounded-[32px] bg-background-100 text-white shadow-xl"
+          >
+            <div class="w-full h-full" v-if="formType === -1">
+              <slot />
+
+              <button
+                class="mt-3 w-full border-[1px] font-semibold text-md border-primary hover:bg-primary hover:text-black rounded-xl flex gap-3 justify-center items-center duration-150"
+                @click="isVisible = false"
+              >
+                Ок
+              </button>
+            </div>
             <form
               v-else-if="formType === 0"
               ref="target"
-              @submit.prevent="[isVisible = false, $emit('isClosed', null)]"
+              @submit.prevent="[(isVisible = false), $emit('isClosed', null)]"
               class="flex flex-col gap-5 justify-center items-center"
             >
               <p v-text="formMessage" />
-              <button class="w-full border-[1px] font-semibold text-md border-primary hover:bg-primary hover:text-black rounded-xl flex gap-3 justify-center items-center duration-150" type="submit">Ок</button>
+              <button
+                class="w-full border-[1px] font-semibold text-md border-primary hover:bg-primary hover:text-black rounded-xl flex gap-3 justify-center items-center duration-150"
+                type="submit"
+              >
+                Ок
+              </button>
             </form>
-            <FormAuth @is-closed="isVisible = false" v-else-if="formType === 1" />
+            <FormAuth
+              @is-closed="isVisible = false"
+              v-else-if="formType === 1"
+            />
           </div>
         </div>
       </div>
@@ -82,7 +104,7 @@ onClickOutside(target, () => {
   }
   100% {
     opacity: 1;
-    transform: scale(100%)
+    transform: scale(100%);
   }
 }
 
@@ -98,7 +120,7 @@ onClickOutside(target, () => {
   }
   100% {
     opacity: 0;
-    transform: scale(110%)
+    transform: scale(110%);
   }
 }
 

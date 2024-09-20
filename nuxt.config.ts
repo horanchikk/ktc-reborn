@@ -7,6 +7,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@formkit/auto-animate/nuxt',
     '@nuxt/icon',
+    '@nuxtjs/google-fonts',
+    '@nuxt/image',
   ],
   ssr: false,
   
@@ -16,10 +18,20 @@ export default defineNuxtConfig({
       theme: {
         extend: {
           colors: {
-            'primary': "#4caf50"
+            'primary': "#FF4646",
+            'background': {
+              100: "#212121",
+              200: "#323232"
+            }
           }
         }
       }
+    }
+  },
+  googleFonts: {
+    download: true,
+    families: {
+      Montserrat: '100..900'
     }
   },
 

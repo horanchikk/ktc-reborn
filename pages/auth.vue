@@ -1,11 +1,10 @@
 <template>
-    <Form v-model:is-visible="formState" :form-type="1" />
-    <button @click="formState = !formState">show {{ formState }}</button>
+    <Form :is-visible="true" :form-type="1" />
 </template>
 
 <script setup lang="ts">
-const formState = ref(false)
-onMounted(() => setTimeout(() => {
-    formState.value = true
-}, 100));
+
+definePageMeta({
+    layout: 'none'
+})
 </script>

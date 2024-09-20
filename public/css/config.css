@@ -1,3 +1,7 @@
 .animate__duration {
     --animate-duration: 200ms;
 }
+
+* {
+    font-family: "Montserrat", sans-serif;
+}

@@ -1,5 +1,5 @@
 <template>
-    123{{ useUser().data }}
+    here is profile page
 </template>
 
 <script setup lang="ts">

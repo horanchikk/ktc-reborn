@@ -1,13 +1,11 @@
 <template>
-  <div ref="globalWindow" class="flex flex-col w-screen h-screen bg-[#030100] text-white overflow-y-hidden">
+  <div ref="globalWindow" class="flex flex-col w-screen h-screen bg-background-200 text-white overflow-y-hidden">
     <SideBar />
     <Header />
 
     <main class="flex-auto">
       <slot />
     </main>
-
-    <NavBar />
   </div>
 </template>
 
@@ -19,8 +17,7 @@ const store = useSideBar()
 const globalWindow = ref(null)
 const {direction, lengthX} = useSwipe(globalWindow, {
     onSwipeEnd() {
-        if (direction.value === 'right')
+        if (direction.value === 'right' && lengthX.value < -100)
             store.show()
-
     }
 })</script>

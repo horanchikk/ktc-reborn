@@ -1,6 +1,14 @@
 <template>
+  <!-- Debug form -->
+  <Form v-model:is-visible="debugForm" :formType="-1">
+    <h1>Debug</h1>
+    <p class="font-mono font-bold">
+      {{ user.data }}
+    </p>
+  </Form>
+
   <header
-    class="w-full flex justify-between gap-5 bg-stone-800 p-3 animate__animated animate__fadeInDown animate__faster"
+    class="w-full flex justify-between gap-5 bg-background-100 p-3 animate__animated animate__fadeInDown animate__faster"
   >
     <Icon
       @click="sideBar.show()"
@@ -23,10 +31,10 @@
         style="--animate-duration: 200ms"
         @click="hide"
       >
-        <div class="m-3 w-44 flex flex-col divide-y-2 divide-stone-700">
+        <div class="m-3 w-44 flex flex-col divide-y-2 divide-stone-700 drop-shadow-lg">
           <button
             v-for="(item, idx) in menu"
-            class="flex gap-5 p-3 items-center bg-stone-900 hover:bg-stone-700 animate__animated animate__fadeInDown duration-150"
+            class="flex gap-5 p-3 items-center bg-background-100 hover:bg-stone-700 animate__animated animate__fadeInDown duration-150"
             :class="{
                 'rounded-t-md': idx === 0,
                 'rounded-b-md': idx === menu.length - 1,
@@ -45,10 +53,13 @@
 
 <script setup lang="ts">
 import { useSideBar } from "~/store/useSideBar";
+import { useUser } from "~/store/useUser";
 
 const sideBar = useSideBar();
+const user = useUser();
 const showMenu = ref(false);
 const showAnim = ref(false);
+const debugForm = ref(false)
 function hide() {
     showAnim.value = false;
     setTimeout(() => {
@@ -61,29 +72,9 @@ function show() {
 }
 const menu = [
   {
-    name: "Кнопка1",
-    icon: "material-symbols:add",
-    action: () => alert("action"),
-  },
-  {
-    name: "Кнопка2",
-    icon: "material-symbols:add-comment-rounded",
-    action: () => alert("action2"),
-  },
-  {
-    name: "Кнопка3",
-    icon: "material-symbols:add-a-photo",
-    action: () => alert("action3"),
-  },
-  {
-    name: "Кнопка4",
-    icon: "material-symbols:adf-scanner-outline-rounded",
-    action: () => alert("action4"),
-  },
-  {
-    name: "Кнопка5",
-    icon: "material-symbols:add-home-outline",
-    action: () => alert("action5"),
+    name: "Debug",
+    icon: "material-symbols:bug-report-outline",
+    action: () => debugForm.value = true,
   },
 ];
 </script>
