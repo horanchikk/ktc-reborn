@@ -1,5 +1,5 @@
 <template>
-  <div ref="globalWindow" class="flex flex-col w-screen h-screen bg-background-200 text-white overflow-y-hidden">
+  <div ref="globalWindow" class="flex flex-col w-screen h-screen bg-background-100 text-white overflow-y-hidden">
     <SideBar />
     <Header />
 

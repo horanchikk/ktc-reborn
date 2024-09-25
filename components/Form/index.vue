@@ -40,10 +40,10 @@
                 Ок
               </button>
             </form>
-            <FormAuth
+            <!-- <FormAuth
               @is-closed="isVisible = false"
               v-else-if="formType === 1"
-            />
+            /> -->
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen flex justify-center items-center bg-background-100">
+  <div class="w-screen h-screen flex justify-center items-center">
     <Icon
       name="svg-spinners:ring-resize"
       class="w-6 h-6 text-white opacity-75 group-hover:opacity-100"

@@ -28,6 +28,15 @@ export default defineNuxtConfig({
       }
     }
   },
+  app: {
+    head: {
+      script: [
+        {
+          src: "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/tgs-player.js"
+        }
+      ],
+    }
+  },
   googleFonts: {
     download: true,
     families: {

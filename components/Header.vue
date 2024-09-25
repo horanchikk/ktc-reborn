@@ -1,12 +1,4 @@
 <template>
-  <!-- Debug form -->
-  <Form v-model:is-visible="debugForm" :formType="-1">
-    <h1>Debug</h1>
-    <p class="font-mono font-bold">
-      {{ user.data }}
-    </p>
-  </Form>
-
   <header
     class="w-full flex justify-between gap-5 bg-background-100 p-3 animate__animated animate__fadeInDown animate__faster"
   >
@@ -59,7 +51,6 @@ const sideBar = useSideBar();
 const user = useUser();
 const showMenu = ref(false);
 const showAnim = ref(false);
-const debugForm = ref(false)
 function hide() {
     showAnim.value = false;
     setTimeout(() => {
