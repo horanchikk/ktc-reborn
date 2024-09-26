@@ -44,11 +44,13 @@
 </template>
 
 <script setup lang="ts">
+import { useDebug } from "~/store/useDebug";
 import { useSideBar } from "~/store/useSideBar";
 import { useUser } from "~/store/useUser";
 
 const sideBar = useSideBar();
 const user = useUser();
+const debug = useDebug()
 const showMenu = ref(false);
 const showAnim = ref(false);
 function hide() {
@@ -65,7 +67,7 @@ const menu = [
   {
     name: "Debug",
     icon: "material-symbols:bug-report-outline",
-    action: () => debugForm.value = true,
+    action: () => debug.show(),
   },
 ];
 </script>
