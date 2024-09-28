@@ -2,10 +2,10 @@ import { useSideBar } from "./useSideBar";
 import { useUser } from "./useUser";
 
 export const useDebug = defineStore("useDebug", () => {
-    const isVisible = ref(false);
     const user = useUser();
     const sidebar = useSideBar();
     const route = useRoute();
+    const isVisible = ref(false);
 
     function show() {
         isVisible.value = true

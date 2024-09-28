@@ -83,7 +83,7 @@
         @click="infoAuthForm = true"
         class="w-full flex gap-2 justify-center items-center py-2 opacity-50 hover:opacity-100 duration-150 mb-0.5 cursor-pointer"
       >
-        <NuxtImg
+        <img
           src="@/assets/icons/alert-circle 1.svg"
           alt="alert circle"
           class="h-7 w-7 text-background-100 rotate-180"
@@ -101,7 +101,7 @@
           v-if="isLoading"
           class="w-6 h-6 text-background-100 opacity-75 group-hover:opacity-100"
         />
-        <NuxtImg
+        <img
           v-else
           src="@/assets/icons/login 1.svg"
           alt="logout"
@@ -133,6 +133,7 @@ const {
 } = useRuntimeConfig();
 const router = useRouter();
 const user = useUser();
+const api = useApi();
 
 const infoAuthForm = ref(false);
 const isLoading = ref(false);
@@ -148,10 +149,9 @@ const authData = reactive({
 async function auth() {
   isLoading.value = true;
   errorMsg.show = false;
-  await $fetch(`${API_URL}/user/login`, {
-    method: "POST",
-    body: authData,
-  })
+  
+  await api
+    .post("/user/login", authData)
     .then((res) => {
       user.setUserData(res);
       router.push("/profile");
