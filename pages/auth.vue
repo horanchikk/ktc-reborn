@@ -13,9 +13,15 @@
       <p class="opacity-50">представьтесь пожалуйста</p>
     </div>
     <div>
-        <tgs-player
-        autoplay loop mode="normal" :src="`@/assets/tgs/TGS_AgADWxoAAnrUOEs.tgs`"
+      <ClientOnly>
+        <lottie-player
+          class="w-[200px] h-[200px]"
+          autoplay
+          loop
+          mode="normal"
+          src="/lottie/eyes.json"
         />
+      </ClientOnly>
     </div>
     <div class="w-full flex flex-col items-center px-12">
       <input
@@ -62,12 +68,14 @@
       <div class="duration-150" :class="errorMsg.show ? 'h-1' : 'h-0'" />
     </div>
     <div>
-      <button type="button" class="relative" @click="useDebug().show">
-        <Icon
-          name="material-symbols:bug-report-outline-rounded"
-          class="absolute -top-2 -left-3 h-8 w-8 opacity-40 hover:opacity-100"
-        />
-      </button>
+      <DevOnly>
+        <button type="button" class="relative" @click="useDebug().show">
+          <Icon
+            name="material-symbols:bug-report-outline-rounded"
+            class="absolute -top-2 -left-3 h-8 w-8 opacity-40 hover:opacity-100"
+          />
+        </button>
+      </DevOnly>
     </div>
 
     <div class="w-full">
@@ -75,7 +83,7 @@
         @click="infoAuthForm = true"
         class="w-full flex gap-2 justify-center items-center py-2 opacity-50 hover:opacity-100 duration-150 mb-0.5 cursor-pointer"
       >
-        <img
+        <NuxtImg
           src="@/assets/icons/alert-circle 1.svg"
           alt="alert circle"
           class="h-7 w-7 text-background-100 rotate-180"
@@ -93,7 +101,7 @@
           v-if="isLoading"
           class="w-6 h-6 text-background-100 opacity-75 group-hover:opacity-100"
         />
-        <img
+        <NuxtImg
           v-else
           src="@/assets/icons/login 1.svg"
           alt="logout"
@@ -113,7 +121,6 @@
 import { $fetch } from "ofetch";
 import { useUser } from "~/store/useUser";
 import { useDebug } from "~/store/useDebug";
-
 
 definePageMeta({
   layout: "none",

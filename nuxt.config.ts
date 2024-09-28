@@ -9,9 +9,9 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/google-fonts',
     '@nuxt/image',
+    'nuxt-booster'
   ],
   ssr: false,
-  
   css: ['animate.css', '~/public/css/config.css'],
   tailwindcss: {
     config: {
@@ -28,15 +28,7 @@ export default defineNuxtConfig({
       }
     }
   },
-  app: {
-    head: {
-      script: [
-        {
-          src: "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/tgs-player.js"
-        }
-      ],
-    }
-  },
+
   googleFonts: {
     download: true,
     families: {
@@ -44,9 +36,13 @@ export default defineNuxtConfig({
     }
   },
 
+  fontMetrics: {
+    fonts: ['Montserrat']
+  },
+
   runtimeConfig: {
     public: {
-      API_URL: process.env.API_URL || "http://localhost:8000"
+      API_URL: import.meta.env.API_URL || "http://localhost:8000"
     }
   },
 })
