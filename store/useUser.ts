@@ -4,10 +4,13 @@ interface TUserData {
 }
 
 export const useUser = defineStore("useUser", () => {
+    const log = useLogger('useUser')
     const data = ref({} as TUserData)
 
     function setUserData(obj: TUserData) {
         data.value = obj
+
+        log.success('Store was updated:', JSON.stringify(obj))
     }
 
     return {data, setUserData}
