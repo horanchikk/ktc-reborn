@@ -118,7 +118,6 @@
 </template>
 
 <script setup lang="ts">
-import { $fetch } from "ofetch";
 import { useUser } from "~/store/useUser";
 import { useDebug } from "~/store/useDebug";
 
@@ -128,9 +127,6 @@ definePageMeta({
 
 const emit = defineEmits(["isClosed"]);
 
-const {
-  public: { API_URL },
-} = useRuntimeConfig();
 const router = useRouter();
 const user = useUser();
 const api = useApi();

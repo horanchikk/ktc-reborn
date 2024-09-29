@@ -15,6 +15,7 @@
               'p-5': formType !== 1,
             }"
             class="w-[440px] flex flex-col gap-3 rounded-[32px] bg-background-100 text-white shadow-xl"
+            ref="target"
           >
             <div class="w-full h-full" v-if="formType === -1">
               <slot />
@@ -28,7 +29,6 @@
             </div>
             <form
               v-else-if="formType === 0"
-              ref="target"
               @submit.prevent="[(isVisible = false), $emit('isClosed', null)]"
               class="flex flex-col gap-5 justify-center items-center"
             >
