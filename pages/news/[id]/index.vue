@@ -38,11 +38,13 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-col min-h-screen">
-
-    </div>
-    <div class="flex flex-col min-h-screen">
-
+    <div
+      class="flex flex-col min-h-screen h-[2000px]"
+      :style="`padding-top: ${headerHeightMax}px`"
+    >
+      <span v-for="(i, x) in [1,2,3,4,5,6,67,8,9,10,11,12,13,14,15,16]">
+        CONTENT SVO
+      </span>
     </div>
   </div>
 </template>
@@ -72,6 +74,7 @@ const textSize = ref(24);
 const lineHeight = ref(32);
 const titleStyles = ref('');
 
+
 watch(y, (val) => {
   imageHeight.value = Math.max(headerHeightMin, headerHeightMax - val);
   blur.value = Math.ceil((headerHeightMax - imageHeight.value) / 25);
@@ -79,13 +82,10 @@ watch(y, (val) => {
     padLeft.value = titleLeftPaddingMin;
     textSize.value = 24;
     lineHeight.value = 32;
-    // titleStyles.value = '';
   } else {
     padLeft.value = titleLeftPaddingMin + (-imageHeight.value + (backButtonHeight*2)) * 1.5;
     textSize.value = Math.min(24, imageHeight.value - backButtonHeight + 16);
-    console.log(textSize.value)
     lineHeight.value = 32;
-    // titleStyles.value = 'overflow: hidden; text-overflow: ellipsis; white-space: nowrap;'
   }
 });
 
