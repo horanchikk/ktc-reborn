@@ -19,6 +19,7 @@ export default defineNuxtConfig({
         extend: {
           colors: {
             'primary': "#FF4646",
+            'foreground': "#EDE8D8",
             'background': {
               100: "#212121",
               200: "#323232"

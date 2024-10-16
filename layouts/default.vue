@@ -1,7 +1,7 @@
 <template>
   <div
     ref="globalWindow"
-    class="flex flex-col w-screen h-screen bg-background-100 text-white overflow-y-hidden"
+    class="text-foreground flex flex-col w-screen h-screen bg-background-100 overflow-y-hidden"
   >
     <SideBar />
     <Header />
