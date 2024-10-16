@@ -2,7 +2,6 @@
   <div
     class="flex flex-col gap-2 p-2 overflow-y-auto bg-background-200"
     ref="page"
-    v-scroll="onScroll"
   >
     <div
       ref="header"
@@ -26,22 +25,12 @@
 </template>
 
 <script setup lang="ts">
-import type { UseScrollReturn } from '@vueuse/core';
-
-import { vScroll } from '@vueuse/components';
-
+import { useWindowScroll } from '@vueuse/core'
 
 definePageMeta({
   layout: "news",
 });
 
-const header = ref<HTMLElement | null>(null);
-const page = ref<HTMLElement | null>(null);
-
-
-function onScroll(state: UseScrollReturn) {
-  console.log(state) // {x, y, isScrolling, arrivedState, directions}
-}
-
-
+const { y } = useWindowScroll()
+watch(y, (val) => console.log(val))
 </script>
