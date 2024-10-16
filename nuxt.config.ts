@@ -46,4 +46,10 @@ export default defineNuxtConfig({
       API_URL: process.env.API_URL || "http://localhost:8000"
     }
   },
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => ['lottie-player'].includes(tag)
+    }
+  }
 })
