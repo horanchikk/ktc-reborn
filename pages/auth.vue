@@ -29,7 +29,7 @@
         :class="{
           'opacity-50 cursor-not-allowed': isLoading,
         }"
-        class="w-full text-xl font-light mb-3 bg-transparent border-2 border-white text-white border-opacity-50 focus:border-opacity-100 focus:invalid:border-red-500 invalid:border-red-800 outline-none px-6 py-2 rounded-lg duration-150"
+        class="w-full text-xl font-light mb-3 bg-transparent border-2 border-foreground text-foreground border-opacity-50 focus:border-opacity-100 focus:invalid:border-red-500 invalid:border-red-800 outline-none px-6 py-2 rounded-lg duration-150"
         placeholder="Логин"
         type="text"
         autocomplete="username"
@@ -41,7 +41,7 @@
         :class="{
           'opacity-50 cursor-not-allowed': isLoading,
         }"
-        class="w-full text-xl font-light mb-3 bg-transparent border-2 border-white text-white border-opacity-50 focus:border-opacity-100 focus:invalid:border-red-500 invalid:border-red-800 outline-none px-6 py-2 rounded-lg duration-150"
+        class="w-full text-xl font-light mb-3 bg-transparent border-2 border-foreground text-foreground border-opacity-50 focus:border-opacity-100 focus:invalid:border-red-500 invalid:border-red-800 outline-none px-6 py-2 rounded-lg duration-150"
         placeholder="Пароль"
         type="password"
         autocomplete="current-password"
