@@ -21,6 +21,7 @@
     "@capacitor/status-bar": "6.0.1",
     "@lottiefiles/lottie-player": "^2.0.4",
     "@types/pako": "^2.0.3",
+    "@vueuse/components": "^11.1.0",
     "@vueuse/core": "^11.0.3",
     "animate.css": "^4.1.1",
     "consola": "^3.2.3",
