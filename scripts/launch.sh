@@ -1,0 +1,2 @@
+nuxt cleanup
+nuxt dev

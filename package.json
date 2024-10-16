@@ -4,12 +4,12 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "sh ./scripts/launch.sh",
+    "dev:ps": "powershell ./scripts/launch.ps1",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "sync": "nuxt build && nuxt generate && npx cap sync",
-    "ps": "powershell ./launch.ps1"
+    "sync": "nuxt build && nuxt generate && npx cap sync"
   },
   "dependencies": {
     "@capacitor/android": "6.1.2",
