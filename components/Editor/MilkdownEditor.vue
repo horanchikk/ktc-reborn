@@ -1,5 +1,5 @@
 <template>
-  <Milkdown />
+  <Milkdown ref="content" />
 </template>
 
 <script setup lang="ts">
@@ -7,10 +7,21 @@ import { defineComponent } from "vue";
 import { Editor, rootCtx, defaultValueCtx } from "@milkdown/kit/core";
 import { nord } from "@milkdown/theme-nord";
 import { Milkdown, useEditor } from "@milkdown/vue";
-import { commonmark } from "@milkdown/kit/preset/commonmark";
+import {
+  commonmark, toggleStrongCommand,
+  toggleEmphasisCommand, toggleLinkCommand,
+  wrapInOrderedListCommand,
+  wrapInBlockquoteCommand
+} from "@milkdown/kit/preset/commonmark";
+import { getMarkdown, replaceAll } from '@milkdown/kit/utils';
+import { history } from '@milkdown/kit/plugin/history';
+import { callCommand } from "@milkdown/kit/utils";
 
-useEditor((root) =>
-  Editor.make()
+const content = ref<HTMLElement>();
+let editor: Editor
+
+useEditor((root) => {
+  editor = Editor.make()
     .config((ctx) => {
       ctx.set(rootCtx, root);
       ctx.set(defaultValueCtx, `# Write anything
@@ -45,7 +56,34 @@ Hello world
     })
     .config(nord)
     .use(commonmark)
+    .use(history)
+  return editor;
+  }
 );
+
+
+function appendMarkdown(str: string) {
+  const text = editor.action(getMarkdown());
+  editor.action(replaceAll(text + str));
+}
+
+
+const toggleBold = () => editor.action(callCommand(toggleStrongCommand.key));
+const toggleItalic = () => editor.action(callCommand(toggleEmphasisCommand.key));
+const toggleLink = () => editor.action(callCommand(toggleLinkCommand.key));
+const toggleList = () => editor.action(callCommand(wrapInOrderedListCommand.key));
+const toggleQuote = () => editor.action(callCommand(wrapInBlockquoteCommand.key));
+
+
+defineExpose({
+  content,
+  appendMarkdown,
+  toggleBold,
+  toggleItalic,
+  toggleList,
+  toggleLink,
+  toggleQuote,
+});
 </script>
 
 
@@ -67,6 +105,10 @@ blockquote {
 
 div[contenteditable] {
   @apply flex flex-col gap-2;
+}
+
+a {
+  @apply underline decoration-primary/50 text-primary cursor-pointer;
 }
 
 ul {
