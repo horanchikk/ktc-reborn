@@ -74,6 +74,8 @@ const toggleLink = () => editor.action(callCommand(toggleLinkCommand.key));
 const toggleList = () => editor.action(callCommand(wrapInOrderedListCommand.key));
 const toggleQuote = () => editor.action(callCommand(wrapInBlockquoteCommand.key));
 
+const getMdText = () => editor.action(getMarkdown());
+
 
 defineExpose({
   content,
@@ -83,6 +85,7 @@ defineExpose({
   toggleList,
   toggleLink,
   toggleQuote,
+  getMdText,
 });
 </script>
 

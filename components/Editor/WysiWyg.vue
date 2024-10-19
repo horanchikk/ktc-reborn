@@ -60,6 +60,7 @@ const editor = ref<{
   toggleLink?: () => void,
   toggleList?: () => void,
   toggleQuote?: () => void,
+  getMdText?: () => void,
 }>();
 
 
@@ -77,5 +78,12 @@ const applyItalic = () => editor.value?.toggleItalic!!();
 const applyLink = () => editor.value?.toggleLink!!();
 const applyList = () => editor.value?.toggleList!!();
 const applyQuote = () => editor.value?.toggleQuote!!();
+
+const getMdText = () => editor.value?.getMdText!!();
+
+
+defineExpose({
+  getMdText,
+})
 
 </script>
