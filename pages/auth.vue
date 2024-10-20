@@ -1,7 +1,7 @@
 <template>
   <Form
     v-model:is-visible="infoAuthForm"
-    formMessage="Введите данные АСУ Проколледж"
+    form-message="Введите данные АСУ Проколледж"
   />
 
   <form
@@ -9,8 +9,12 @@
     @submit.prevent="auth"
   >
     <div class="flex flex-col justify-center items-center">
-      <h1 class="text-4xl font-bold text-center">Войдите в аккаунт</h1>
-      <p class="opacity-50">представьтесь пожалуйста</p>
+      <h1 class="text-4xl font-bold text-center">
+        Войдите в аккаунт
+      </h1>
+      <p class="opacity-50">
+        представьтесь пожалуйста
+      </p>
     </div>
     <div>
       <ClientOnly>
@@ -35,7 +39,7 @@
         autocomplete="username"
         :disabled="isLoading"
         required
-      />
+      >
       <input
         v-model="authData.password"
         :class="{
@@ -47,14 +51,17 @@
         autocomplete="current-password"
         :disabled="isLoading"
         required
-      />
+      >
 
-      <div class="duration-150" :class="errorMsg.show ? 'h-1' : 'h-0'" />
+      <div
+        class="duration-150"
+        :class="errorMsg.show ? 'h-1' : 'h-0'"
+      />
       <div
         :class="errorMsg.show ? 'h-fit' : 'h-0'"
         class="flex items-center duration-150 mb-3"
       >
-        <Message
+        <BaseMessage
           class="w-full"
           :class="
             errorMsg.show
@@ -65,11 +72,18 @@
           :text="errorMsg.msg"
         />
       </div>
-      <div class="duration-150" :class="errorMsg.show ? 'h-1' : 'h-0'" />
+      <div
+        class="duration-150"
+        :class="errorMsg.show ? 'h-1' : 'h-0'"
+      />
     </div>
     <div>
       <DevOnly>
-        <button type="button" class="relative" @click="useDebug().show">
+        <button
+          type="button"
+          class="relative"
+          @click="useDebug().show"
+        >
           <Icon
             name="material-symbols:bug-report-outline-rounded"
             class="absolute -top-2 -left-3 h-8 w-8 opacity-40 hover:opacity-100"
@@ -80,15 +94,17 @@
 
     <div class="w-full">
       <div
-        @click="infoAuthForm = true"
         class="w-full flex gap-2 justify-center items-center py-2 opacity-50 hover:opacity-100 duration-150 mb-0.5 cursor-pointer"
+        @click="infoAuthForm = true"
       >
         <img
           src="@/assets/icons/alert-circle 1.svg"
           alt="alert circle"
           class="h-7 w-7 text-background-100 rotate-180"
-        />
-        <p class="font-light text-lg">Откуда брать данные?</p>
+        >
+        <p class="font-light text-lg">
+          Откуда брать данные?
+        </p>
       </div>
 
       <button
@@ -97,8 +113,8 @@
         type="submit"
       >
         <Icon
-          name="svg-spinners:ring-resize"
           v-if="isLoading"
+          name="svg-spinners:ring-resize"
           class="w-6 h-6 text-background-100 opacity-75 group-hover:opacity-100"
         />
         <img
@@ -106,7 +122,7 @@
           src="@/assets/icons/login 1.svg"
           alt="logout"
           class="w-6 h-6 opacity-75 group-hover:opacity-100"
-        />
+        >
 
         <p
           class="text-2xl text-background-100 font-semibold opacity-75 group-hover:opacity-100 duration-150"
@@ -118,49 +134,50 @@
 </template>
 
 <script setup lang="ts">
-import { useUser } from "~/store/useUser";
-import { useDebug } from "~/store/useDebug";
+import { useUser } from '~/store/useUser'
+import { useDebug } from '~/store/useDebug'
 
 definePageMeta({
-  layout: "none",
-});
+  layout: 'none',
+})
 
-const emit = defineEmits(["isClosed"]);
+const emit = defineEmits(['isClosed'])
 
-const router = useRouter();
-const user = useUser();
-const api = useApi();
+const { $config: { public: { ACCOUNT_LOGIN, ACCOUNT_PASSWD } } } = useNuxtApp()
+const router = useRouter()
+const user = useUser()
+const api = useApi()
 
-const infoAuthForm = ref(false);
-const isLoading = ref(false);
+const infoAuthForm = ref(false)
+const isLoading = ref(false)
 const errorMsg = reactive({
   show: false,
-  msg: "",
-});
+  msg: '',
+})
 const authData = reactive({
-  login: "",
-  password: "",
-});
+  login: ACCOUNT_LOGIN || '',
+  password: ACCOUNT_PASSWD || '',
+})
 
 async function auth() {
-  isLoading.value = true;
-  errorMsg.show = false;
-  
+  isLoading.value = true
+  errorMsg.show = false
+
   await api
-    .post("/user/login", authData)
+    .post('/user/login', authData)
     .then((res) => {
-      user.setUserData(res);
-      router.push("/profile");
-      emit("isClosed");
+      user.setUserData(res)
+      router.push('/profile')
+      emit('isClosed')
     })
     .catch((err) => {
-      const res = err.response;
-      errorMsg.show = true;
+      const res = err.response
+      errorMsg.show = true
 
-      if (res) errorMsg.msg = res._data.error;
-      else errorMsg.msg = "Проблемы с подключением к серверу. Попробуйте позже";
-    });
+      if (res) errorMsg.msg = res._data.error
+      else errorMsg.msg = 'Проблемы с подключением к серверу. Попробуйте позже'
+    })
 
-  isLoading.value = false;
+  isLoading.value = false
 }
 </script>
