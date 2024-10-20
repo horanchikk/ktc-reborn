@@ -1,3 +1,3 @@
-import * as LottiePlayer from "@lottiefiles/lottie-player";
+import * as LottiePlayer from '@lottiefiles/lottie-player'
 
-export default defineNuxtPlugin(() => LottiePlayer);
+export default defineNuxtPlugin(() => LottiePlayer)
