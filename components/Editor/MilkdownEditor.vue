@@ -3,27 +3,25 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent } from "vue";
-import { Editor, rootCtx, defaultValueCtx } from "@milkdown/kit/core";
-import { nord } from "@milkdown/theme-nord";
-import { Milkdown, useEditor } from "@milkdown/vue";
+import { Editor, rootCtx, defaultValueCtx } from '@milkdown/kit/core'
+import { nord } from '@milkdown/theme-nord'
+import { Milkdown, useEditor } from '@milkdown/vue'
 import {
   commonmark, toggleStrongCommand,
   toggleEmphasisCommand, toggleLinkCommand,
   wrapInOrderedListCommand,
-  wrapInBlockquoteCommand
-} from "@milkdown/kit/preset/commonmark";
-import { getMarkdown, replaceAll } from '@milkdown/kit/utils';
-import { history } from '@milkdown/kit/plugin/history';
-import { callCommand } from "@milkdown/kit/utils";
+  wrapInBlockquoteCommand,
+} from '@milkdown/kit/preset/commonmark'
+import { getMarkdown, replaceAll, callCommand } from '@milkdown/kit/utils'
+import { history } from '@milkdown/kit/plugin/history'
 
-const content = ref<HTMLElement>();
+const content = ref<HTMLElement>()
 let editor: Editor
 
 useEditor((root) => {
   editor = Editor.make()
     .config((ctx) => {
-      ctx.set(rootCtx, root);
+      ctx.set(rootCtx, root)
       ctx.set(defaultValueCtx, `# Write anything
 
 # Hello
@@ -52,30 +50,27 @@ Hello world
 
 1. hello
 2. write
-`);
+`)
     })
     .config(nord)
     .use(commonmark)
     .use(history)
-  return editor;
-  }
-);
-
+  return editor
+},
+)
 
 function appendMarkdown(str: string) {
-  const text = editor.action(getMarkdown());
-  editor.action(replaceAll(text + str));
+  const text = editor.action(getMarkdown())
+  editor.action(replaceAll(text + str))
 }
 
+const toggleBold = () => editor.action(callCommand(toggleStrongCommand.key))
+const toggleItalic = () => editor.action(callCommand(toggleEmphasisCommand.key))
+const toggleLink = () => editor.action(callCommand(toggleLinkCommand.key))
+const toggleList = () => editor.action(callCommand(wrapInOrderedListCommand.key))
+const toggleQuote = () => editor.action(callCommand(wrapInBlockquoteCommand.key))
 
-const toggleBold = () => editor.action(callCommand(toggleStrongCommand.key));
-const toggleItalic = () => editor.action(callCommand(toggleEmphasisCommand.key));
-const toggleLink = () => editor.action(callCommand(toggleLinkCommand.key));
-const toggleList = () => editor.action(callCommand(wrapInOrderedListCommand.key));
-const toggleQuote = () => editor.action(callCommand(wrapInBlockquoteCommand.key));
-
-const getMdText = () => editor.action(getMarkdown());
-
+const getMdText = () => editor.action(getMarkdown())
 
 defineExpose({
   content,
@@ -86,9 +81,8 @@ defineExpose({
   toggleLink,
   toggleQuote,
   getMdText,
-});
+})
 </script>
-
 
 <style>
 @tailwind base;

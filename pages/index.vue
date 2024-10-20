@@ -8,5 +8,5 @@
 </template>
 
 <script setup lang="ts">
-navigateTo("/auth");
+navigateTo('/auth')
 </script>

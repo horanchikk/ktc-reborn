@@ -3,15 +3,17 @@
     class="w-full flex justify-between gap-5 bg-background-100 p-3 animate__animated animate__fadeInDown animate__faster"
   >
     <Icon
-      @click="sideBar.show()"
       name="solar:hamburger-menu-outline"
       class="w-8 h-8 hover:opacity-50 cursor-pointer duration-150"
+      @click="sideBar.show()"
     />
-    <div class="flex-auto flex items-center font-semibold">UserName</div>
+    <div class="flex-auto flex items-center font-semibold">
+      UserName
+    </div>
     <Icon
       name="basil:other-2-outline"
-      @click="show"
       class="w-8 h-8 hover:opacity-50 cursor-pointer duration-150"
+      @click="show"
     />
     <div
       v-if="showMenu"
@@ -26,15 +28,19 @@
         <div class="m-3 w-44 flex flex-col divide-y-2 divide-stone-700 drop-shadow-lg">
           <button
             v-for="(item, idx) in menu"
+            :key="idx"
             class="flex gap-5 p-3 items-center bg-background-100 hover:bg-stone-700 animate__animated animate__fadeInDown duration-150"
             :class="{
-                'rounded-t-md': idx === 0,
-                'rounded-b-md': idx === menu.length - 1,
+              'rounded-t-md': idx === 0,
+              'rounded-b-md': idx === menu.length - 1,
             }"
             :style="`--animate-duration: ${(idx + 1) * 50}ms`"
             @click="item.action"
           >
-            <Icon :name="item.icon" class="w-7 h-7 text-stone-500" />
+            <Icon
+              :name="item.icon"
+              class="w-7 h-7 text-stone-500"
+            />
             <p v-text="item.name" />
           </button>
         </div>
@@ -44,31 +50,30 @@
 </template>
 
 <script setup lang="ts">
-import { useDebug } from "~/store/useDebug";
-import { useSideBar } from "~/store/useSideBar";
-import { useUser } from "~/store/useUser";
+import { useDebug } from '~/store/useDebug'
+import { useSideBar } from '~/store/useSideBar'
+// import { useUser } from '~/store/useUser'
 
-const sideBar = useSideBar();
-const user = useUser();
+const sideBar = useSideBar()
+// const user = useUser()
 const debug = useDebug()
-const showMenu = ref(false);
-const showAnim = ref(false);
+const showMenu = ref(false)
+const showAnim = ref(false)
 function hide() {
-    showAnim.value = false;
-    setTimeout(() => {
-        showMenu.value = false;
-    }, 100);
+  showAnim.value = false
+  setTimeout(() => {
+    showMenu.value = false
+  }, 100)
 }
 function show() {
-    showMenu.value = true;
-    showAnim.value = true;
+  showMenu.value = true
+  showAnim.value = true
 }
 const menu = [
   {
-    name: "Debug",
-    icon: "material-symbols:bug-report-outline",
+    name: 'Debug',
+    icon: 'material-symbols:bug-report-outline',
     action: () => debug.show(),
   },
-];
+]
 </script>
-

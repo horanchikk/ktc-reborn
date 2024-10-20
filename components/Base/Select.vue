@@ -4,10 +4,11 @@
       <div
         v-for="part in data"
         :key="part[id]"
+        class="flex gap-2 cursor-pointer select-none"
         @click="selected = part[id]"
-        class="flex gap-2"
       >
         <svg
+          class="min-w-[32px] min-h-[32px]"
           width="32"
           height="32"
           viewBox="0 0 32 32"
@@ -32,7 +33,7 @@
         </svg>
 
         <p
-          class="text-xl duration-150"
+          class="text-[20px] duration-150"
           :class="{
             'text-primary': selected === part[id],
           }"
@@ -45,8 +46,8 @@
       <div
         v-for="(text, idx) in data"
         :key="idx"
-        @click="selected = text"
         class="flex gap-2"
+        @click="selected = text"
       >
         <svg
           width="32"
@@ -86,17 +87,13 @@
 </template>
 
 <script setup lang="ts">
-
 defineProps<{
-  id?: string;
-  name?: string;
-  data: object[] | string[];
-}>();
+  id?: string
+  name?: string
+  data: object[] | string[]
+}>()
 
-const selected = defineModel("selected", {
-  default: undefined,
-  type: String || null,
-});
+const selected = defineModel<string | object>('selected', { default: undefined })
 </script>
 
 <style scoped>

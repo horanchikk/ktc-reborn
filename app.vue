@@ -1,7 +1,12 @@
 <template>
   <!-- Debug form -->
-  <Form v-model:is-visible="debug.isVisible" :formType="-1">
-    <h1 class="text-xl font-bold text-center">Debug</h1>
+  <Form
+    v-model:is-visible="debug.isVisible"
+    :form-type="-1"
+  >
+    <h1 class="text-xl font-bold text-center">
+      Debug
+    </h1>
     <p class="text-sm font-mono font-semibold">
       User: {{ debug.user.data }} <br><br> Route: {{ debug.route }} <br><br> Sidebar: {{ { isVisible: debug.sidebar.isVisible, isRendered: debug.sidebar.isRendered } }}
     </p>
@@ -13,10 +18,11 @@
 </template>
 
 <script setup lang="ts">
-import { useDebug } from './store/useDebug';
-const debug = useDebug();
+import { useDebug } from './store/useDebug'
+
+const debug = useDebug()
 window.showDebug = () => {
-  debug.show();
+  debug.show()
 }
 </script>
 

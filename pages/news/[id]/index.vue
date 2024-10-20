@@ -1,7 +1,7 @@
 <template>
   <div
-    class="flex flex-col gap-2 p-2 overflow-y-auto bg-background-200"
     ref="page"
+    class="flex flex-col gap-2 p-2 overflow-y-auto bg-background-200"
   >
     <div
       ref="header"
@@ -20,9 +20,9 @@
         `"
       >
         <div
+          ref="blurry"
           :class="`w-full h-full transition-all`"
           :style="`backdrop-filter: blur(${blur}px); background-color: rgba(33,33,33,0);`"
-          ref="blurry"
         >
           <img
             src="@/assets/icons/arrow-left-alt 1.svg"
@@ -42,7 +42,10 @@
       class="flex flex-col min-h-screen h-[2000px]"
       :style="`padding-top: ${headerHeightMax}px`"
     >
-      <span v-for="(i, x) in [1,2,3,4,5,6,67,8,9,10,11,12,13,14,15,16]">
+      <span
+        v-for="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]"
+        :key="i"
+      >
         CONTENT SVO
       </span>
     </div>
@@ -53,45 +56,40 @@
 import { useWindowScroll } from '@vueuse/core'
 
 definePageMeta({
-  layout: "news",
-});
+  layout: 'news',
+})
 
+const headerHeightMax = 275
+const headerHeightMin = 50
+const backButtonHeight = 48
+const titleLeftPaddingMin = 4
 
-const headerHeightMax = 275;
-const headerHeightMin = 50;
-const backButtonHeight = 48;
-const titleLeftPaddingMin = 4;
+const title = ref('Визит Китайской делегации в наш колледж')
 
-
-const title = ref("Визит Китайской делегации в наш колледж");
-
-
-const { y } = useWindowScroll({behavior: 'smooth'});
-const imageHeight = ref(headerHeightMax);
-const blur = ref(0);
-const padLeft = ref(titleLeftPaddingMin);
-const textSize = ref(24);
-const lineHeight = ref(32);
-const titleStyles = ref('');
-
+const { y } = useWindowScroll({ behavior: 'smooth' })
+const imageHeight = ref(headerHeightMax)
+const blur = ref(0)
+const padLeft = ref(titleLeftPaddingMin)
+const textSize = ref(24)
+const lineHeight = ref(32)
+const titleStyles = ref('')
 
 watch(y, (val) => {
-  imageHeight.value = Math.max(headerHeightMin, headerHeightMax - val);
-  blur.value = Math.ceil((headerHeightMax - imageHeight.value) / 25);
-  if (imageHeight.value > backButtonHeight*2) {
-    padLeft.value = titleLeftPaddingMin;
-    textSize.value = 24;
-    lineHeight.value = 32;
-  } else {
-    padLeft.value = titleLeftPaddingMin + (-imageHeight.value + (backButtonHeight*2)) * 1.5;
-    textSize.value = Math.min(24, imageHeight.value - backButtonHeight + 16);
-    lineHeight.value = 32;
+  imageHeight.value = Math.max(headerHeightMin, headerHeightMax - val)
+  blur.value = Math.ceil((headerHeightMax - imageHeight.value) / 25)
+  if (imageHeight.value > backButtonHeight * 2) {
+    padLeft.value = titleLeftPaddingMin
+    textSize.value = 24
+    lineHeight.value = 32
   }
-});
-
+  else {
+    padLeft.value = titleLeftPaddingMin + (-imageHeight.value + (backButtonHeight * 2)) * 1.5
+    textSize.value = Math.min(24, imageHeight.value - backButtonHeight + 16)
+    lineHeight.value = 32
+  }
+})
 
 function onBack() {
-  console.log("back pressed")
+  console.log('back pressed')
 }
-
 </script>

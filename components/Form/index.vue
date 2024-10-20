@@ -1,6 +1,9 @@
 <template>
   <Teleport to="body">
-    <div class="fixed top-0 left-0 w-screen h-screen" v-if="isRendered">
+    <div
+      v-if="isRendered"
+      class="fixed top-0 left-0 w-screen h-screen"
+    >
       <div class="relative w-full h-full">
         <div
           :class="isAnimate ? 'animate__fadeIn' : 'animate__fadeOut'"
@@ -11,13 +14,16 @@
           :class="isAnimate ? 'fadeInUp' : 'fadeOutDown'"
         >
           <div
+            ref="target"
             :class="{
               'p-5': formType !== 1,
             }"
             class="w-[440px] flex flex-col gap-3 rounded-[32px] bg-background-100 text-white shadow-xl"
-            ref="target"
           >
-            <div class="w-full h-full" v-if="formType === -1">
+            <div
+              v-if="formType === -1"
+              class="w-full h-full"
+            >
               <slot />
 
               <button
@@ -29,8 +35,8 @@
             </div>
             <form
               v-else-if="formType === 0"
-              @submit.prevent="[(isVisible = false), $emit('isClosed', null)]"
               class="flex flex-col gap-5 justify-center items-center"
+              @submit.prevent="[(isVisible = false), $emit('isClosed', null)]"
             >
               <p v-text="formMessage" />
               <button
@@ -52,48 +58,51 @@
 </template>
 
 <script setup lang="ts">
-import { onClickOutside } from "@vueuse/core";
+import { onClickOutside } from '@vueuse/core'
 
-const target = ref(null);
-const isAnimate = ref(false);
-const isVisible = defineModel("isVisible");
-const isRendered = ref(isAnimate.value);
+const target = ref(null)
+const isAnimate = ref(false)
+const isVisible = defineModel('isVisible', {
+  type: Boolean,
+})
+const isRendered = ref(isAnimate.value)
 
 const props = withDefaults(
   defineProps<{
-    closable?: boolean;
-    formMessage?: string;
-    formType?: number;
+    closable?: boolean
+    formMessage?: string
+    formType?: number
   }>(),
   {
     closable: true,
     formType: 0,
-  }
-);
-defineEmits(["isClosed"]);
+  },
+)
+defineEmits(['isClosed'])
 
 watch(isVisible, (val) => {
   if (val === true) {
-    isAnimate.value = true;
-    isRendered.value = true;
-  } else {
-    isAnimate.value = false;
+    isAnimate.value = true
+    isRendered.value = true
+  }
+  else {
+    isAnimate.value = false
 
     setTimeout(() => {
-      isRendered.value = false;
-    }, 300);
+      isRendered.value = false
+    }, 300)
   }
-});
+})
 
 // watcher fix
 if (isVisible.value === true) {
-  isAnimate.value = true;
-  isRendered.value = true;
+  isAnimate.value = true
+  isRendered.value = true
 }
 
 onClickOutside(target, () => {
-  if (props.closable) isVisible.value = false;
-});
+  if (props.closable) isVisible.value = false
+})
 </script>
 
 <style scoped>

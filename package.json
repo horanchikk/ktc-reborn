@@ -9,7 +9,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "sync": "nuxt build && nuxt generate && npx cap sync"
+    "sync": "nuxt build && nuxt generate && npx cap sync",
+    "lint": "eslint"
   },
   "dependencies": {
     "@capacitor/android": "6.1.2",
@@ -42,11 +43,22 @@
   "devDependencies": {
     "@capacitor/cli": "6.1.2",
     "@formkit/auto-animate": "^0.8.2",
+    "@nuxt/eslint": "^0.6.0",
+    "@nuxt/eslint-config": "^0.6.0",
     "@nuxt/icon": "^1.5.1",
     "@nuxt/image": "^1.8.0",
     "@nuxtjs/color-mode": "^3.4.4",
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/tailwindcss": "^6.12.1",
-    "@pinia/nuxt": "^0.5.4"
+    "@pinia/nuxt": "^0.5.4",
+    "eslint": "^9.13.0",
+    "lint-staged": "^15.2.10",
+    "simple-git-hooks": "^2.11.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "yarn lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }
