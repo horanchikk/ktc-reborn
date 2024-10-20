@@ -24,7 +24,12 @@
         }"
       >
         <span>Выберите стиль заголовка</span>
-        <h1 @click="chooseHeading(1)">Heading 1</h1>
+        <div class="flex divide-y divide-foreground/20">
+          <h1 class="py-1" @click="chooseHeading(1)">Heading 1</h1>
+          <h2 class="py-1" @click="chooseHeading(2)">Heading 2</h2>
+          <h3 class="py-1" @click="chooseHeading(3)">Heading 3</h3>
+          <h4 class="py-1" @click="chooseHeading(4)">Heading 4</h4>
+        </div>
       </div>
     </div>
     <div class="flex flex-wrap gap-2 bg-background-200 rounded-lg p-2">
