@@ -2,13 +2,13 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
-    '@pinia/nuxt',
-    '@formkit/auto-animate/nuxt',
-    '@nuxt/icon',
     '@nuxtjs/google-fonts',
     '@nuxt/image',
-    'nuxt-booster',
     '@nuxt/eslint',
+    '@pinia/nuxt',
+    '@formkit/auto-animate/nuxt',
+    'nuxt-booster',
+    'nuxt-svgo',
   ],
   ssr: false,
   devtools: { enabled: true },
@@ -16,7 +16,7 @@ export default defineNuxtConfig({
 
   vue: {
     compilerOptions: {
-      isCustomElement: tag => ['lottie-player'].includes(tag),
+      isCustomElement: (tag: string) => ['lottie-player'].includes(tag),
     },
   },
 
@@ -27,8 +27,8 @@ export default defineNuxtConfig({
       ACCOUNT_PASSWD: process.env.ACCOUNT_PASSWD,
     },
   },
-  compatibilityDate: '2024-04-03',
 
+  compatibilityDate: '2024-04-03',
   fontMetrics: {
     fonts: ['Montserrat'],
   },
@@ -39,6 +39,13 @@ export default defineNuxtConfig({
       Montserrat: '100..900',
     },
   },
+
+  svgo: {
+    autoImportPath: '~/assets/icons',
+    componentPrefix: 'i',
+    defaultImport: 'component',
+  },
+
   tailwindcss: {
     config: {
       theme: {

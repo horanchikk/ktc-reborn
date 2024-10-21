@@ -2,19 +2,20 @@
   <header
     class="w-full flex justify-between gap-5 bg-background-100 p-3 animate__animated animate__fadeInDown animate__faster"
   >
-    <Icon
-      name="solar:hamburger-menu-outline"
+    <ISandwich
       class="w-8 h-8 hover:opacity-50 cursor-pointer duration-150"
       @click="sideBar.show()"
     />
+
     <div class="flex-auto flex items-center font-semibold">
       UserName
     </div>
-    <Icon
-      name="basil:other-2-outline"
+
+    <IMoreVertical
       class="w-8 h-8 hover:opacity-50 cursor-pointer duration-150"
       @click="show"
     />
+
     <div
       v-if="showMenu"
       class="absolute top-0 left-0 w-screen h-screen bg-transparent z-50"
