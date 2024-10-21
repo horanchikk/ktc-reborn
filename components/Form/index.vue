@@ -3,6 +3,7 @@
     <div
       v-if="isRendered"
       class="fixed top-0 left-0 w-screen h-screen"
+      style="z-index: 2147483647;"
     >
       <div class="relative w-full h-full">
         <div
