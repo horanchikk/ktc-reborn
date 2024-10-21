@@ -97,11 +97,7 @@
         class="w-full flex gap-2 justify-center items-center py-2 opacity-50 hover:opacity-100 duration-150 mb-0.5 cursor-pointer"
         @click="infoAuthForm = true"
       >
-        <img
-          src="@/assets/icons/alert-circle 1.svg"
-          alt="alert circle"
-          class="h-7 w-7 text-background-100 rotate-180"
-        >
+        <IAlertCircle class="h-7 w-7 text-background-100 rotate-180" />
         <p class="font-light text-lg">
           Откуда брать данные?
         </p>
@@ -112,17 +108,14 @@
         :disabled="isLoading"
         type="submit"
       >
-        <Icon
+        <ILoader
           v-if="isLoading"
-          name="svg-spinners:ring-resize"
           class="w-6 h-6 text-background-100 opacity-75 group-hover:opacity-100"
         />
-        <img
+        <ILogin
           v-else
-          src="@/assets/icons/login 1.svg"
-          alt="logout"
           class="w-6 h-6 opacity-75 group-hover:opacity-100"
-        >
+        />
 
         <p
           class="text-2xl text-background-100 font-semibold opacity-75 group-hover:opacity-100 duration-150"
@@ -139,6 +132,7 @@ import { useDebug } from '~/store/useDebug'
 
 definePageMeta({
   layout: 'none',
+  middleware: 'guest-only',
 })
 
 const emit = defineEmits(['isClosed'])
