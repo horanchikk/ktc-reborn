@@ -88,7 +88,7 @@ export function useApi() {
         },
       })
     },
-    DELETE: (url: string, body?: object, params?: object) => {
+    delete: (url: string, body?: object, params?: object) => {
       return instance(url, {
         method: 'DELETE',
         body,
