@@ -14,5 +14,10 @@ export const useUser = defineStore('useUser', () => {
     log.success('Store was updated:', JSON.stringify(obj))
   }
 
-  return { data, setUserData, isStudent }
+  function logout() {
+    localStorage.removeItem('ktc_auth')
+    navigateTo('/login')
+  }
+
+  return { data, setUserData, isStudent, logout }
 })

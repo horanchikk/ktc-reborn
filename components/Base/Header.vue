@@ -38,10 +38,11 @@
             :style="`--animate-duration: ${(idx + 1) * 50}ms`"
             @click="item.action"
           >
-            <Icon
-              :name="item.icon"
-              class="w-7 h-7 text-stone-500"
-            />
+            <img
+              :src="`/icons/bug-report.svg`"
+              class="w-7 h-7"
+              :alt="item.icon"
+            >
             <p v-text="item.name" />
           </button>
         </div>
@@ -73,7 +74,7 @@ function show() {
 const menu = [
   {
     name: 'Debug',
-    icon: 'material-symbols:bug-report-outline',
+    icon: 'bug-report',
     action: () => debug.show(),
   },
 ]

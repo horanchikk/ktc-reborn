@@ -238,6 +238,86 @@
         />
       </svg>
 
+      <svg
+        v-else-if="type === 'cog'"
+        width="37"
+        height="48"
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M20.51 8.37632C19.6854 10.3553 17.3731 11.2493 15.4266 10.3509C12.2058 8.8644 8.86421 12.206 10.3507 15.4267C11.2491 17.3733 10.3551 19.6856 8.37613 20.5102C5.27387 21.8028 5.27387 26.1976 8.37613 27.4902C10.3551 28.3148 11.2491 30.6272 10.3507 32.5736C8.86421 35.7944 12.2058 39.136 15.4266 37.6494C17.3731 36.751 19.6854 37.645 20.51 39.624C21.8026 42.7264 26.1974 42.7264 27.49 39.624C28.3146 37.645 30.627 36.751 32.5734 37.6494C35.7942 39.136 39.1358 35.7944 37.6492 32.5736C36.7508 30.6272 37.6448 28.3148 39.6238 27.4902C42.7262 26.1976 42.7262 21.8028 39.6238 20.5102C37.6448 19.6856 36.7508 17.3733 37.6492 15.4267C39.1358 12.206 35.7942 8.8644 32.5734 10.3509C30.627 11.2493 28.3146 10.3553 27.49 8.37632C26.1974 5.27406 21.8026 5.27406 20.51 8.37632Z"
+          :stroke="color"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M30 24.0002C30 27.314 27.3138 30.0002 24 30.0002C20.6862 30.0002 18 27.314 18 24.0002C18 20.6864 20.6862 18.0002 24 18.0002C27.3138 18.0002 30 20.6864 30 24.0002Z"
+          :stroke="color"
+          stroke-width="4"
+        />
+      </svg>
+
+      <svg
+        v-else-if="type === 'alert-circle'"
+        width="37"
+        height="48"
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M42 24C42 33.9412 33.9412 42 24 42C14.0589 42 6 33.9412 6 24C6 14.0589 14.0589 6 24 6C33.9412 6 42 14.0589 42 24Z"
+          :stroke="color"
+          stroke-width="4"
+        />
+        <path
+          d="M24 16V26"
+          :stroke="color"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+        <path
+          d="M24 32.0001V31.9777"
+          :stroke="color"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+      </svg>
+
+      <svg
+        v-else-if="type === 'logout'"
+        width="37"
+        height="48"
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M42 24H26"
+          :stroke="color"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M36 30L41.826 24.174C41.922 24.078 41.922 23.922 41.826 23.826L36 18"
+          :stroke="color"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M32 10V9C32 7.34314 30.6568 6 29 6H10C7.79088 6 6.00002 7.79086 6.00002 10V38C6.00002 40.2092 7.79088 42 10 42H29C30.6568 42 32 40.6568 32 39V38"
+          :stroke="color"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+
       <p
         class="text-lg font-semibold duration-150"
         :style="`color: ${color};`"
@@ -253,7 +333,7 @@
 
 <script setup lang="ts">
 withDefaults(defineProps<{
-  type?: 'home' | 'license' | 'calendar' | 'mail' | 'bell' | 'photo' | 'chart'
+  type?: 'home' | 'license' | 'calendar' | 'mail' | 'bell' | 'photo' | 'chart' | 'cog' | 'alert-circle' | 'logout'
   text?: string
   count?: number
   color?: string

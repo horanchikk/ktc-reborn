@@ -15,12 +15,12 @@
           ? 'animate__animated animate__faster animate__slideInLeft'
           : 'animate__animated animate__faster animate__slideOutLeft'
       "
-      class="absolute top-0 w-10/12 h-full bg-background-100 p-4"
+      class="absolute top-0 w-4/6 h-full bg-background-100 p-4"
       :style="`left: -${translateTo}px`"
     >
       <template v-if="info">
         <div
-          class="w-full flex flex-col gap-[10px] show transition-all"
+          class="w-full h-full flex flex-col gap-[10px] show transition-all"
           :class="store.isVisible ? 'opacity-100' : 'opacity-0'"
         >
           <div class="flex items-center gap-4 mb-4">
@@ -47,10 +47,42 @@
               :to="link.route"
               @click="store.isVisible = false"
             >
-              <SideBarElement
+              <LazyBaseSideBarElement
                 :type="link.icon"
                 :text="link.name"
                 :color="useRouter().currentRoute.value.path === link.route ? '#FF4646' : '#EDE8D8'"
+              />
+            </NuxtLink>
+          </div>
+          <div class="flex-auto flex flex-col justify-end divide-y-[1px] divide-background-200">
+            <div class="w-full bg-foreground opacity-25 h-[1px]" />
+            <NuxtLink
+              to="/settings"
+              @click="store.isVisible = false"
+            >
+              <LazyBaseSideBarElement
+                type="cog"
+                text="Настройки"
+                :color="useRouter().currentRoute.value.path === '/settings' ? '#FF4646' : '#EDE8D8'"
+              />
+            </NuxtLink>
+            <NuxtLink
+              to="/about"
+              @click="store.isVisible = false"
+            >
+              <LazyBaseSideBarElement
+                type="alert-circle"
+                text="О программе"
+                :color="useRouter().currentRoute.value.path === '/about' ? '#FF4646' : '#EDE8D8'"
+              /></NuxtLink>
+            <NuxtLink
+              to="/about"
+              @click="user.logout()"
+            >
+              <LazyBaseSideBarElement
+                type="logout"
+                text="Выйти из аккаунта"
+                color="#EDE8D8"
               />
             </NuxtLink>
           </div>
@@ -59,10 +91,7 @@
 
       <template v-else>
         <div class="w-full h-full flex show">
-          <Icon
-            name="svg-spinners:ring-resize"
-            class="w-[40px] h-[40px] text-foreground"
-          />
+          <ILoader class="w-[40px] h-[40px] text-foreground" />
         </div>
       </template>
     </div>

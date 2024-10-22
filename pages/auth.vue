@@ -8,7 +8,7 @@
     class="w-full h-full flex flex-col items-center justify-between pt-8 text-white"
     @submit.prevent="auth"
   >
-    <div class="flex flex-col justify-center items-center">
+    <div class="flex flex-col justify-center items-center show">
       <h1 class="text-4xl font-bold text-center">
         Войдите в аккаунт
       </h1>
