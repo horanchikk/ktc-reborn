@@ -26,29 +26,31 @@
           'opacity-0 scale-75 translate-y-10': !showHeadingPopup,
         }"
       >
-        <span>Выберите стиль заголовка</span>
-        <div class="flex divide-y divide-foreground/20">
+        <p class="font-semibold text-xl">
+          Выберите стиль заголовка
+        </p>
+        <div class="flex flex-col divide-y divide-foreground/20">
           <!-- TODO: v-for -->
           <h1
-            class="py-1"
+            class="mt-4 pb-1 w-full px-8 duration-150 cursor-pointer rounded-t-md text-center bg-opacity-0 hover:bg-opacity-30 bg-white"
             @click="chooseHeading(1)"
           >
             Heading 1
           </h1>
           <h2
-            class="py-1"
+            class="py-1 w-full px-8 duration-150 cursor-pointer text-center bg-opacity-0 hover:bg-opacity-30 bg-white"
             @click="chooseHeading(2)"
           >
             Heading 2
           </h2>
           <h3
-            class="py-1"
+            class="py-1 w-full px-8 duration-150 cursor-pointer text-center bg-opacity-0 hover:bg-opacity-30 bg-white"
             @click="chooseHeading(3)"
           >
             Heading 3
           </h3>
           <h4
-            class="py-1"
+            class="pt-1 mb-4 w-full px-8 duration-150 cursor-pointer rounded-b-md text-center bg-opacity-0 hover:bg-opacity-30 bg-white"
             @click="chooseHeading(4)"
           >
             Heading 4
@@ -58,40 +60,34 @@
     </div>
     <div class="flex flex-wrap gap-2 bg-background-200 rounded-lg p-2">
       <!-- TODO: v-for -->
-      <img
-        src="@/assets/icons/heading 1.svg"
-        alt="set heading"
+      <IBgHeading
+        class="h-[32px] w-[32px]"
         @click="toggleHeadingPopup"
-      >
-      <div class="bg-foreground/25 w-[2px] min-h-full" />
-      <img
-        src="@/assets/icons/bold 1.svg"
-        alt="set bold"
+      />
+      <div class="bg-foreground/25 w-[2px]" />
+      <IBgBold
+        class="h-[32px] w-[32px]"
         @click="applyBold"
-      >
-      <img
-        src="@/assets/icons/italic 1.svg"
-        alt="set italic"
+      />
+      <IBgItalic
+        class="h-[32px] w-[32px]"
         @click="applyItalic"
-      >
-      <div class="bg-foreground/25 w-[2px] min-h-full" />
-      <img
-        src="@/assets/icons/link 1.svg"
-        alt="set link"
+      />
+      <div class="bg-foreground/25 w-[2px]" />
+      <IBgLink
+        class="h-[32px] w-[32px]"
         @click="applyLink"
-      >
-      <div class="bg-foreground/25 w-[2px] min-h-full" />
-      <img
-        src="@/assets/icons/lines.svg"
-        alt="set list"
+      />
+      <div class="bg-foreground/25 w-[2px]" />
+      <IBgLines
+        class="h-[32px] w-[32px]"
         @click="applyList"
-      >
-      <div class="bg-foreground/25 w-[2px] min-h-full" />
-      <img
-        src="@/assets/icons/blockquote.svg"
-        alt="set list"
+      />
+      <div class="bg-foreground/25 w-[2px]" />
+      <IBlockquote
+        class="h-[32px] w-[32px]"
         @click="applyQuote"
-      >
+      />
     </div>
     <MilkdownProvider>
       <EditorMilkdownEditor ref="editor" />
@@ -114,6 +110,8 @@ const editor = ref<{
   toggleQuote?: () => void
   getMdText?: () => void
 }>()
+
+console.log(editor.value)
 
 function toggleHeadingPopup() {
   showHeadingPopup.value = !showHeadingPopup.value
