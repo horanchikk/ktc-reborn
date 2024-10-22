@@ -15,7 +15,7 @@
           ? 'animate__animated animate__faster animate__slideInLeft'
           : 'animate__animated animate__faster animate__slideOutLeft'
       "
-      class="absolute top-0 w-4/6 h-full bg-background-100 p-4"
+      class="absolute top-0 min-w-[330px] h-full bg-background-100 p-4"
       :style="`left: -${translateTo}px`"
     >
       <template v-if="info">
@@ -47,7 +47,7 @@
               :to="link.route"
               @click="store.isVisible = false"
             >
-              <LazyBaseSideBarElement
+              <BaseSideBarElement
                 :type="link.icon"
                 :text="link.name"
                 :color="useRouter().currentRoute.value.path === link.route ? '#FF4646' : '#EDE8D8'"
@@ -60,7 +60,7 @@
               to="/settings"
               @click="store.isVisible = false"
             >
-              <LazyBaseSideBarElement
+              <BaseSideBarElement
                 type="cog"
                 text="Настройки"
                 :color="useRouter().currentRoute.value.path === '/settings' ? '#FF4646' : '#EDE8D8'"
@@ -70,21 +70,18 @@
               to="/about"
               @click="store.isVisible = false"
             >
-              <LazyBaseSideBarElement
+              <BaseSideBarElement
                 type="alert-circle"
                 text="О программе"
                 :color="useRouter().currentRoute.value.path === '/about' ? '#FF4646' : '#EDE8D8'"
-              /></NuxtLink>
-            <NuxtLink
-              to="/about"
-              @click="user.logout()"
-            >
-              <LazyBaseSideBarElement
-                type="logout"
-                text="Выйти из аккаунта"
-                color="#EDE8D8"
               />
             </NuxtLink>
+            <BaseSideBarElement
+              type="logout"
+              text="Выйти из аккаунта"
+              color="#EDE8D8"
+              @click="user.logout()"
+            />
           </div>
         </div>
       </template>

@@ -16,12 +16,12 @@ interface TException {
 
 export function useApi() {
   const { public: { API_URL } } = useRuntimeConfig()
-  const user = useUser()
   const log = useLogger('useApi')
+  const user = useUser()
 
   function showError(data: TException) {
     if (Object.prototype.hasOwnProperty.call(data, 'code') && Object.prototype.hasOwnProperty.call(data, 'error')) {
-      log.error(JSON.stringify(data))
+      log.error(`${data.error} (${data.code})`)
     }
     else if (Object.prototype.hasOwnProperty.call(data, 'detail')) {
       const details = data.detail[0]
@@ -33,15 +33,29 @@ export function useApi() {
 
   const instance = $fetch.create({
     baseURL: API_URL,
+
     onRequest(ctx) {
       if (!user.data.access_token && ctx.request !== '/login')
         navigateTo('/auth')
     },
-    onResponse(ctx) {
+    async onResponse(ctx) {
       const statusCode = ctx.response.status
       if (statusCode > 300)
         showError(ctx.response._data)
-      // TODO: add refreshing token
+    },
+    async onResponseError(ctx) {
+      const statusCode = ctx.response.status
+
+      if (statusCode === 401) {
+        const newToken = await api.get('/user/refresh', {
+          access_token: ctx.request.split('?')[1].split('=')[1],
+        })
+
+        user.setUserData(newToken)
+      }
+      else if (statusCode === 400) {
+        user.logout()
+      }
     },
   })
   const api = {

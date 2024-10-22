@@ -16,7 +16,7 @@ export const useUser = defineStore('useUser', () => {
 
   function logout() {
     localStorage.removeItem('ktc_auth')
-    navigateTo('/login')
+    return navigateTo('/auth', { external: true, replace: true })
   }
 
   return { data, setUserData, isStudent, logout }
