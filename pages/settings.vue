@@ -5,5 +5,8 @@
 </template>
 
 <script setup lang="ts">
-
+definePageMeta({
+  name: 'Настройки',
+  middleware: ['user-only'],
+})
 </script>

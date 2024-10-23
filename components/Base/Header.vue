@@ -8,7 +8,7 @@
     />
 
     <div class="flex-auto flex items-center font-semibold">
-      UserName
+      {{ $router.currentRoute.value.name }}
     </div>
 
     <IMoreVertical
@@ -18,10 +18,14 @@
 
     <div
       v-if="showMenu"
-      class="fixed top-0 left-0 w-screen h-screen bg-transparent"
+      class="fixed top-0 left-0 w-screen h-screen"
     >
       <div
-        class="w-full h-full flex justify-end items-start"
+        class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30 animate__duration"
+        :class="showAnim ? 'animate__animated animate__fadeIn' : 'animate__animated animate__fadeOut'"
+      />
+      <div
+        class="absolute top-0 left-0 w-full h-full flex justify-end items-start z-40"
         :class="showAnim ? 'animate__animated animate__fadeIn' : 'animate__animated animate__fadeOut'"
         style="--animate-duration: 200ms"
         @click="hide"

@@ -35,6 +35,11 @@ interface NewsList {
   type: string
 }
 
+definePageMeta({
+  name: 'Новости',
+  middleware: ['user-only'],
+})
+
 const api = useApi()
 const newsList = ref<NewsList | null>(null)
 

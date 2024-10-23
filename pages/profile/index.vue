@@ -6,6 +6,7 @@
 // import { useUser } from '~/store/useUser'
 
 definePageMeta({
+  name: 'Профиль',
   middleware: ['user-only'],
 })
 </script>

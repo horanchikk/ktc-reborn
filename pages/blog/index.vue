@@ -36,6 +36,11 @@ interface PostList {
   attachments: []
 }
 
+definePageMeta({
+  name: 'Блог',
+  middleware: ['user-only'],
+})
+
 const api = useApi()
 const postList = ref<PostList[] | null>(null)
 
