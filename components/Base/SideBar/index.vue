@@ -70,7 +70,7 @@
             v-for="(link, idx) in links"
             :key="idx"
             :to="link.route"
-            @click="store.isVisible = false"
+            @click="store.hide()"
           >
             <BaseSideBarElement
               :type="link.icon"
@@ -83,7 +83,7 @@
           <div class="w-full bg-foreground opacity-25 h-[1px]" />
           <NuxtLink
             to="/settings"
-            @click="store.isVisible = false"
+            @click="store.hide()"
           >
             <BaseSideBarElement
               type="cog"
@@ -93,7 +93,7 @@
           </NuxtLink>
           <NuxtLink
             to="/about"
-            @click="store.isVisible = false"
+            @click="store.hide()"
           >
             <BaseSideBarElement
               type="alert-circle"
