@@ -1,2 +1,2 @@
 nuxt cleanup
-nuxt dev
+nuxt dev --host
