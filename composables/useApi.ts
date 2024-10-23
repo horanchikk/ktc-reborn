@@ -2,6 +2,11 @@ import { $fetch } from 'ofetch'
 import { useLogger } from './useLogger'
 import { useUser } from '~/store/useUser'
 
+interface TUserData {
+  user_id: number
+  access_token: string
+}
+
 interface Detail {
   type: string
   loc: string[]
@@ -47,8 +52,8 @@ export function useApi() {
       const statusCode = ctx.response.status
 
       if (statusCode === 401) {
-        const newToken = await api.get('/user/refresh', {
-          access_token: ctx.request.split('?')[1].split('=')[1],
+        const newToken: TUserData = await api.get('/user/refresh', {
+          access_token: ctx.request.toString().split('?')[1].split('=')[1],
         })
 
         user.setUserData(newToken)
@@ -59,7 +64,7 @@ export function useApi() {
     },
   })
   const api = {
-    get: (url: string, params?: object) => {
+    get: function<T>(url: string, params?: object): Promise<T> {
       return instance(url, {
         method: 'GET',
         params: {
@@ -68,7 +73,7 @@ export function useApi() {
         },
       })
     },
-    post: (url: string, body?: object, params?: object) => {
+    post: function<T>(url: string, body?: object, params?: object): Promise<T> {
       return instance(url, {
         method: 'POST',
         body,
@@ -78,7 +83,7 @@ export function useApi() {
         },
       })
     },
-    put: (url: string, body?: object, params?: object) => {
+    put: function<T>(url: string, body?: object, params?: object): Promise<T> {
       return instance(url, {
         method: 'PUT',
         body,
@@ -88,7 +93,7 @@ export function useApi() {
         },
       })
     },
-    delete: (url: string, body?: object, params?: object) => {
+    delete: function<T>(url: string, body?: object, params?: object): Promise<T> {
       return instance(url, {
         method: 'DELETE',
         body,

@@ -18,79 +18,97 @@
       class="absolute top-0 min-w-[330px] h-full bg-background-100 p-4"
       :style="`left: -${translateTo}px`"
     >
-      <template v-if="info">
-        <div
-          class="w-full h-full flex flex-col gap-[10px] show transition-all"
-          :class="store.isVisible ? 'opacity-100' : 'opacity-0'"
-        >
-          <div class="flex items-center gap-4 mb-4">
-            <img
-              :src="info.user_info.image"
-              class="w-[72px] h-[72px] rounded-full"
-            >
-            <div class="w-fit flex flex-col text-foreground">
-              <h1
-                class="text-2xl"
-                v-text="info.user_info.name"
-              />
-              <div class="flex justify-between opacity-60">
-                <h3 v-text="info.main_info.Группа" />
-                <h3 v-text="info.courses[0].title" />
-              </div>
+      <div
+        class="w-full h-full flex flex-col gap-[10px] show transition-all"
+        :class="store.isVisible ? 'opacity-100' : 'opacity-0'"
+      >
+        <div class="flex items-center gap-4 mb-4">
+          <img
+            v-if="info"
+            :src="info.user_info.image"
+            class="w-[72px] h-[72px] rounded-full show"
+          >
+          <div
+            v-else
+            class="w-[72px] h-[72px] rounded-full loading"
+          />
+          <div class="w-fit flex flex-col text-foreground">
+            <h1
+              v-if="info"
+              class="text-2xl show"
+              v-text="info.user_info.name"
+            />
+            <div
+              v-else
+              class="w-48 h-8 rounded-md loading"
+            />
+            <div class="flex justify-between opacity-60">
+              <template v-if="info">
+                <h3
+                  class="show"
+                  v-text="info.main_info.Группа"
+                />
+                <h3
+                  class="show"
+                  v-text="info.courses[0].title"
+                />
+              </template>
+              <template v-else>
+                <div
+                  class="h-6 w-16 mt-2 rounded-md loading"
+                />
+                <div
+                  class="h-6 w-16 mt-2 rounded-md loading"
+                />
+              </template>
             </div>
           </div>
-          <div class="w-full bg-foreground opacity-25 h-[1px]" />
-          <div class="flex flex-col divide-y-[1px] divide-background-200">
-            <NuxtLink
-              v-for="(link, idx) in links"
-              :key="idx"
-              :to="link.route"
-              @click="store.isVisible = false"
-            >
-              <BaseSideBarElement
-                :type="link.icon"
-                :text="link.name"
-                :color="useRouter().currentRoute.value.path === link.route ? '#FF4646' : '#EDE8D8'"
-              />
-            </NuxtLink>
-          </div>
-          <div class="flex-auto flex flex-col justify-end divide-y-[1px] divide-background-200">
-            <div class="w-full bg-foreground opacity-25 h-[1px]" />
-            <NuxtLink
-              to="/settings"
-              @click="store.isVisible = false"
-            >
-              <BaseSideBarElement
-                type="cog"
-                text="Настройки"
-                :color="useRouter().currentRoute.value.path === '/settings' ? '#FF4646' : '#EDE8D8'"
-              />
-            </NuxtLink>
-            <NuxtLink
-              to="/about"
-              @click="store.isVisible = false"
-            >
-              <BaseSideBarElement
-                type="alert-circle"
-                text="О программе"
-                :color="useRouter().currentRoute.value.path === '/about' ? '#FF4646' : '#EDE8D8'"
-              />
-            </NuxtLink>
+        </div>
+        <div class="w-full bg-foreground opacity-25 h-[1px]" />
+        <div class="flex flex-col divide-y-[1px] divide-background-200">
+          <NuxtLink
+            v-for="(link, idx) in links"
+            :key="idx"
+            :to="link.route"
+            @click="store.isVisible = false"
+          >
             <BaseSideBarElement
-              type="logout"
-              text="Выйти из аккаунта"
-              color="#EDE8D8"
-              @click="user.logout()"
+              :type="link.icon"
+              :text="link.name"
+              :color="useRouter().currentRoute.value.path === link.route ? '#FF4646' : '#EDE8D8'"
             />
-          </div>
+          </NuxtLink>
         </div>
-      </template>
-
-      <template v-else>
-        <div class="w-full h-full flex show">
-          <ILoader class="w-[40px] h-[40px] text-foreground" />
+        <div class="flex-auto flex flex-col justify-end divide-y-[1px] divide-background-200">
+          <div class="w-full bg-foreground opacity-25 h-[1px]" />
+          <NuxtLink
+            to="/settings"
+            @click="store.isVisible = false"
+          >
+            <BaseSideBarElement
+              type="cog"
+              text="Настройки"
+              :color="useRouter().currentRoute.value.path === '/settings' ? '#FF4646' : '#EDE8D8'"
+            />
+          </NuxtLink>
+          <NuxtLink
+            to="/about"
+            @click="store.isVisible = false"
+          >
+            <BaseSideBarElement
+              type="alert-circle"
+              text="О программе"
+              :color="useRouter().currentRoute.value.path === '/about' ? '#FF4646' : '#EDE8D8'"
+            />
+          </NuxtLink>
+          <BaseSideBarElement
+            type="logout"
+            text="Выйти из аккаунта"
+            color="#EDE8D8"
+            @click="user.logout()"
+          />
         </div>
-      </template>
+      </div>
     </div>
   </div>
 </template>
@@ -162,20 +180,3 @@ onMounted(
     )),
 )
 </script>
-
-<style>
-@keyframes show {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.show {
-  opacity: 0;
-  animation: show ease-in-out 300ms;
-  animation-fill-mode: forwards;
-}
-</style>
