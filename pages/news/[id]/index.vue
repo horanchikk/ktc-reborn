@@ -32,6 +32,7 @@
         >
           <IArrowLeftAlt
             class="absolute top-0 left-2 w-12 h-12 hover:opacity-50 duration-150 z-20 animate__animated animate__fadeInLeft animate__duration"
+            :style="direction === 'right' && lengthX < -100 ? `left: 20px;` : ''"
             @click="$router.back()"
           />
           <div
@@ -60,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { useWindowScroll } from '@vueuse/core'
+import { useWindowScroll, useSwipe } from '@vueuse/core'
 
 interface News {
   content: string
@@ -79,17 +80,24 @@ const headerHeightMin = 50
 const backButtonHeight = 48
 const titleLeftPaddingMin = 10
 
+const imageHeight = ref(headerHeightMax)
+const blur = ref(0)
+const page = ref(null)
+const padLeft = ref(titleLeftPaddingMin)
+const textSize = ref(24)
+const lineHeight = ref(32)
+const titleStyles = ref('')
+
 const route = useRoute()
 const api = useApi()
 const news = ref<null | News>()
 
 const { y } = useWindowScroll({ behavior: 'smooth' })
-const imageHeight = ref(headerHeightMax)
-const blur = ref(0)
-const padLeft = ref(titleLeftPaddingMin)
-const textSize = ref(24)
-const lineHeight = ref(32)
-const titleStyles = ref('')
+const { direction, lengthX } = useSwipe(page, {
+  onSwipeEnd() {
+    if (direction.value === 'right' && lengthX.value < -100) useRouter().back()
+  },
+})
 
 watch(y, (val) => {
   imageHeight.value = Math.max(headerHeightMin, headerHeightMax - val)
