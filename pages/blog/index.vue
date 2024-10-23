@@ -1,7 +1,7 @@
 <template>
   <div class="w-full overflow-y-scroll flex flex-col p-2 gap-5">
     <div
-      v-if="newsList === null"
+      v-if="postList === null"
       class="w-full h-full"
     >
       <div
@@ -12,33 +12,34 @@
       />
     </div>
     <template v-else>
-      <WallPost
-        v-for="news in newsList"
-        :key="news.id"
-        :image="news.preview"
-        :title="news.title"
-        :description="news.description"
-        :date="news.date"
-        @click="navigateTo(`/news/${news.id}`)"
+      <BlogPost
+        v-for="(post, idx) in postList"
+        :key="idx"
+        :avatar="post.avatar"
+        :title="post.title"
+        :raw_content="post.raw_content"
+        :date="post.date"
+        :author="post.author"
+        :attachments="post.attachments"
       />
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
-interface NewsList {
-  id: number
-  date: string
+interface PostList {
   title: string
-  description: string
-  preview: string
-  type: string
+  avatar: string
+  author: string
+  date: string
+  raw_content: string
+  attachments: []
 }
 
 const api = useApi()
-const newsList = ref<NewsList | null>(null)
+const postList = ref<PostList[] | null>(null)
 
 onMounted(async () => {
-  newsList.value = await api.get('/news/')
+  postList.value = await api.get('/blogs/')
 })
 </script>

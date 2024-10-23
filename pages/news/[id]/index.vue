@@ -83,11 +83,3 @@ watch(y, (val) => {
   }
 })
 </script>
-
-<style>
-.news-content {
-  a {
-    @apply underline text-blue-400 hover:text-blue-600 duration-150
-  }
-}
-</style>

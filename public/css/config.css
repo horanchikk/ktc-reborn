@@ -45,3 +45,9 @@
   animation: show ease-in-out 300ms;
   animation-fill-mode: forwards;
 }
+
+.news-content {
+  a {
+    @apply underline text-blue-400 hover:text-blue-600 duration-150
+  }
+}
