@@ -1,12 +1,32 @@
 <template>
-  <div class="flex flex-col p-2">
-    <WallPost
-      image="http://www.kansk-tc.ru/UserFiles/2024/10/15/2024-10-08_550px..jpeg"
-      title="Визит Китайской делегации в наш колледж"
-      description="22 сентября Китайская делегация посетила наш колледж. Целью визита является установление партнерских отношений с колледжем и обмен опытом в области профессионального образования. Визит делегации стал важным шагом в развитии международного сотрудничества и укрепления связей между образовательными учреждениями."
-      date="22.09.2024"
-    />
+  <div class="w-full overflow-y-scroll flex flex-col p-2 gap-5">
+    <div
+      v-if="!newsList"
+      class="w-full h-full flex items-center justify-center"
+    >
+      <ILoader
+        class="w-16 h-16"
+      />
+    </div>
+    <template v-else>
+      <WallPost
+        v-for="news in newsList"
+        :key="news.id"
+        :image="news.preview"
+        :title="news.title"
+        :description="news.description"
+        :date="news.date"
+      />
+    </template>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const api = useApi()
+
+const newsList = ref(null)
+
+onMounted(async () => {
+  newsList.value = await api.get('/news/')
+})
+</script>

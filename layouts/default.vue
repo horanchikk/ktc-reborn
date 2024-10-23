@@ -6,7 +6,7 @@
     <BaseSideBar />
     <BaseHeader />
 
-    <main class="flex-auto">
+    <main class="flex-auto overflow-y-scroll">
       <slot />
     </main>
   </div>
