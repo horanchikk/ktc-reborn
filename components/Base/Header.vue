@@ -1,6 +1,6 @@
 <template>
   <header
-    class="w-full flex justify-between gap-5 bg-background-100 p-3 animate__animated animate__fadeInDown animate__faster"
+    class="w-full flex justify-between gap-5 bg-background-100 p-3 animate__animated animate__fadeInDown animate__faster z-10"
   >
     <ISandwich
       class="w-8 h-8 hover:opacity-50 cursor-pointer duration-150"
@@ -18,7 +18,7 @@
 
     <div
       v-if="showMenu"
-      class="absolute top-0 left-0 w-screen h-screen bg-transparent z-50"
+      class="fixed top-0 left-0 w-screen h-screen bg-transparent"
     >
       <div
         class="w-full h-full flex justify-end items-start"
@@ -72,6 +72,11 @@ function show() {
   showAnim.value = true
 }
 const menu = [
+  {
+    name: 'Debug',
+    icon: 'bug-report',
+    action: () => debug.show(),
+  },
   {
     name: 'Debug',
     icon: 'bug-report',
