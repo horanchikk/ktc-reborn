@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-2 text-foreground bg-background-100 rounded-lg overflow-hidden">
+  <div class="flex flex-col gap-2 text-foreground bg-background-100 rounded-lg overflow-hidden show">
     <img
       :src="props.image"
       :alt="props.title"

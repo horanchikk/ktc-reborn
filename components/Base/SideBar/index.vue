@@ -2,7 +2,7 @@
   <div
     v-if="store.isRendered"
     ref="sideBarEl"
-    class="w-screen h-screen fixed top-0 left-0 z-10"
+    class="w-screen h-screen fixed top-0 left-0 z-30"
   >
     <div
       :class="store.isVisible ? 'bg-opacity-70' : 'bg-opacity-0'"
