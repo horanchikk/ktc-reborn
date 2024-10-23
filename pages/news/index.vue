@@ -1,11 +1,14 @@
 <template>
   <div class="w-full overflow-y-scroll flex flex-col p-2 gap-5">
     <div
-      v-if="!newsList"
-      class="w-full h-full flex items-center justify-center"
+      v-if="newsList === null"
+      class="w-full h-full"
     >
-      <ILoader
-        class="w-16 h-16"
+      <div
+        v-for="i of Array.from({ length: 10 }).map((i, idx) => idx)"
+        :key="i"
+        :class="i === 0 ? 'mt-0 mb-4' : 'my-4'"
+        class="w-full h-64 loading rounded-md opacity-30"
       />
     </div>
     <template v-else>
@@ -16,15 +19,25 @@
         :title="news.title"
         :description="news.description"
         :date="news.date"
+        @click="navigateTo(`/news/${news.id}`)"
       />
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
+interface NewsList {
+  id: number
+  date: string
+  title: string
+  description: string
+  preview: string
+  type: string
+}
+
 const api = useApi()
 
-const newsList = ref(null)
+const newsList = ref<NewsList | null>(null)
 
 onMounted(async () => {
   newsList.value = await api.get('/news/')

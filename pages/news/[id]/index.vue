@@ -24,31 +24,23 @@
           :class="`w-full h-full transition-all`"
           :style="`backdrop-filter: blur(${blur}px); background-color: rgba(33,33,33,0);`"
         >
-          <img
-            src="@/assets/icons/arrow-left-alt 1.svg"
-            class="w-12 h-12 ml-2"
-            @click="onBack"
-          >
+          <IArrowLeftAlt
+            class="absolute top-0 left-2 w-12 h-12 hover:opacity-50 duration-150 z-20 animate__animated animate__fadeInLeft animate__duration"
+            @click="$router.back()"
+          />
           <span
-            class="font-semibold absolute bottom-2 truncate w-full pr-4"
-            :style="`padding-left: ${padLeft}px; font-size: ${textSize}px; line-height: ${lineHeight}px; ${titleStyles}`"
-          >
-            {{ title }}
-          </span>
+            class="font-semibold absolute bottom-2.5 truncate w-full pr-4 show"
+            :style="`padding-left: ${padLeft}px; font-size: ${textSize}px; line-height: ${lineHeight}px; ${titleStyles};`"
+            v-text="news.title"
+          />
         </div>
       </div>
     </div>
     <div
-      class="flex flex-col min-h-screen h-[2000px]"
+      class="flex flex-col min-h-screen h-[2000px] news-content"
       :style="`padding-top: ${headerHeightMax}px`"
-    >
-      <span
-        v-for="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]"
-        :key="i"
-      >
-        CONTENT SVO
-      </span>
-    </div>
+      v-html="news.content"
+    />
   </div>
 </template>
 
@@ -62,9 +54,11 @@ definePageMeta({
 const headerHeightMax = 275
 const headerHeightMin = 50
 const backButtonHeight = 48
-const titleLeftPaddingMin = 4
+const titleLeftPaddingMin = 10
 
-const title = ref('Визит Китайской делегации в наш колледж')
+const route = useRoute()
+const api = useApi()
+const news = await api.get(`/news/id${route.params.id}?md=false`)
 
 const { y } = useWindowScroll({ behavior: 'smooth' })
 const imageHeight = ref(headerHeightMax)
@@ -88,8 +82,12 @@ watch(y, (val) => {
     lineHeight.value = 32
   }
 })
-
-function onBack() {
-  console.log('back pressed')
-}
 </script>
+
+<style>
+.news-content {
+  a {
+    @apply underline text-blue-400 hover:text-blue-600 duration-150
+  }
+}
+</style>
