@@ -79,16 +79,10 @@
     </div>
     <div>
       <DevOnly>
-        <button
-          type="button"
-          class="relative"
+        <IBugReport
+          class="h-8 w-8 opacity-40 hover:opacity-100"
           @click="useDebug().show"
-        >
-          <Icon
-            name="material-symbols:bug-report-outline-rounded"
-            class="absolute -top-2 -left-3 h-8 w-8 opacity-40 hover:opacity-100"
-          />
-        </button>
+        />
       </DevOnly>
     </div>
 
