@@ -47,7 +47,16 @@
 <script setup lang="ts">
 import { useWindowScroll } from '@vueuse/core'
 
+interface News {
+  content: string
+  date: string
+  id: number
+  title: string
+}
+
 definePageMeta({
+  name: 'Новости',
+  middleware: ['user-only'],
   layout: 'news',
 })
 
@@ -58,7 +67,7 @@ const titleLeftPaddingMin = 10
 
 const route = useRoute()
 const api = useApi()
-const news = await api.get(`/news/id${route.params.id}?md=false`)
+const news = await api.get<News>(`/news/id${route.params.id}?md=false`)
 
 const { y } = useWindowScroll({ behavior: 'smooth' })
 const imageHeight = ref(headerHeightMax)
