@@ -8,10 +8,16 @@
       class="right-0 left-0 top-0 fixed"
     >
       <img
+        v-if="news"
         src="http://www.kansk-tc.ru/UserFiles/2024/10/15/2024-10-08_550px..jpeg"
         class="w-full object-cover object-center absolute -z-10"
         :style="`height: ${imageHeight}px`"
       >
+      <div
+        v-else
+        class="w-full object-cover object-center absolute -z-10 loading"
+        :style="`height: ${imageHeight}px`"
+      />
       <div
         class="flex w-full flex-col"
         :style="`
@@ -28,7 +34,8 @@
             class="absolute top-0 left-2 w-12 h-12 hover:opacity-50 duration-150 z-20 animate__animated animate__fadeInLeft animate__duration"
             @click="$router.back()"
           />
-          <span
+          <div
+            v-if="news"
             class="font-semibold absolute bottom-2.5 truncate w-full pr-4 show"
             :style="`padding-left: ${padLeft}px; font-size: ${textSize}px; line-height: ${lineHeight}px; ${titleStyles};`"
             v-text="news.title"
@@ -37,10 +44,18 @@
       </div>
     </div>
     <div
+      v-if="news"
       class="flex flex-col min-h-screen h-[2000px] news-content"
       :style="`padding-top: ${headerHeightMax}px`"
       v-html="news.content"
     />
+    <div
+      v-else
+      class="flex flex-col min-h-screen items-center justify-center news-content"
+      :style="`padding-top: ${headerHeightMax}px`"
+    >
+      <ILoader class="w-10 h-10" />
+    </div>
   </div>
 </template>
 
@@ -55,7 +70,6 @@ interface News {
 }
 
 definePageMeta({
-  name: 'Новости',
   middleware: ['user-only'],
   layout: 'news',
 })
@@ -67,7 +81,7 @@ const titleLeftPaddingMin = 10
 
 const route = useRoute()
 const api = useApi()
-const news = await api.get<News>(`/news/id${route.params.id}?md=false`)
+const news = ref<null | News>()
 
 const { y } = useWindowScroll({ behavior: 'smooth' })
 const imageHeight = ref(headerHeightMax)
@@ -90,5 +104,9 @@ watch(y, (val) => {
     textSize.value = Math.min(24, imageHeight.value - backButtonHeight + 16)
     lineHeight.value = 32
   }
+})
+
+onMounted(async () => {
+  news.value = await api.get<News>(`/news/id${route.params.id}?md=false`)
 })
 </script>
