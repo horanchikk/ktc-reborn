@@ -49,8 +49,9 @@ try {
         },
       },
       {
-        title: 'Launching server on http://localhost:3000',
-        task: async () => {
+        title: 'Launching server',
+        task: async (_, task) => {
+          task.title = 'Launched at http://localhost:3000'
           runCommand('nuxt dev --port 3000', null, true)
         },
       },
