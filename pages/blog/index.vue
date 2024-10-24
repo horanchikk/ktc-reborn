@@ -1,5 +1,10 @@
 <template>
   <div class="w-full overflow-y-scroll flex flex-col p-2 gap-5">
+    <NuxtLink to="/blog/new">
+      <button class="absolute bottom-5 right-5 bg-primary hover:opacity-50 p-4 z-20 rounded-full flex items-center justify-center duration-150">
+        <IPencil class="w-10 h-10" />
+      </button>
+    </NuxtLink>
     <div
       v-if="postList === null"
       class="w-full h-full"
