@@ -97,7 +97,7 @@ h6 { @apply text-base font-semibold; }
 
 blockquote {
   @apply pl-2 border-l-2 border-primary bg-primary/10 rounded-r-md pr-1;
-  @apply bg-[url('@/assets/icons/blockquote_1.svg')] bg-origin-content bg-right-top bg-no-repeat
+  @apply bg-[url('@/assets/icons/blockquote.svg')] bg-origin-content bg-right-top bg-no-repeat
 }
 
 div[contenteditable] {

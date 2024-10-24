@@ -4,12 +4,13 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "sh ./scripts/launch.sh",
-    "dev:ps": "powershell ./scripts/launch.ps1",
+    "dev": "tsx ./scripts/dev.ts",
+    "sync": "tsx ./scripts/sync.ts",
+    "android": "npx cap run android",
+    "ios": "npx cap run ios",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "sync": "nuxt build && nuxt generate && npx cap sync",
     "lint": "eslint"
   },
   "dependencies": {
@@ -51,9 +52,13 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "@pinia/nuxt": "^0.5.4",
+    "@types/node": "^22.7.9",
     "eslint": "^9.13.0",
     "lint-staged": "^15.2.10",
-    "simple-git-hooks": "^2.11.1"
+    "listr2": "^8.2.5",
+    "nuxt-start": "^2.18.1",
+    "simple-git-hooks": "^2.11.1",
+    "tsx": "^4.19.1"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

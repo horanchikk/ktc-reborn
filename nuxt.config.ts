@@ -27,6 +27,9 @@ export default defineNuxtConfig({
       ACCOUNT_PASSWD: process.env.ACCOUNT_PASSWD,
     },
   },
+  devServer: {
+    port: 3000,
+  },
 
   compatibilityDate: '2024-04-03',
   fontMetrics: {
