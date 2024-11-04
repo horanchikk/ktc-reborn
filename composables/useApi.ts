@@ -58,7 +58,7 @@ export function useApi() {
 
         user.setUserData(newToken)
       }
-      else if (statusCode === 400) {
+      else if (statusCode === 400 && ctx.request !== `${API_URL}/user/login`) {
         user.logout()
       }
     },
