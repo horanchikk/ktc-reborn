@@ -9,9 +9,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Semantic Release
+      - name: Set up Node.js 21
+        uses: actions/setup-node@v3
         with:
-            node-version: '20'
-            run: npx semantic-release -p @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/npm @semantic-release/github --branches master
+          node-version: '21'
+      - name: Semantic Release
+        run: npx semantic-release -p @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/npm @semantic-release/github --branches master
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
