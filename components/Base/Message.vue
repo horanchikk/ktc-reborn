@@ -1,11 +1,19 @@
 <template>
   <div
     class="px-6 flex gap-3 items-center rounded-xl duration-150"
-    :class="properties.color"
+    :class="color"
   >
-    <Icon
-      :name="properties.icon"
-      class="h-[48px] w-[48px]"
+    <ICheckAlt
+      v-if="props.type === 'done'"
+      class="h-[48px] w-[48px] fill-red-400"
+    />
+    <IAlert
+      v-else-if="props.type === 'warn'"
+      class="h-[48px] w-[48px] fill-red-400 stroke-red-400"
+    />
+    <IClose
+      v-else-if="props.type === 'danger'"
+      class="h-[48px] w-[48px] fill-red-400 stroke-red-400"
     />
     <p
       v-if="props.text"
@@ -29,24 +37,11 @@ const props = withDefaults(
   },
 )
 
-const properties = () => {
-  switch (props.type) {
-    case 'done':
-      return {
-        icon: 'weui:done2-outlined',
-        color: 'text-green-500',
-      }
+const color = computed(() => {
+  if (props.type === 'done') return 'text-green-500'
+  if (props.type === 'warn') return 'text-yellow-500'
+  if (props.type === 'danger') return 'text-red-500'
 
-    case 'warn':
-      return {
-        icon: 'ion:warning-outline',
-        color: 'text-yellow-500',
-      }
-    case 'danger':
-      return {
-        icon: 'weui:close2-outlined',
-        color: 'text-red-500',
-      }
-  }
-}
+  return 'text-green-500'
+})
 </script>

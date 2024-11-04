@@ -47,6 +47,16 @@ export default defineNuxtConfig({
     autoImportPath: '~/assets/icons',
     componentPrefix: 'i',
     defaultImport: 'component',
+    svgoConfig: {
+      plugins: [
+        {
+          name: 'convertColors',
+          params: {
+            currentColor: true,
+          },
+        },
+      ],
+    },
   },
 
   tailwindcss: {
