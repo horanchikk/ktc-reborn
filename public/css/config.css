@@ -1,0 +1,53 @@
+@keyframes loading {
+  to {
+    background-position-x: -20%;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+:root {
+  --bg-color: #ffffff60
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+.animate__duration {
+  --animate-duration: 200ms;
+}
+
+.loading {
+  background-color: var(--bg-color);
+  background: linear-gradient(
+    100deg,
+    transparent 40%,
+    #5a5a5a,
+    transparent 60%
+  ) var(--bg-color);
+  background-size: 200% 100%;
+  background-position-x: 180%;
+  animation: 1s loading ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.show {
+  opacity: 0;
+  animation: show ease-in-out 300ms;
+  animation-fill-mode: forwards;
+}
+
+.news-content {
+  a {
+    @apply underline text-blue-400 hover:text-blue-600 duration-150
+  }
+}
