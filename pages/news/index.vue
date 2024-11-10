@@ -15,7 +15,7 @@
       <WallPost
         v-for="news in newsList"
         :key="news.id"
-        :image="news.preview"
+        :image="news.preview.length > 0 ? news.preview : `/nophoto.png`"
         :title="news.title"
         :description="news.description"
         :date="news.date"

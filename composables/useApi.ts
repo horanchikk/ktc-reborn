@@ -63,6 +63,7 @@ export function useApi() {
       }
     },
   })
+
   const api = {
     get: function<T>(url: string, params?: object): Promise<T> {
       return instance(url, {
