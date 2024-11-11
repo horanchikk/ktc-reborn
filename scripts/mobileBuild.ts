@@ -1,3 +1,4 @@
+import * as fs from 'node:fs'
 import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
 import { Listr } from 'listr2'
@@ -52,8 +53,9 @@ try {
             [
               {
                 title: 'Removing old build',
-                task: async (_, task) => {
-                  await runCommand('rm -rf ./.nuxt ./.output', task)
+                task: async (_) => {
+                  fs.rmSync('./.nuxt', { recursive: true, force: true })
+                  fs.rmSync('./.output', { recursive: true, force: true })
                 },
               },
               {
@@ -73,12 +75,13 @@ try {
             [
               {
                 title: 'Clearing old mobile builds',
-                task: async (_, task) => {
-                  await runCommand('rm -rf ./android ./ios', task)
+                task: async (_) => {
+                  fs.rmSync('./android', { recursive: true, force: true })
+                  fs.rmSync('./ios', { recursive: true, force: true })
                 },
               },
               {
-                title: 'Re-building mobile sources',
+                title: 'Adding mobile sources',
                 task: async (_, task) => {
                   await runCommand('npx cap add android', task)
                   await runCommand('npx cap add ios', task)

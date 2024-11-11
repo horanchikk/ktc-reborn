@@ -5,12 +5,13 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "tsx ./scripts/dev.ts",
-    "sync": "tsx ./scripts/sync.ts",
+    "build:mobile": "tsx ./scripts/mobileBuild.ts",
     "android": "npx cap run android",
     "ios": "npx cap run ios",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "sync": "npx cap sync",
     "lint": "eslint"
   },
   "dependencies": {
@@ -21,6 +22,7 @@
     "@capacitor/ios": "6.1.2",
     "@capacitor/keyboard": "6.0.2",
     "@capacitor/status-bar": "6.0.1",
+    "@capgo/capacitor-navigation-bar": "^6.1.63",
     "@lottiefiles/lottie-player": "^2.0.4",
     "@milkdown/kit": "^7.5.5",
     "@milkdown/theme-nord": "^7.5.0",
