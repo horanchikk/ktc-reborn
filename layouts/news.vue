@@ -5,3 +5,11 @@
     </main>
   </div>
 </template>
+
+<script setup lang="ts">
+import { updateColors } from '~/composables/useColors'
+
+onMounted(() => {
+  updateColors('#323232')
+})
+</script>
