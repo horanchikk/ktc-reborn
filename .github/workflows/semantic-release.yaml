@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '21'
       - name: Install @semantic-release/changelog
-        run: npm i @semantic-release/changelog
+        run: npm i @semantic-release/changelog @semantic-release/git
       - name: Semantic Release
         run: npx semantic-release
         env:
