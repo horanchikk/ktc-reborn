@@ -16,9 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '21'
-      - name: Install @semantic-release/changelog
-        run: npm i @semantic-release/changelog
       - name: Semantic Release
-        run: npx semantic-release -p @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/github
+        run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
