@@ -154,7 +154,7 @@ async function auth() {
   await api
     .post('/user/login', authData)
     .then((res) => {
-      user.setUserData(res)
+      user.setAuthData(res.access_token, res.user_id)
       router.push('/setup/branch')
       emit('isClosed')
     })
