@@ -92,10 +92,18 @@ const userTypes = [
 ]
 const isStudent = ref()
 
+delete user.data.teacher_id
+delete user.data.group_id
+
 function nextPage() {
   if (isStudent.value !== null) {
-    user.data.isStudent = isStudent.value
-    router.push('/timetable')
+    user.data.is_student = Boolean(isStudent.value)
+    if (isStudent.value) {
+      router.push('/timetable/group')
+    }
+    else {
+      router.push('/timetable/teacher')
+    }
   }
   else {
     alert('Выберите филиал')
