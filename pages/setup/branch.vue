@@ -94,7 +94,7 @@ const branches = ref()
 
 function nextPage() {
   if (selectedBranch.value !== null) {
-    user.data.branch = selectedBranch.value
+    user.data.branch_id = selectedBranch.value
     router.push('/setup/role')
   }
   else {

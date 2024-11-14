@@ -45,7 +45,7 @@ logLogo()
 new Listr(
   [
     {
-      title: 'Cleaning up cache...',
+      title: 'Clearing up cache...',
       task: async (_, task) => {
         await runCommand('nuxt cleanup', task)
       },

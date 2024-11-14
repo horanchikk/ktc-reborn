@@ -1,8 +1,26 @@
 interface TUserData {
   user_id: number
+  group_id?: number
+  teacher_id?: number
+  branch_id: number
   access_token: string
-  branch: number
-  isStudent: boolean
+  is_student: boolean
+}
+
+function findNewKeys(oldObj, newObj) {
+  const newKeys = {}
+
+  for (const key in newObj) {
+    if (!(key in oldObj)) {
+      newKeys[key] = newObj[key]
+    }
+  }
+
+  if (Object.keys(newKeys).length > 0) {
+    return newKeys
+  }
+
+  return null
 }
 
 export const useUser = defineStore('useUser', () => {
@@ -19,9 +37,11 @@ export const useUser = defineStore('useUser', () => {
     return navigateTo('/auth', { external: true, replace: true })
   }
 
-  watch(data.value, (upd, prev) => {
+  watch(() => ({ ...data.value }), (upd, prev) => {
     localStorage.setItem('ktc_data', JSON.stringify(upd))
-    log.success('Store was updated:', JSON.stringify(upd), JSON.stringify(prev))
+    log.success('Store was updated:', findNewKeys(prev, upd))
+  }, {
+    deep: true,
   })
 
   return { data, setAuthData, logout }
