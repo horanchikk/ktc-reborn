@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-screen h-screen bg-background-100 text-foreground">
+  <div class="flex flex-col w-screen h-screen bg-background-100 text-foreground select-none">
     <main class="flex-auto">
       <slot />
     </main>

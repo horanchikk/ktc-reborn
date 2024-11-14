@@ -1,7 +1,7 @@
 <template>
   <div
     ref="globalWindow"
-    class="text-foreground flex flex-col w-screen h-screen bg-background-200 overflow-y-hidden"
+    class="text-foreground flex flex-col w-screen h-screen bg-background-200 overflow-y-hidden select-none"
   >
     <BaseSideBar />
     <BaseHeader />
