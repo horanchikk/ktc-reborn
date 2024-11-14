@@ -1,3 +1,13 @@
+## [0.0.2-dev.6](https://github.com/horanchikk/ktc-reborn/compare/v0.0.2-dev.5...v0.0.2-dev.6) (2024-11-14)
+
+
+### Bug Fixes
+
+* **api:** исправлено обновление токена ([b2c3a0b](https://github.com/horanchikk/ktc-reborn/commit/b2c3a0bafc877d500bbd6188ec1825a453df571c))
+* **middleware:** обновлён путь перехода для guest-only; удалён setupped-only ([4b015c4](https://github.com/horanchikk/ktc-reborn/commit/4b015c4bd11463ec62c9c74cc92335ad3cbee680))
+* **page:** исправлена работа setup-ов; обновлены пути перехода после выбора ([3b77a37](https://github.com/horanchikk/ktc-reborn/commit/3b77a37894cb864468cf6c0bb3285be8a006ac59))
+* **plugins:** обновлен путь для sentry плагина ([9f48dc6](https://github.com/horanchikk/ktc-reborn/commit/9f48dc6e57231af2742948d8cd01405f7f8f6e7c))
+
 ## [0.0.2-dev.5](https://github.com/horanchikk/ktc-reborn/compare/v0.0.2-dev.4...v0.0.2-dev.5) (2024-11-14)
 
 
