@@ -81,7 +81,7 @@
         </div>
         <div class="flex-auto flex flex-col justify-end divide-y-[1px] divide-background-200">
           <div class="w-full bg-foreground opacity-25 h-[1px]" />
-          <NuxtLink
+          <!-- <NuxtLink
             to="/settings"
             @click="store.hide()"
           >
@@ -90,7 +90,7 @@
               text="Настройки"
               :color="useRouter().currentRoute.value.path === '/settings' ? '#FF4646' : '#EDE8D8'"
             />
-          </NuxtLink>
+          </NuxtLink> -->
           <NuxtLink
             to="/about"
             @click="store.hide()"
@@ -150,26 +150,26 @@ const links = ref<{
     icon: 'calendar',
     route: '/timetable',
   },
-  {
-    name: 'Сообщения',
-    icon: 'mail',
-    route: '/messenger',
-  },
-  {
-    name: 'Уведомления',
-    icon: 'bell',
-    route: '/notifications',
-  },
-  {
-    name: 'Галерея',
-    icon: 'photo',
-    route: '/gallery',
-  },
-  {
-    name: 'Оценки',
-    icon: 'chart',
-    route: '/marks',
-  },
+  // {
+  //   name: 'Сообщения',
+  //   icon: 'mail',
+  //   route: '/messenger',
+  // },
+  // {
+  //   name: 'Уведомления',
+  //   icon: 'bell',
+  //   route: '/notifications',
+  // },
+  // {
+  //   name: 'Галерея',
+  //   icon: 'photo',
+  //   route: '/gallery',
+  // },
+  // {
+  //   name: 'Оценки',
+  //   icon: 'chart',
+  //   route: '/marks',
+  // },
 ])
 const info = ref()
 
