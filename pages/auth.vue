@@ -155,7 +155,7 @@ async function auth() {
     .post('/user/login', authData)
     .then((res) => {
       user.setUserData(res)
-      router.push('/profile')
+      router.push('/setup/branch')
       emit('isClosed')
     })
     .catch((err) => {
