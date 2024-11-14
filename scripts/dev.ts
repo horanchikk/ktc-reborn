@@ -1,6 +1,7 @@
 import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
 import { Listr } from 'listr2'
+import { logLogo } from './logo'
 
 const execAsync = promisify(exec)
 
@@ -39,25 +40,22 @@ async function runCommand(
   }
 }
 
-try {
-  new Listr(
-    [
-      {
-        title: 'Cleaning up cache...',
-        task: async (_, task) => {
-          await runCommand('nuxt cleanup', task)
-        },
+logLogo()
+
+new Listr(
+  [
+    {
+      title: 'Cleaning up cache...',
+      task: async (_, task) => {
+        await runCommand('nuxt cleanup', task)
       },
-      {
-        title: 'Launching server',
-        task: async (_, task) => {
-          task.title = 'Launched at http://localhost:3000'
-          runCommand('nuxt dev --port 3000', null, true)
-        },
+    },
+    {
+      title: 'Launching server',
+      task: async (_, task) => {
+        task.title = 'App launched at http://localhost:3000'
+        runCommand('nuxt dev --port 3000', undefined, true)
       },
-    ],
-  ).run()
-}
-finally {
-  console.log()
-}
+    },
+  ],
+).run()

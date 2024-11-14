@@ -3,6 +3,7 @@ import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
 import { Listr } from 'listr2'
 import consola from 'consola'
+import { logLogo } from './logo'
 
 const execAsync = promisify(exec)
 
@@ -42,6 +43,8 @@ async function runCommand(
     }
   }
 }
+
+logLogo()
 
 try {
   await new Listr(
