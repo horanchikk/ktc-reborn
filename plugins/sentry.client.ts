@@ -3,7 +3,7 @@ import * as Sentry from '@sentry/nuxt'
 const { public: { SENTRY_DSN } } = useRuntimeConfig()
 
 Sentry.init({
-  dsn: SENTRY_DSN,
+  dsn: import.meta.dev ? '' : SENTRY_DSN,
   integrations: [Sentry.replayIntegration()],
 
   tracesSampleRate: 1.0,
