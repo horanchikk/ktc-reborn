@@ -56,7 +56,7 @@ export function useApi() {
           access_token: ctx.request.toString().split('?')[1].split('=')[1],
         })
 
-        user.setUserData(newToken)
+        user.data.access_token = newToken.access_token
       }
       else if (statusCode === 400 && ctx.request !== `${API_URL}/user/login`) {
         user.logout()
