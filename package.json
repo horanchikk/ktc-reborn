@@ -27,6 +27,7 @@
     "@milkdown/kit": "^7.5.5",
     "@milkdown/theme-nord": "^7.5.0",
     "@milkdown/vue": "^7.5.0",
+    "@sentry/nuxt": "^8.38.0",
     "@types/pako": "^2.0.3",
     "@types/turndown": "^5.0.5",
     "@vueuse/components": "^11.1.0",

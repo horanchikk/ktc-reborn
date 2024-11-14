@@ -82,9 +82,11 @@ const menu = [
     action: () => debug.show(),
   },
   {
-    name: 'Debug',
+    name: 'Trigger error',
     icon: 'bug-report',
-    action: () => debug.show(),
+    action: () => {
+      throw new Error('Test Error <3')
+    },
   },
 ]
 </script>
