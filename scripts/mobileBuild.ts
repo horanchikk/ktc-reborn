@@ -3,7 +3,10 @@ import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
 import { Listr } from 'listr2'
 import consola from 'consola'
+import { config } from 'dotenv'
 import { logLogo } from './logo'
+
+config()
 
 const execAsync = promisify(exec)
 
@@ -45,6 +48,9 @@ async function runCommand(
 }
 
 logLogo()
+
+const ANDROID_DEVICE_ID = process.env.ANDROID_DEVICE_ID
+const SDK_LOCATION = process.env.SDK_LOCATION
 
 try {
   await new Listr(
@@ -94,7 +100,16 @@ try {
             ],
           ),
       },
-
+      {
+        title: 'Launch app on android device',
+        skip: !(ANDROID_DEVICE_ID.length > 0),
+        task: async (_, task) => {
+          task.title = 'Gradle is building'
+          await runCommand(`set ANDROID_HOME=${SDK_LOCATION}`, task)
+          await runCommand(`npx cap run android --target ${ANDROID_DEVICE_ID} --no-sync`, task)
+          task.title = `Launched!`
+        },
+      },
     ],
     { concurrent: false, rendererOptions: { collapseSubtasks: false } },
   ).run()

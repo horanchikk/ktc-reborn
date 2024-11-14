@@ -5,6 +5,7 @@ const config: CapacitorConfig = {
   appName: 'ProCollege',
   webDir: '.output/public',
   zoomEnabled: false,
+  backgroundColor: '#323232',
 }
 
 export default config
