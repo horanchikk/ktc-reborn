@@ -1,0 +1,34 @@
+name: AutoDeploy For API
+
+on:
+  push:
+    branches:
+      - 'dev'
+      - 'master'
+
+jobs:
+  deploy_dev:
+    name: "Уведомление в telegram 🔨"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Escape bad symbols in variables
+        id: escape_vars
+        run: |
+          escaped_message=$(echo "${{ github.event.head_commit.message }}" | perl -pe 's/([&~\`\*\_\[\]()#\+\-\=\|\{\}\.\!])/\\\\$1/g')
+          escaped_actor=$(echo "${{ github.actor }}" | perl -pe 's/([&~\`\*\_\[\]()#\+\-\=\|\{\}\.\!])/\\\\$1/g')
+          escaped_branch=$(echo "${{ github.ref_name }}" | perl -pe 's/([&~\`\*\_\[\]()#\+\-\=\|\{\}\.\!])/\\\\$1/g')
+          echo "escaped_message=$escaped_message" >> $GITHUB_ENV
+          echo "escaped_actor=$escaped_actor" >> $GITHUB_ENV
+          echo "escaped_branch=$escaped_branch" >> $GITHUB_ENV
+
+      - name: Send Telegram Message
+        run: |
+          curl \
+            --data-urlencode 'chat_id=${{ secrets.TELEGRAM_CHAT_ID }}' \
+            --data-urlencode 'message_thread_id=${{ secrets.TELEGRAM_MESSAGE_THREAD_ID }}' \
+            --data-urlencode 'link_preview_options={"url":"${{ github.event.head_commit.url }}"}' \
+            --data-urlencode 'parse_mode=markdownv2' \
+            --data-urlencode $'text=🔨 *Frontend deploy* 🔨\n\n>${{ env.escaped_message }}\n_by [${{ env.escaped_actor }}](https://github.com/${{ env.escaped_actor }})_ at `${{ env.escaped_branch }}`\n\n[commit link](${{ github.event.head_commit.url }})' \
+            curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage"

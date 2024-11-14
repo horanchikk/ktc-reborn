@@ -1,3 +1,10 @@
+## [0.0.2-dev.5](https://github.com/horanchikk/ktc-reborn/compare/v0.0.2-dev.4...v0.0.2-dev.5) (2024-11-14)
+
+
+### Bug Fixes
+
+* **ci:** удалён deploy.yaml ([a0c00ff](https://github.com/horanchikk/ktc-reborn/commit/a0c00ff3019c1e100d7df4d51c4b069402e12f9a))
+
 ## [0.0.2-dev.4](https://github.com/horanchikk/ktc-reborn/compare/v0.0.2-dev.3...v0.0.2-dev.4) (2024-11-14)
 
 
