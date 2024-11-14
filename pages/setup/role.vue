@@ -1,6 +1,6 @@
 <template>
   <form
-    class="w-full h-full flex flex-col items-center justify-between pt-8 text-foreground"
+    class="w-full h-full flex flex-col items-center justify-between pt-8 text-foreground animate__animated animate__fadeIn"
     @submit.prevent="nextPage"
   >
     <div class="flex flex-col justify-center items-center">
@@ -26,7 +26,7 @@
 
     <BaseSelect
       id="id"
-      v-model:selected="user.isStudent"
+      v-model:selected="isStudent"
       :data="userTypes"
       name="name"
     />
@@ -90,9 +90,11 @@ const userTypes = [
     name: 'Студент',
   },
 ]
+const isStudent = ref()
 
 function nextPage() {
-  if (user.isStudent !== null) {
+  if (isStudent.value !== null) {
+    user.data.isStudent = isStudent.value
     router.push('/timetable')
   }
   else {
