@@ -93,7 +93,7 @@ defineProps<{
   data: object[] | string[]
 }>()
 
-const selected = defineModel<string | object>('selected', { default: undefined })
+const selected = defineModel<string | object | number>('selected', { default: undefined })
 </script>
 
 <style scoped>
