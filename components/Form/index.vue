@@ -19,7 +19,7 @@
             :class="{
               'p-5': formType !== 1,
             }"
-            class="w-[440px] flex flex-col gap-3 rounded-[32px] bg-background-100 text-white shadow-xl"
+            class="w-[440px] flex flex-col gap-3 rounded-[32px] bg-background-100 text-foreground shadow-xl"
           >
             <div
               v-if="formType === -1"

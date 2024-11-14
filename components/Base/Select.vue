@@ -17,13 +17,13 @@
         >
           <path
             class="duration-200"
-            :stroke="selected === part[id] ? '#FF4646' : '#ffffff'"
+            :stroke="selected === part[id] ? '#FF4646' : '#EDE8D8'"
             d="M27.9999 16C27.9999 22.6275 22.6273 28 15.9999 28C9.37246 28 3.99988 22.6275 3.99988 16C3.99988 9.37259 9.37246 4 15.9999 4C22.6273 4 27.9999 9.37259 27.9999 16Z"
             stroke-width="2.66667"
           />
           <path
             v-if="selected === part[id]"
-            :stroke="selected === part[id] ? '#FF4646' : '#ffffff'"
+            :stroke="selected === part[id] ? '#FF4646' : '#EDE8D8'"
             class="zoom-show duration-200"
             d="M11.9999 15.9999L14.2436 18.2437C14.4772 18.4773 14.8559 18.4773 15.0895 18.2437L19.9999 13.3333"
             stroke-width="2.66667"
@@ -59,14 +59,14 @@
           <path
             class="duration-200"
             d="M27.9999 16C27.9999 22.6275 22.6273 28 15.9999 28C9.37246 28 3.99988 22.6275 3.99988 16C3.99988 9.37259 9.37246 4 15.9999 4C22.6273 4 27.9999 9.37259 27.9999 16Z"
-            :stroke="selected === text ? '#FF4646' : '#ffffff'"
+            :stroke="selected === text ? '#FF4646' : '#EDE8D8'"
             stroke-width="2.66667"
           />
           <path
             v-if="selected === text"
             class="zoom-show duration-200"
             d="M11.9999 15.9999L14.2436 18.2437C14.4772 18.4773 14.8559 18.4773 15.0895 18.2437L19.9999 13.3333"
-            :stroke="selected === text ? '#FF4646' : '#ffffff'"
+            :stroke="selected === text ? '#FF4646' : '#EDE8D8'"
             stroke-width="2.66667"
             stroke-linecap="round"
             stroke-linejoin="round"

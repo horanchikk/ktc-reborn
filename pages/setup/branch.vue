@@ -1,6 +1,6 @@
 <template>
   <form
-    class="w-full h-full flex flex-col items-center justify-between pt-8 text-white"
+    class="w-full h-full flex flex-col items-center justify-between pt-8 text-foreground"
     @submit.prevent="nextPage"
   >
     <div class="flex flex-col justify-center items-center">
@@ -38,7 +38,7 @@
     <Icon
       v-else
       name="svg-spinners:ring-resize"
-      class="show w-20 h-20 text-white"
+      class="show w-20 h-20 text-foreground"
     />
 
     <div />
