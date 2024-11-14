@@ -1,3 +1,10 @@
+# [0.1.0-dev.1](https://github.com/horanchikk/ktc-reborn/compare/v0.0.2-dev.6...v0.1.0-dev.1) (2024-11-14)
+
+
+### Features
+
+* **scripts:** добавлен скрипт для запуска в android напрямую ([927cc1d](https://github.com/horanchikk/ktc-reborn/commit/927cc1dab9c1615e7769980f741d636e003d11bd))
+
 ## [0.0.2-dev.6](https://github.com/horanchikk/ktc-reborn/compare/v0.0.2-dev.5...v0.0.2-dev.6) (2024-11-14)
 
 
