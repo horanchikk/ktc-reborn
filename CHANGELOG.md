@@ -1,3 +1,10 @@
+# [0.1.0-dev.3](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.2...v0.1.0-dev.3) (2024-11-15)
+
+
+### Bug Fixes
+
+* **markup:** перенесено название группы под название предмета ([2abc6e3](https://github.com/horanchikk/ktc-reborn/commit/2abc6e3868cad109dcfee8eb09a4f14f266e84ae))
+
 # [0.1.0-dev.2](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.1...v0.1.0-dev.2) (2024-11-15)
 
 
