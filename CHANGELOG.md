@@ -1,3 +1,10 @@
+# [0.1.0-dev.2](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.1...v0.1.0-dev.2) (2024-11-15)
+
+
+### Features
+
+* **markup:** добавлено обновление названия предмета; добавлен lesson.group ([4a4ad6f](https://github.com/horanchikk/ktc-reborn/commit/4a4ad6f1fde00c701d9980cd1caeb8ca38c96d3b))
+
 # [0.1.0-dev.1](https://github.com/horanchikk/ktc-reborn/compare/v0.0.2-dev.6...v0.1.0-dev.1) (2024-11-14)
 
 
