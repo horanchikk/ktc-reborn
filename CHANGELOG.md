@@ -1,3 +1,10 @@
+# [0.1.0-dev.4](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.3...v0.1.0-dev.4) (2024-11-15)
+
+
+### Bug Fixes
+
+* **markup:** изменена ширина блока title ([243e3df](https://github.com/horanchikk/ktc-reborn/commit/243e3dfca277cd240ff23ab078b459f2746ac31d))
+
 # [0.1.0-dev.3](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.2...v0.1.0-dev.3) (2024-11-15)
 
 
