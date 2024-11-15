@@ -25,7 +25,7 @@
       >
         <div class="flex gap-3">
           <p
-            class="text-4xl font-semibold"
+            class="text-4xl font-semibold opacity-60"
             v-text="lesson.number"
           />
           <div class="flex flex-col text-sm text-center">
@@ -35,16 +35,24 @@
           </div>
         </div>
         <div class="text-sm text-center font-semibold w-56 sm:w-full">
-          <p v-text="lesson.title" />
+          <p v-text="fixLessonTitle(lesson.title)" />
           <p
             class="opacity-50"
             v-text="lesson.teacher"
           />
         </div>
         <div
-          class="text-sm w-16 text-right"
-          v-text="lesson.classroom"
-        />
+          class="flex flex-col text-sm w-20 text-right"
+        >
+          <p
+            v-if="lesson.classroom.length > 0"
+            v-text="lesson.classroom"
+          />
+          <p
+            v-if="lesson.group"
+            v-text="lesson.group"
+          />
+        </div>
       </div>
       <div
         v-if="dayIdx !== data.days.length - 1"
@@ -69,6 +77,10 @@ const data = ref(null)
 
 if (!(Object.hasOwn(user.data, 'is_student') || Object.hasOwn(user.data, 'branch_id'))) {
   router.push('/setup/branch')
+}
+
+function fixLessonTitle(title: string) {
+  return title[title.length - 1] === ',' ? title.split('').slice(0, title.length - 1).join('') : title
 }
 
 onMounted(async () => {
