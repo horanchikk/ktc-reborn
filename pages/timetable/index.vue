@@ -37,22 +37,20 @@
         <div class="text-sm text-center font-semibold w-56 sm:w-full">
           <p v-text="fixLessonTitle(lesson.title)" />
           <p
+            v-if="lesson.teacher"
             class="opacity-50"
             v-text="lesson.teacher"
+          />
+          <p
+            v-if="lesson.group"
+            class="opacity-50"
+            v-text="lesson.group"
           />
         </div>
         <div
           class="flex flex-col text-sm w-20 text-right"
-        >
-          <p
-            v-if="lesson.classroom.length > 0"
-            v-text="lesson.classroom"
-          />
-          <p
-            v-if="lesson.group"
-            v-text="lesson.group"
-          />
-        </div>
+          v-text="lesson.classroom"
+        />
       </div>
       <div
         v-if="dayIdx !== data.days.length - 1"
