@@ -1,3 +1,10 @@
+# [0.1.0-dev.5](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.4...v0.1.0-dev.5) (2024-11-15)
+
+
+### Bug Fixes
+
+* **markup:** исправлен skeleton для блога ([ff21349](https://github.com/horanchikk/ktc-reborn/commit/ff21349f4e00d85b3d3c17bcb149f077cae458db))
+
 # [0.1.0-dev.4](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.3...v0.1.0-dev.4) (2024-11-15)
 
 
