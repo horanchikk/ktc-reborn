@@ -34,7 +34,7 @@
             <div v-text="lesson.end" />
           </div>
         </div>
-        <div class="text-sm text-center font-semibold w-56 sm:w-full">
+        <div class="text-sm text-center font-semibold w-52 sm:w-full">
           <p v-text="fixLessonTitle(lesson.title)" />
           <p
             v-if="lesson.teacher"
