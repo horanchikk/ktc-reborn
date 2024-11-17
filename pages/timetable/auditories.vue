@@ -17,6 +17,7 @@
         v-for="(auditory, index) in busyAuditories()"
         :key="index"
         class="text-xl font-semibold rounded-md px-2 py-1 bg-primary text-background-100"
+        @click="setAuditory(auditory)"
       >
         {{ auditory }}
       </span>
@@ -29,6 +30,7 @@
         v-for="(auditory, index) in auditoriesFree"
         :key="index"
         class="text-xl font-semibold rounded-md px-2 py-1 bg-foreground text-background-100"
+        @click="setAuditory(auditory)"
       >
         {{ auditory }}
       </span>
@@ -50,10 +52,10 @@ const router = useRouter()
 const auditories = ref<Array<string> | null>(null)
 const auditoriesFree = ref<Array<string> | null>(null)
 
-// function setAuditory(auditory: string) {
-//   user.data.auditory = auditory;
-//   router.push('/timetable')
-// }
+function setAuditory(auditory: string) {
+  user.data.auditory = auditory;
+  router.push('/timetable')
+}
 
 function busyAuditories(): Array<string> {
   const result: Array<string> = []
@@ -62,7 +64,6 @@ function busyAuditories(): Array<string> {
       result.push(i)
     }
   }
-  console.log(result);
   return result
 }
 
