@@ -1,3 +1,11 @@
+# [0.1.0-dev.11](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.10...v0.1.0-dev.11) (2024-11-17)
+
+
+### Features
+
+* auditory choosing ([f4a41dd](https://github.com/horanchikk/ktc-reborn/commit/f4a41dd29fa84251f493e55bb07597147a40e958))
+* **page:** добавлена страница расписания аудитории; уменьшен размер индекса урока ([fc01321](https://github.com/horanchikk/ktc-reborn/commit/fc01321028f33211092dd255f850a9e04e0bb09e))
+
 # [0.1.0-dev.10](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.9...v0.1.0-dev.10) (2024-11-17)
 
 
