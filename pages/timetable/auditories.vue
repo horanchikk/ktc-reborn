@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!data"
+    v-if="!auditories"
     class="w-full h-full flex items-center justify-center show"
   >
     <ILoader class="w-16 h-16 text-foreground" />
@@ -26,7 +26,7 @@
     </h1>
     <div class="flex flex-wrap gap-2">
       <span
-        v-for="(auditory, index) in busyAuditories()"
+        v-for="(auditory, index) in auditoriesFree"
         :key="index"
         class="text-xl font-semibold rounded-md px-2 py-1 bg-foreground text-background-100"
       >
@@ -50,13 +50,6 @@ const router = useRouter()
 const auditories = ref<Array<string> | null>(null)
 const auditoriesFree = ref<Array<string> | null>(null)
 
-if (!(Object.hasOwn(user.data, 'is_student') && Object.hasOwn(user.data, 'branch_id'))) {
-  router.push('/setup/branch')
-}
-else if (Object.hasOwn(user.data, 'group_id')) {
-  router.push('/timetable')
-}
-
 // function setAuditory(auditory: string) {
 //   user.data.auditory = auditory;
 //   router.push('/timetable')
@@ -64,11 +57,12 @@ else if (Object.hasOwn(user.data, 'group_id')) {
 
 function busyAuditories(): Array<string> {
   const result: Array<string> = []
-  for (const i of auditories.value!) {
+  for (const i of auditories.value!!) {
     if (auditoriesFree.value?.indexOf(i) === -1) {
       result.push(i)
     }
   }
+  console.log(result);
   return result
 }
 
