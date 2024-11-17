@@ -1,4 +1,4 @@
-import { exec } from 'node:child_process'
+import { exec, spawn } from 'node:child_process'
 import { promisify } from 'node:util'
 import { Listr } from 'listr2'
 import { logLogo } from './logo'
@@ -53,9 +53,36 @@ new Listr(
     {
       title: 'Launching server',
       task: async (_, task) => {
-        task.title = 'App launched at http://localhost:3000'
-        runCommand('nuxt dev --port 3000', undefined, true)
+        const shouldStop = false
+        const cmd = spawn('nuxt', ['dev', '--port', '3000'])
+
+        task.title = 'Command spawned'
+
+        cmd.stdout.on('data', (data) => {
+          task.output = `${task.output === undefined ? '-----LOGGING STARTED-----' : task.output}\n${data}`
+        })
+
+        cmd.stderr.on('data', (data) => {
+          task.output = `${task.output === undefined ? '-----LOGGING STARTED-----' : task.output}\n${data}`
+        })
+
+        cmd.on('close', (code) => {
+          task.title = `Process stopped with code: ${code}`
+        })
+
+        process.on('SIGINT', async function () {
+          task.title = 'Server stopped'
+          task.skip()
+          cmd.kill()
+          process.exit()
+        })
+
+        while (!shouldStop) {
+          await new Promise(resolve => setTimeout(resolve, 500))
+        }
       },
     },
-  ],
+  ], {
+    registerSignalListeners: false,
+  },
 ).run()
