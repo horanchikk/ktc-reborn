@@ -61,6 +61,7 @@
 </template>
 
 <script setup lang="ts">
+import { useHeader } from '~/store/useHeader'
 import { useUser } from '~/store/useUser'
 
 definePageMeta({
@@ -71,6 +72,8 @@ definePageMeta({
 const user = useUser()
 const api = useApi()
 const router = useRouter()
+const header = useHeader()
+
 const data = ref(null)
 
 if (!(Object.hasOwn(user.data, 'is_student') || Object.hasOwn(user.data, 'branch_id'))) {
@@ -99,4 +102,30 @@ onMounted(async () => {
     }
   }
 })
+
+header.setAdditionalMenu(user.data.is_student
+  ? [
+      {
+        name: 'Выбрать группу',
+        icon: 'pencil',
+        action: () => router.push('/timetable/group'),
+      },
+      {
+        name: 'Занятость кабинетов',
+        icon: 'calendar',
+        action: () => router.push('/timetable/auditories'),
+      },
+    ]
+  : [
+      {
+        name: 'Выбрать преподавателя',
+        icon: 'pencil',
+        action: () => router.push('/timetable/teacher'),
+      },
+      {
+        name: 'Занятость кабинетов',
+        icon: 'calendar',
+        action: () => router.push('/timetable/auditories'),
+      },
+    ])
 </script>

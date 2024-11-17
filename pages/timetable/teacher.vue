@@ -35,9 +35,6 @@ const data = ref(null)
 if (!(Object.hasOwn(user.data, 'is_student') && Object.hasOwn(user.data, 'branch_id'))) {
   router.push('/setup/branch')
 }
-else if (Object.hasOwn(user.data, 'teacher_id')) {
-  router.push('/timetable')
-}
 
 onMounted(async () => {
   data.value = await api.get(`/teachers/${user.data.branch_id}`)

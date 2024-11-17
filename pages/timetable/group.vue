@@ -47,11 +47,8 @@ const data = ref(null)
 if (!(Object.hasOwn(user.data, 'is_student') && Object.hasOwn(user.data, 'branch_id'))) {
   router.push('/setup/branch')
 }
-else if (Object.hasOwn(user.data, 'group_id')) {
-  router.push('/timetable')
-}
 
-function setGroup(group: any) {
+function setGroup(group: string) {
   user.data.group_id = group.id
   router.push('/timetable')
 }
