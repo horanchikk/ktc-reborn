@@ -54,7 +54,7 @@ new Listr(
       title: 'Launching server',
       task: async (_, task) => {
         const shouldStop = false
-        const cmd = spawn('nuxi', ['dev', '--port', '3000'])
+        const cmd = spawn('node', ['node_modules/nuxi/bin/nuxi.mjs', 'dev', '--port', '3000'])
 
         task.title = 'Command spawned'
 
@@ -67,7 +67,10 @@ new Listr(
         })
 
         cmd.on('close', (code) => {
-          task.title = `Process stopped with code: ${code}`
+          task.title = `${task.output}\nProcess stopped with code: ${code}`
+          task.skip()
+          cmd.kill()
+          process.exit()
         })
 
         process.on('SIGINT', async function () {
