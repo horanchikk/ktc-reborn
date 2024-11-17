@@ -1,3 +1,10 @@
+# [0.1.0-dev.10](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.9...v0.1.0-dev.10) (2024-11-17)
+
+
+### Features
+
+* rendering auditories ([dbe48b4](https://github.com/horanchikk/ktc-reborn/commit/dbe48b4f72005e4dba9dc07e9dc4a5d8820b6c0c))
+
 # [0.1.0-dev.9](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.8...v0.1.0-dev.9) (2024-11-17)
 
 
