@@ -1,3 +1,10 @@
+# [0.1.0-dev.8](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.7...v0.1.0-dev.8) (2024-11-17)
+
+
+### Bug Fixes
+
+* **scripts:** добавлен полный путь к пакету ([ecc1439](https://github.com/horanchikk/ktc-reborn/commit/ecc1439f112a79378922c5e9c547decc4fe77550))
+
 # [0.1.0-dev.7](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.6...v0.1.0-dev.7) (2024-11-17)
 
 
