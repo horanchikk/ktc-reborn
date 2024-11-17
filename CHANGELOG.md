@@ -1,3 +1,12 @@
+# [0.1.0-dev.6](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.5...v0.1.0-dev.6) (2024-11-17)
+
+
+### Bug Fixes
+
+* **package:** понижена версия eslint ([4d8e762](https://github.com/horanchikk/ktc-reborn/commit/4d8e76299c65835164da21caf46bf60bb6baa78a))
+* **scripts:** Добавлено логгирование в pnpm dev ([795b46a](https://github.com/horanchikk/ktc-reborn/commit/795b46a22b8ee11467d60401ad2cd4b47339b9ab))
+* **scripts:** исправлен детект dotenv параметра; доработан запуск на android устройствах ([e42bf43](https://github.com/horanchikk/ktc-reborn/commit/e42bf43ba9f455e08b0101cb296722dd187c476f))
+
 # [0.1.0-dev.5](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.4...v0.1.0-dev.5) (2024-11-15)
 
 
