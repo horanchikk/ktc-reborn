@@ -1,3 +1,10 @@
+# [0.1.0-dev.9](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.8...v0.1.0-dev.9) (2024-11-17)
+
+
+### Bug Fixes
+
+* **pages:** исправлен баг с прогрузкой страницы ([08f95cc](https://github.com/horanchikk/ktc-reborn/commit/08f95cc5c4100667f7be23ae3fe25f76061a2cdc))
+
 # [0.1.0-dev.8](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.7...v0.1.0-dev.8) (2024-11-17)
 
 
