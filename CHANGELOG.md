@@ -1,3 +1,10 @@
+# [0.1.0-dev.12](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.11...v0.1.0-dev.12) (2024-11-17)
+
+
+### Features
+
+* **header:** добавлен функционал дополнительного меню; обновлены названия логов ([bd1b339](https://github.com/horanchikk/ktc-reborn/commit/bd1b33986e54a283e8d42d0f33b53da3ce88282b))
+
 # [0.1.0-dev.11](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.10...v0.1.0-dev.11) (2024-11-17)
 
 
