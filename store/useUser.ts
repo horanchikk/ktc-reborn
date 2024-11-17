@@ -1,13 +1,14 @@
 interface TUserData {
   user_id: number
   group_id?: number
+  auditory?: string
   teacher_id?: number
   branch_id: number
   access_token: string
   is_student: boolean
 }
 
-function findNewKeys(oldObj, newObj) {
+function findNewKeys(oldObj: any, newObj: any) {
   const newKeys = {}
 
   for (const key in newObj) {
@@ -25,7 +26,7 @@ function findNewKeys(oldObj, newObj) {
 
 export const useUser = defineStore('useUser', () => {
   const log = useLogger('useUser')
-  const data = ref<TUserData>(JSON.parse(localStorage.getItem('ktc_data')) || {})
+  const data = ref<TUserData>(JSON.parse(localStorage.getItem('ktc_data')!!) || {})
 
   function setAuthData(access_token: string, user_id: number) {
     data.value.access_token = access_token

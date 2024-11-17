@@ -51,7 +51,7 @@ else if (Object.hasOwn(user.data, 'group_id')) {
   router.push('/timetable')
 }
 
-function setGroup(group) {
+function setGroup(group: any) {
   user.data.group_id = group.id
   router.push('/timetable')
 }
