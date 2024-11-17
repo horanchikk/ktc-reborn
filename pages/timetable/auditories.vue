@@ -40,7 +40,7 @@
 import { useUser } from '~/store/useUser'
 
 definePageMeta({
-  name: 'Выберите группу',
+  name: 'Выберите аудиторию',
   middleware: ['user-only'],
 })
 
@@ -57,34 +57,34 @@ else if (Object.hasOwn(user.data, 'group_id')) {
   router.push('/timetable')
 }
 
-function setAuditory(auditory: string) {
-  user.data.auditory = auditory;
-  router.push('/timetable')
-}
+// function setAuditory(auditory: string) {
+//   user.data.auditory = auditory;
+//   router.push('/timetable')
+// }
 
 function busyAuditories(): Array<string> {
-  const result: Array<string> = [];
-  for (let i of auditories.value!!) {
+  const result: Array<string> = []
+  for (const i of auditories.value!) {
     if (auditoriesFree.value?.indexOf(i) === -1) {
-      result.push(i);
+      result.push(i)
     }
   }
-  return result;
+  return result
 }
 
-function freeAuditories(): Array<string> {
-  const result: Array<string> = [];
-  for (let i of auditoriesFree.value!!) {
-    result.push(i);
-  }
-  return result;
-}
+// function freeAuditories(): Array<string> {
+//   const result: Array<string> = [];
+//   for (let i of auditoriesFree.value!!) {
+//     result.push(i);
+//   }
+//   return result;
+// }
 
 onMounted(async () => {
-  const date = new Date();
-  const hours = date.getHours().toString().padStart(2, '0');
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-  auditories.value = await api.get(`/timetable/classrooms/`);
-  auditoriesFree.value = await api.get(`/timetable/classrooms/free?time=${hours}:${minutes}`);
+  const date = new Date()
+  const hours = date.getHours().toString().padStart(2, '0')
+  const minutes = date.getMinutes().toString().padStart(2, '0')
+  auditories.value = await api.get(`/timetable/classrooms/`)
+  auditoriesFree.value = await api.get(`/timetable/classrooms/free?time=${hours}:${minutes}`)
 })
 </script>
