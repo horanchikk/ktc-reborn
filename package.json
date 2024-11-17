@@ -60,7 +60,7 @@
     "@pinia/nuxt": "^0.5.4",
     "@types/node": "^22.7.9",
     "dotenv": "^16.4.5",
-    "eslint": "^9.13.0",
+    "eslint": "9.13.0",
     "lint-staged": "^15.2.10",
     "listr2": "^8.2.5",
     "nuxt-start": "^2.18.1",
