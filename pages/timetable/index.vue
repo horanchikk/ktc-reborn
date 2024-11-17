@@ -23,9 +23,9 @@
         :key="lessonIdx"
         class="w-full px-5 flex items-center justify-between"
       >
-        <div class="flex gap-3">
+        <div class="flex items-center gap-3">
           <p
-            class="text-4xl font-semibold opacity-60"
+            class="text-3xl font-semibold opacity-60"
             v-text="lesson.number"
           />
           <div class="flex flex-col text-sm text-center">
