@@ -1,3 +1,11 @@
+# [0.1.0-dev.7](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.6...v0.1.0-dev.7) (2024-11-17)
+
+
+### Bug Fixes
+
+* **scripts:** исправлено название пакета ([dd41392](https://github.com/horanchikk/ktc-reborn/commit/dd41392654b21791439611265d467d9a45371907))
+* **scripts:** обновлено обращение к пакету nuxi ([41ea25e](https://github.com/horanchikk/ktc-reborn/commit/41ea25e09d5e308026e46a158f619012cfa1f936))
+
 # [0.1.0-dev.6](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.5...v0.1.0-dev.6) (2024-11-17)
 
 
