@@ -1,3 +1,10 @@
+# [0.1.0-dev.13](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.12...v0.1.0-dev.13) (2024-11-18)
+
+
+### Bug Fixes
+
+* **scripts:** исправлена настройка env android ([8f811ad](https://github.com/horanchikk/ktc-reborn/commit/8f811ad3b79db28e42aa7a891791b8d1d1d6256b))
+
 # [0.1.0-dev.12](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.11...v0.1.0-dev.12) (2024-11-17)
 
 
