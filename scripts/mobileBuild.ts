@@ -105,8 +105,8 @@ try {
         skip: !ANDROID_DEVICE_ID,
         task: async (_, task) => {
           task.title = 'Gradle is building'
-          await runCommand(`set ANDROID_SDK_ROOT=${SDK_LOCATION}`, task)
-          await runCommand(`pnpm --package=@capacitor/cli dlx cap run android --target ${ANDROID_DEVICE_ID} --no-sync`, task)
+          await runCommand(`export ANDROID_SDK_ROOT=${SDK_LOCATION}`, task)
+          await runCommand(`pnpm --package=@capacitor/cli dlx cap run android --no-sync`, task)
           task.title = `Launched!`
         },
       },
