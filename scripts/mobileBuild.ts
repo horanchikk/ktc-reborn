@@ -101,8 +101,8 @@ try {
           ),
       },
       {
-        title: 'Launch app on android device',
-        skip: !ANDROID_DEVICE_ID,
+        title: `Launch app on android device ${!ANDROID_DEVICE_ID || ANDROID_DEVICE_ID.length === 0 ? '[Will be skipped]' : ''}`,
+        skip: !ANDROID_DEVICE_ID || ANDROID_DEVICE_ID.length === 0,
         task: async (_, task) => {
           task.title = 'Gradle is building'
           await runCommand(`export ANDROID_SDK_ROOT=${SDK_LOCATION}`, task)
