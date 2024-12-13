@@ -26,8 +26,14 @@ jobs:
     - name: Install dependencies
       run: pnpm i
 
-    - name: Build sources
-      run: pnpm build:mobile
+    - name: Build web assets
+      run: pnpm nuxt generate
+
+    - name: Add Capacitor Android project
+      run: pnpm cap add android
+
+    - name: Sync Capacitor project
+      run: npx cap sync
 
     - name: Set up Java
       uses: actions/setup-java@v4
@@ -50,7 +56,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: android-release-apk
-        path: android/app/build/outputs/apk/release/app-release.apk
+        path: android/app/build/outputs/apk/release/app-release-unsigned.apk
 
   deploy_dev:
     name: "Уведомление в Telegram 🔔"

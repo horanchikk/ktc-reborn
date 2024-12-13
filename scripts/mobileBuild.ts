@@ -70,7 +70,6 @@ try {
               {
                 title: 'Re-building nuxt sources',
                 task: async () => {
-                  await runCommand('nuxt build', task)
                   await runCommand('nuxt generate', task)
                 },
               },
