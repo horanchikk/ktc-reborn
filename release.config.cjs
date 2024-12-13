@@ -25,6 +25,16 @@ module.exports = {
         assets: ['CHANGELOG.md'],
       },
     ],
-    '@semantic-release/github',
+    [
+      '@semantic-release/github',
+      {
+        assets: [
+          {
+            path: 'android/app/build/outputs/apk/release/app-release-unsigned.apk',
+            label: 'Android APK (v${nextRelease.version})',
+          },
+        ],
+      },
+    ],
   ],
 }
