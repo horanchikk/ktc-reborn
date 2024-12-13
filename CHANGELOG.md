@@ -1,3 +1,27 @@
+# [0.1.0-dev.14](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.13...v0.1.0-dev.14) (2024-12-13)
+
+
+### Bug Fixes
+
+* **ci:** добавлена интеграция с android в github action ([48edc0b](https://github.com/horanchikk/ktc-reborn/commit/48edc0b1cd4422ccbd054df30fe19ce145c32bd5))
+* **ci:** добавлена установка pnpm ([0871782](https://github.com/horanchikk/ktc-reborn/commit/0871782e67bf79da6285947825b182a86e14f789))
+* **ci:** добавлены отступы для steps ([fd108be](https://github.com/horanchikk/ktc-reborn/commit/fd108be34a6ca98044523dec985f30c4289d1bcd))
+* **ci:** изменён метод сборки проекта ([9029247](https://github.com/horanchikk/ktc-reborn/commit/9029247ee5615fe61b51737680d2ee98c94cc49a))
+* **ci:** изменён пакетный менеджер на pnpm ([285119b](https://github.com/horanchikk/ktc-reborn/commit/285119b964e4309a0d4c0c7765e7f0f4b8203231))
+* **ci:** изменено название файла workflow ([d596647](https://github.com/horanchikk/ktc-reborn/commit/d5966476ac0393cdb4157b04c7f4e87d04b9e87c))
+* **ci:** исправлен метод сборки с ssr на csr ([dd4ef08](https://github.com/horanchikk/ktc-reborn/commit/dd4ef08e590ad4afbbcf41d30a80ba07cc7e56b5))
+* **ci:** исправлены отступы для publishing release ([d945967](https://github.com/horanchikk/ktc-reborn/commit/d945967fb14ef27db2461b6a300c76aea74c5cc2))
+* **ci:** обновлён label для apk ([e6490f0](https://github.com/horanchikk/ktc-reborn/commit/e6490f0a43f45ff9b1a6c8f3cdaad98a1fd5fe87))
+* **ci:** обновлена версия upload-artifact ([49096b8](https://github.com/horanchikk/ktc-reborn/commit/49096b85b80cbcf362cc74a9568e5be216e3465d))
+
+
+### Features
+
+* **action:** добавлена сборка android приложения ([11a3b5d](https://github.com/horanchikk/ktc-reborn/commit/11a3b5d4a8c75117283dc65103d93010a7024af1))
+* **ci:** добавлена загрузка файла apk в релизы ([58ed5df](https://github.com/horanchikk/ktc-reborn/commit/58ed5df28c7a23bc62a4762afff982cb0e5e6e83))
+* **ci:** добавлено ожидание прошлой job ([14b4cc7](https://github.com/horanchikk/ktc-reborn/commit/14b4cc73fe117f0c2001daae49819e8710f28ac6))
+* **scripts:** добавлен текст для скриптов ([b727841](https://github.com/horanchikk/ktc-reborn/commit/b727841a9e26964b3af8a51d5324e54dde97e4fd))
+
 # [0.1.0-dev.13](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.12...v0.1.0-dev.13) (2024-11-18)
 
 
