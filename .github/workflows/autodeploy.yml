@@ -14,53 +14,53 @@ jobs:
       contents: write
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '21'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '21'
 
-    - name: Install pnpm
-      run: npm -g i pnpm
+      - name: Install pnpm
+        run: npm -g i pnpm
 
-    - name: Install dependencies
-      run: pnpm i
+      - name: Install dependencies
+        run: pnpm i
 
-    - name: Install semantic-release packages
-      run: pnpm i @semantic-release/changelog @semantic-release/git @semantic-release/github
+      - name: Install semantic-release packages
+        run: pnpm i @semantic-release/changelog @semantic-release/git @semantic-release/github
 
-    - name: Build web assets
-      run: pnpm nuxt generate
+      - name: Build web assets
+        run: pnpm nuxt generate
 
-    - name: Add Capacitor Android project
-      run: pnpm cap add android
+      - name: Add Capacitor Android project
+        run: pnpm cap add android
 
-    - name: Sync Capacitor project
-      run: npx cap sync
+      - name: Sync Capacitor project
+        run: npx cap sync
 
-    - name: Set up Java
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'zulu'
-        java-version: '21'
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
 
-    - name: Set up Android SDK
-      uses: android-actions/setup-android@v3
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
 
-    - name: Accept Android SDK licenses
-      run: |
-        yes | sdkmanager --licenses
+      - name: Accept Android SDK licenses
+        run: |
+          yes | sdkmanager --licenses
 
-    - name: Build Android APK
-      working-directory: android
-      run: ./gradlew assembleRelease
+      - name: Build Android APK
+        working-directory: android
+        run: ./gradlew assembleRelease
 
-    - name: Publishing release
-        run: npx semantic-release
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Publishing release
+          run: npx semantic-release
+          env:
+            GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
   deploy_dev:
     name: "Уведомление в Telegram 🔔"
