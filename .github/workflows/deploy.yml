@@ -61,6 +61,8 @@ jobs:
   deploy_dev:
     name: "Уведомление в Telegram 🔔"
     runs-on: ubuntu-latest
+    needs: build
+
     steps:
       - uses: actions/checkout@v4
 
