@@ -1,4 +1,4 @@
-name: AutoDeploy For API
+name: AutoDeploy
 
 on:
   push:
@@ -7,8 +7,53 @@ on:
       - 'master'
 
 jobs:
+  build:
+    name: "Сборка проекта под Android 🔨"
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build web assets
+      run: npm run build
+
+    - name: Sync Capacitor Android project
+      run: npx cap sync android
+
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: '21'
+
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v3
+
+    - name: Accept Android SDK licenses
+      run: |
+        yes | sdkmanager --licenses
+
+    - name: Build Android APK
+      working-directory: android
+      run: ./gradlew assembleRelease
+
+    - name: Upload APK as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: android-release-apk
+        path: android/app/build/outputs/apk/release/app-release.apk
+
   deploy_dev:
-    name: "Уведомление в telegram 🔨"
+    name: "Уведомление в Telegram 🔔"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
