@@ -18,13 +18,13 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'
+        node-version: '21'
 
     - name: Install dependencies
-      run: npm install
+      run: pnpm i
 
     - name: Build web assets
-      run: npm run build
+      run: pnpm build
 
     - name: Sync Capacitor Android project
       run: npx cap sync android
