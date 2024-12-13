@@ -31,7 +31,7 @@ module.exports = {
         assets: [
           {
             path: 'android/app/build/outputs/apk/release/app-release-unsigned.apk',
-            label: 'Android APK (v${nextRelease.version})',
+            label: 'Android APK [${nextRelease.version}]',
           },
         ],
       },
