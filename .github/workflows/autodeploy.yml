@@ -58,9 +58,9 @@ jobs:
         run: ./gradlew assembleRelease
 
       - name: Publishing release
-          run: npx semantic-release
-          env:
-            GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npx semantic-release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
   deploy_dev:
     name: "Уведомление в Telegram 🔔"
