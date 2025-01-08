@@ -1,3 +1,10 @@
+# [0.1.0-dev.15](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.14...v0.1.0-dev.15) (2025-01-08)
+
+
+### Features
+
+* **scripts:** добавлена автоматическая установка всех необходимых утилит для корректного запуска под android ([96bb53a](https://github.com/horanchikk/ktc-reborn/commit/96bb53aa3f69c91ebbfa031a865d15eeb4e506fc))
+
 # [0.1.0-dev.14](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.13...v0.1.0-dev.14) (2024-12-13)
 
 
