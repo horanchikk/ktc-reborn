@@ -27,4 +27,8 @@ ios
 android
 
 pnpm-lock.yaml
+
 ./assets/tgz/*
+jdk/*
+sdk/*
+cmdline-tools/*
