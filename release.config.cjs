@@ -30,7 +30,7 @@ module.exports = {
       {
         assets: [
           {
-            path: 'android/app/build/outputs/apk/release/app-release-unsigned.apk',
+            path: 'android/app/build/outputs/apk/debug/app-debug.apk',
             label: 'Android APK [${nextRelease.version}]',
           },
         ],
