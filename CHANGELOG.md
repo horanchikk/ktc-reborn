@@ -1,3 +1,10 @@
+# [0.1.0-dev.16](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.15...v0.1.0-dev.16) (2025-01-09)
+
+
+### Features
+
+* **markup:** добавлена иконка chevron-left-alt.svg ([433986b](https://github.com/horanchikk/ktc-reborn/commit/433986b6d7c50c589f01e290cda174da96dadcdb))
+
 # [0.1.0-dev.15](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.14...v0.1.0-dev.15) (2025-01-08)
 
 
