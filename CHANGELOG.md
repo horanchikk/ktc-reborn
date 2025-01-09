@@ -1,3 +1,10 @@
+# [0.1.0-dev.18](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.17...v0.1.0-dev.18) (2025-01-09)
+
+
+### Bug Fixes
+
+* **ci:** изменена команда сборки ([ad1810a](https://github.com/horanchikk/ktc-reborn/commit/ad1810ab637d56cf305a8205d0d15361950784f9))
+
 # [0.1.0-dev.17](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.16...v0.1.0-dev.17) (2025-01-09)
 
 
