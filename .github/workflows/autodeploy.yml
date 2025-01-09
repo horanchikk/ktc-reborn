@@ -55,7 +55,7 @@ jobs:
 
       - name: Build Android APK
         working-directory: android
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleDebug
 
       - name: Publishing release
         run: npx semantic-release
