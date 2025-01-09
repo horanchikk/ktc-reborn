@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!data"
+    v-if="!timetable"
     class="w-full h-full flex items-center justify-center show"
   >
     <ILoader class="w-16 h-16 text-foreground" />
@@ -9,8 +9,27 @@
     v-else
     class="flex flex-col gap-2 show py-4"
   >
+    <div class="grid grid-cols-3 place-items-center mb-5">
+      <img
+        v-if="week.current_week !== week.previous_week && week.previous_week !== 0"
+        :src="`/icons/chevron-left-alt.svg`"
+        class="w-8 h-8 hover:opacity-100 duration-150 cursor-pointer"
+        :alt="'chevron-left-alt'"
+        @click="previousWeek"
+      >
+      <div v-else />
+      <p class="text-2xl font-semibold">
+        Неделя {{ week.current_week }}
+      </p>
+      <img
+        :src="`/icons/chevron-left-alt.svg`"
+        class="w-8 h-8 rotate-180 hover:opacity-100 duration-150 cursor-pointer"
+        :alt="'chevron-left-alt'"
+        @click="nextWeek"
+      >
+    </div>
     <div
-      v-for="(day, dayIdx) in data.days"
+      v-for="(day, dayIdx) in timetable.days"
       :key="day.title"
       class="flex flex-col gap-4 items-center"
     >
@@ -53,7 +72,7 @@
         />
       </div>
       <div
-        v-if="dayIdx !== data.days.length - 1"
+        v-if="dayIdx !== timetable.days.length - 1"
         class="h-[1px] bg-foreground w-11/12 opacity-30"
       />
     </div>
@@ -74,14 +93,49 @@ const api = useApi()
 const router = useRouter()
 const header = useHeader()
 
-const data = ref(null)
+const timetable = ref(null)
+const week = ref(null)
 
-if (!(Object.hasOwn(user.data, 'is_student') || Object.hasOwn(user.data, 'branch_id'))) {
+async function nextWeek() {
+  await updateTimetable(week.value.next_week)
+}
+async function previousWeek() {
+  await updateTimetable(week.value.previous_week)
+}
+
+watch(week, (val) => {
+  console.log(val)
+})
+
+if (
+  !(
+    Object.hasOwn(user.data, 'is_student')
+    || Object.hasOwn(user.data, 'branch_id')
+  )
+) {
   router.push('/setup/branch')
 }
 
 function fixLessonTitle(title: string) {
-  return title[title.length - 1] === ',' ? title.split('').slice(0, title.length - 1).join('') : title
+  return title[title.length - 1] === ','
+    ? title
+        .split('')
+        .slice(0, title.length - 1)
+        .join('')
+    : title
+}
+
+async function updateTimetable(numberOfWeek?: number) {
+  timetable.value = null
+
+  timetable.value = await api.get(
+    `/timetable/students/courses/${user.data.branch_id}/group/${user.data.group_id}${numberOfWeek !== undefined ? `/week/${numberOfWeek}` : ''}`,
+  )
+  week.value = {
+    next_week: timetable.value.next_week,
+    previous_week: timetable.value.previous_week,
+    current_week: timetable.value.current_week,
+  }
 }
 
 onMounted(async () => {
@@ -90,7 +144,7 @@ onMounted(async () => {
       router.push('/timetable/group')
     }
     else {
-      data.value = await api.get(`/timetable/students/courses/${user.data.branch_id}/group/${user.data.group_id}`)
+      await updateTimetable()
     }
   }
   else {
@@ -98,34 +152,38 @@ onMounted(async () => {
       router.push('/timetable/teacher')
     }
     else {
-      data.value = await api.get(`/teachers/${user.data.branch_id}/id${user.data.teacher_id}`)
+      timetable.value = await api.get(
+        `/teachers/${user.data.branch_id}/id${user.data.teacher_id}`,
+      )
     }
   }
 })
 
-header.setAdditionalMenu(user.data.is_student
-  ? [
-      {
-        name: 'Выбрать группу',
-        icon: 'pencil',
-        action: () => router.push('/timetable/group'),
-      },
-      {
-        name: 'Занятость кабинетов',
-        icon: 'calendar',
-        action: () => router.push('/timetable/auditories'),
-      },
-    ]
-  : [
-      {
-        name: 'Выбрать преподавателя',
-        icon: 'pencil',
-        action: () => router.push('/timetable/teacher'),
-      },
-      {
-        name: 'Занятость кабинетов',
-        icon: 'calendar',
-        action: () => router.push('/timetable/auditories'),
-      },
-    ])
+header.setAdditionalMenu(
+  user.data.is_student
+    ? [
+        {
+          name: 'Выбрать группу',
+          icon: 'pencil',
+          action: () => router.push('/timetable/group'),
+        },
+        {
+          name: 'Занятость кабинетов',
+          icon: 'calendar',
+          action: () => router.push('/timetable/auditories'),
+        },
+      ]
+    : [
+        {
+          name: 'Выбрать преподавателя',
+          icon: 'pencil',
+          action: () => router.push('/timetable/teacher'),
+        },
+        {
+          name: 'Занятость кабинетов',
+          icon: 'calendar',
+          action: () => router.push('/timetable/auditories'),
+        },
+      ],
+)
 </script>
