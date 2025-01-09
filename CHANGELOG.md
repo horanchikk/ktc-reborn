@@ -1,3 +1,10 @@
+# [0.1.0-dev.17](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.16...v0.1.0-dev.17) (2025-01-09)
+
+
+### Bug Fixes
+
+* **ci:** изменён публикуемый файл ([9d6e975](https://github.com/horanchikk/ktc-reborn/commit/9d6e9750faa2b1b82eaa09d4d902feaf90a5a467))
+
 # [0.1.0-dev.16](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.15...v0.1.0-dev.16) (2025-01-09)
 
 
