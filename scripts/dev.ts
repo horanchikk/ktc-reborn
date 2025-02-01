@@ -54,7 +54,7 @@ new Listr(
       title: 'Launching server',
       task: async (_, task) => {
         const shouldStop = false
-        const cmd = spawn('node', ['node_modules/nuxi/bin/nuxi.mjs', 'dev', '--port', '3000'])
+        const cmd = spawn('node', ['node_modules/nuxt/bin/nuxt.mjs', 'dev', '--port', '3000'])
 
         task.title = 'Command spawned'
 

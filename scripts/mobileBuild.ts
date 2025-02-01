@@ -116,8 +116,7 @@ try {
           ),
       },
       {
-        title: `Android app ${!ANDROID_DEVICE_ID || ANDROID_DEVICE_ID.length === 0 ? '[Will be skipped]' : ''}`,
-        skip: !ANDROID_DEVICE_ID || ANDROID_DEVICE_ID.length === 0,
+        title: `Android app`,
         task: (_, task): Listr =>
           task.newListr(
             [
@@ -173,14 +172,16 @@ try {
                 },
               },
               {
-                title: 'Setup local env',
+                title: `Setup local env ${!ANDROID_DEVICE_ID || ANDROID_DEVICE_ID.length === 0 ? '[Will be skipped]' : ''}`,
+                skip: !ANDROID_DEVICE_ID || ANDROID_DEVICE_ID.length === 0,
                 task: async (_, task) => {
                   await runCommand(`export PATH=${currentPath}/jdk/jdk-20/bin:$PATH && export ANDROID_SDK_ROOT=${currentPath}/sdk`)
                   task.title = 'ENV successfully setuped'
                 },
               },
               {
-                title: 'Build android project',
+                title: `Build android project ${!ANDROID_DEVICE_ID || ANDROID_DEVICE_ID.length === 0 ? '[Will be skipped]' : ''}`,
+                skip: !ANDROID_DEVICE_ID || ANDROID_DEVICE_ID.length === 0,
                 task: async (_, task) => {
                   task.title = 'Gradle is building project, please wait'
                   await runCommand('pnpm --package=@capacitor/cli dlx cap build android', task)
@@ -188,7 +189,8 @@ try {
                 },
               },
               {
-                title: 'Run apk',
+                title: `Run apk ${!ANDROID_DEVICE_ID || ANDROID_DEVICE_ID.length === 0 ? '[Will be skipped]' : ''}`,
+                skip: !ANDROID_DEVICE_ID || ANDROID_DEVICE_ID.length === 0,
                 task: async (_, task) => {
                   task.title = `Running app on device ${ANDROID_DEVICE_ID}`
                   await runCommand(`pnpm --package=@capacitor/cli dlx cap run android --no-sync --target ${ANDROID_DEVICE_ID}`, task)
