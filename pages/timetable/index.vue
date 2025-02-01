@@ -31,16 +31,20 @@
     <div
       v-for="(day, dayIdx) in timetable.days"
       :key="day.title"
-      class="flex flex-col gap-4 items-center"
+      class="flex flex-col items-center"
     >
       <h1
         class="text-2xl font-semibold"
         v-text="day.title"
       />
+      <p
+        class="mt-0.5 text-sm opacity-50"
+        v-text="`${day.start} - ${day.end} (~ ${day.hours} ${getHourWord(day.hours)})`"
+      />
       <div
         v-for="(lesson, lessonIdx) in day.lessons"
         :key="lessonIdx"
-        class="w-full px-5 flex items-center justify-between"
+        class="w-full my-2 px-5 flex items-center justify-between"
       >
         <div class="flex items-center gap-3">
           <p
@@ -123,6 +127,22 @@ function fixLessonTitle(title: string) {
         .slice(0, title.length - 1)
         .join('')
     : title
+}
+
+function getHourWord(n: number): string {
+  const absN = Math.abs(n)
+  const mod10 = absN % 10
+  const mod100 = absN % 100
+
+  if (mod10 === 1 && mod100 !== 11) {
+    return 'час'
+  }
+  else if (mod10 >= 2 && mod10 <= 4 && !(mod100 >= 12 && mod100 <= 14)) {
+    return 'часа'
+  }
+  else {
+    return 'часов'
+  }
 }
 
 async function updateTimetable(numberOfWeek?: number) {
