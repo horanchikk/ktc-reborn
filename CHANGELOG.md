@@ -1,3 +1,18 @@
+# [0.1.0-dev.19](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.18...v0.1.0-dev.19) (2025-02-01)
+
+
+### Bug Fixes
+
+* **scripts:** изменён запуск на nuxt ([0afb561](https://github.com/horanchikk/ktc-reborn/commit/0afb56196c6c0909c15c3ed8bb165d97ab0aca25))
+
+
+### Features
+
+* **markup:** Добавлено примерное время пар в расписании студента ([9b3abfc](https://github.com/horanchikk/ktc-reborn/commit/9b3abfcf18d8b330ec8e62a0017c94ef7bce1e4f)), closes [#11](https://github.com/horanchikk/ktc-reborn/issues/11)
+* **markup:** добавлено примерное время расписания ([6da8767](https://github.com/horanchikk/ktc-reborn/commit/6da87677f2be44ce238c32a586cadacd4e9b5aac))
+* **scripts:** добавляем установку утилит ([8fe851f](https://github.com/horanchikk/ktc-reborn/commit/8fe851f5cb8963fe9f80f92cccf88a1b6407b0e9))
+* **scripts:** обязательные обновления скриптовa ([ac6f887](https://github.com/horanchikk/ktc-reborn/commit/ac6f88796963bc16fabd036f527aa326229a4fd7)), closes [#10](https://github.com/horanchikk/ktc-reborn/issues/10)
+
 # [0.1.0-dev.18](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.17...v0.1.0-dev.18) (2025-01-09)
 
 
