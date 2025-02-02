@@ -33,6 +33,12 @@ jobs:
 
       - name: Build web assets
         run: pnpm nuxt generate
+        env:
+          API_URL: ${{ secrets.API_URL }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
 
       - name: Add Capacitor Android project
         run: pnpm cap add android
