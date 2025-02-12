@@ -23,12 +23,15 @@ logs
 .env.*
 !.env.example
 
-ios
 android
+ios
 
 pnpm-lock.yaml
 
 ./assets/tgz/*
-jdk/*
-sdk/*
-cmdline-tools/*
+
+jdk
+sdk
+cmdline-tools
+
+*.zip
