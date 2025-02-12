@@ -1,3 +1,16 @@
+# [0.1.0-dev.20](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.19...v0.1.0-dev.20) (2025-02-12)
+
+
+### Features
+
+* **gitignore:** обновлён gitignore ([71341f0](https://github.com/horanchikk/ktc-reborn/commit/71341f01f68bd57d2903ecb580b757a8aa8577c5))
+* **scripts:** добавлен скрипт с дополнительным функционалом для основного скрипта ([b34472e](https://github.com/horanchikk/ktc-reborn/commit/b34472e67e180a373a08b448ca0fb616481e3acc))
+* **scripts:** добавлена конфигурация проекта ([2b1279d](https://github.com/horanchikk/ktc-reborn/commit/2b1279dab36770d5d70020a1c4bfd37486887b2f))
+* **scripts:** обновлен скрипт для закачки файлов ([070ddbc](https://github.com/horanchikk/ktc-reborn/commit/070ddbc89976ff97171f447f5ae987570598be48))
+* **scripts:** обновление основного скрипта [оптимизация кода; обновление названий задач; обновление таски для Android сборки] ([e5a3b7f](https://github.com/horanchikk/ktc-reborn/commit/e5a3b7f497400a764082953b069a5beee853f507))
+* **scripts:** удалён старый скрипт проверки файлов ([7125978](https://github.com/horanchikk/ktc-reborn/commit/71259783b9670f50d6a214be5e4d31cfc4cc1b15))
+* обновлён README ([c876b7b](https://github.com/horanchikk/ktc-reborn/commit/c876b7b0a0135069ffa25c274935d47da1f134db))
+
 # [0.1.0-dev.19](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.18...v0.1.0-dev.19) (2025-02-01)
 
 
