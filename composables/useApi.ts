@@ -19,9 +19,9 @@ interface TException {
   detail?: Detail[]
 }
 
-export function useApi() {
+export function useApi(module?: string) {
   const { public: { API_URL } } = useRuntimeConfig()
-  const log = useLogger('useApi')
+  const log = useLogger(module ??= 'useApi')
   const user = useUser()
 
   function showError(data: TException) {
