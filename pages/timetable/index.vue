@@ -7,7 +7,7 @@
   </div>
   <div
     v-else
-    class="flex flex-col gap-2 show py-4"
+    class="flex flex-col gap-2 show py-4 h-full"
   >
     <div class="grid grid-cols-3 place-items-center mb-5">
       <img
@@ -28,57 +28,67 @@
         @click="nextWeek"
       >
     </div>
-    <div
-      v-for="(day, dayIdx) in timetable.days"
-      :key="day.title"
-      class="flex flex-col items-center"
-    >
-      <h1
-        class="text-2xl font-semibold"
-        v-text="day.title"
-      />
-      <p
-        class="mt-0.5 text-sm opacity-50"
-        v-text="`${day.start} - ${day.end} (~ ${day.hours} ${getHourWord(day.hours)})`"
-      />
+    <template v-if="hasLessons">
       <div
-        v-for="(lesson, lessonIdx) in day.lessons"
-        :key="lessonIdx"
-        class="w-full my-2 px-5 flex items-center justify-between"
+        v-for="(day, dayIdx) in timetable.days"
+        :key="day.title"
+        class="flex flex-col items-center"
       >
-        <div class="flex items-center gap-3">
-          <p
-            class="text-3xl font-semibold opacity-60"
-            v-text="lesson.number"
-          />
-          <div class="flex flex-col text-sm text-center">
-            <div v-text="lesson.start" />
-            <div class="w-full h-[1px] bg-foreground" />
-            <div v-text="lesson.end" />
+        <h1
+          class="text-2xl font-semibold"
+          v-text="day.title"
+        />
+        <p
+          class="mt-0.5 text-sm opacity-50"
+          v-text="`${day.start} - ${day.end} (~ ${day.hours} ${getHourWord(day.hours)})`"
+        />
+        <section
+          v-for="(lesson, lessonIdx) in day.lessons"
+          :key="lessonIdx"
+          class="w-full my-2 px-5 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3">
+            <p
+              class="text-3xl font-semibold opacity-60"
+              v-text="lesson.number"
+            />
+            <div class="flex flex-col text-sm text-center">
+              <div v-text="lesson.start" />
+              <div class="w-full h-[1px] bg-foreground" />
+              <div v-text="lesson.end" />
+            </div>
           </div>
-        </div>
-        <div class="text-sm text-center font-semibold w-52 sm:w-full">
-          <p v-text="fixLessonTitle(lesson.title)" />
-          <p
-            v-if="lesson.teacher"
-            class="opacity-50"
-            v-text="lesson.teacher"
+          <div class="text-sm text-center font-semibold w-52 sm:w-full">
+            <p v-text="fixLessonTitle(lesson.title)" />
+            <p
+              v-if="lesson.teacher"
+              class="opacity-50"
+              v-text="lesson.teacher"
+            />
+            <p
+              v-if="lesson.group"
+              class="opacity-50"
+              v-text="lesson.group"
+            />
+          </div>
+          <div
+            class="flex flex-col text-sm w-20 text-right"
+            v-text="lesson.classroom"
           />
-          <p
-            v-if="lesson.group"
-            class="opacity-50"
-            v-text="lesson.group"
-          />
-        </div>
+        </section>
         <div
-          class="flex flex-col text-sm w-20 text-right"
-          v-text="lesson.classroom"
+          v-if="dayIdx !== timetable.days.length - 1"
+          class="h-[1px] bg-foreground w-11/12 opacity-30"
         />
       </div>
-      <div
-        v-if="dayIdx !== timetable.days.length - 1"
-        class="h-[1px] bg-foreground w-11/12 opacity-30"
-      />
+    </template>
+    <div
+      v-else
+      class="w-full h-full flex items-center justify-center"
+    >
+      <p class="text-2xl font-semibold">
+        Пары отсутствуют 🥳
+      </p>
     </div>
   </div>
 </template>
@@ -106,6 +116,8 @@ async function nextWeek() {
 async function previousWeek() {
   await updateTimetable(week.value.previous_week)
 }
+
+const hasLessons = computed(() => timetable.value.days.length > 0)
 
 watch(week, (val) => {
   console.log(val)
