@@ -1,3 +1,12 @@
+# [0.1.0-dev.21](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.20...v0.1.0-dev.21) (2025-04-21)
+
+
+### Features
+
+* **api:** обновлен запрос в модуль ([5ff3fa2](https://github.com/horanchikk/ktc-reborn/commit/5ff3fa2ddb32c65e97b2a0bfe686b4d512650d6f))
+* **markup:** добавлена валидация пар ([5943b88](https://github.com/horanchikk/ktc-reborn/commit/5943b88b0b99aeb33ff1cb95a904ba06949272fb))
+* обновлен gitignore ([aa26720](https://github.com/horanchikk/ktc-reborn/commit/aa26720c027f3e2ee10cf7fa7e09501daaa67a89))
+
 # [0.1.0-dev.20](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.19...v0.1.0-dev.20) (2025-02-12)
 
 
