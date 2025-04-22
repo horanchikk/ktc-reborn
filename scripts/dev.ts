@@ -48,6 +48,7 @@ new Listr(
       title: 'Clearing up cache...',
       task: async (_, task) => {
         await runCommand('nuxt cleanup', task)
+        await runCommand('nuxt prepare', task)
       },
     },
     {

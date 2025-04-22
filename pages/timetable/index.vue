@@ -18,7 +18,7 @@
         @click="previousWeek"
       >
       <div v-else />
-      <p class="text-2xl font-semibold">
+      <p class="text-2xl font-semibold text-center">
         Неделя {{ week.current_week }}
       </p>
       <img
@@ -86,7 +86,7 @@
       v-else
       class="w-full h-full flex items-center justify-center"
     >
-      <p class="text-2xl font-semibold">
+      <p class="text-2xl font-semibold text-center">
         Пары отсутствуют 🥳
       </p>
     </div>
