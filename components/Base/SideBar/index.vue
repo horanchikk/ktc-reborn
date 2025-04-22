@@ -159,11 +159,11 @@ const links = ref<{
   //   icon: 'bell',
   //   route: '/notifications',
   // },
-  // {
-  //   name: 'Галерея',
-  //   icon: 'photo',
-  //   route: '/gallery',
-  // },
+  {
+    name: 'Галерея',
+    icon: 'photo',
+    route: '/gallery',
+  },
   // {
   //   name: 'Оценки',
   //   icon: 'chart',
