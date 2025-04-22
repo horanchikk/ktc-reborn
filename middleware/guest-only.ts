@@ -6,7 +6,7 @@ export default defineNuxtRouteMiddleware(() => {
     const user = useUser($pinia)
 
     if (user.data.access_token !== undefined) {
-      return navigateTo('/profile')
+      return navigateTo('/timetable')
     }
   }
 })

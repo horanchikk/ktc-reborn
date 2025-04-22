@@ -14,6 +14,10 @@
         >
           Вернуться обратно
         </button>
+        <p
+          class="text-sm opacity-30"
+          v-text="error"
+        />
       </div>
     </main>
   </div>
@@ -21,6 +25,7 @@
 
 <script setup lang="ts">
 const router = useRouter()
+const error = useError()
 
 definePageMeta({
   layout: 'none',

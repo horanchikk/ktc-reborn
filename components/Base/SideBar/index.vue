@@ -81,7 +81,7 @@
         </div>
         <div class="flex-auto flex flex-col justify-end divide-y-[1px] divide-background-200">
           <div class="w-full bg-foreground opacity-25 h-[1px]" />
-          <NuxtLink
+          <!-- <NuxtLink
             to="/settings"
             @click="store.hide()"
           >
@@ -90,7 +90,7 @@
               text="Настройки"
               :color="useRouter().currentRoute.value.path === '/settings' ? '#FF4646' : '#EDE8D8'"
             />
-          </NuxtLink>
+          </NuxtLink> -->
           <NuxtLink
             to="/about"
             @click="store.hide()"
@@ -115,9 +115,9 @@
 
 <script setup lang="ts">
 import { useSwipe } from '@vueuse/core'
+import { ApiModules } from '~/repository/api'
 import { useSideBar } from '~/store/useSideBar'
 import { useUser } from '~/store/useUser'
-import type { UserData } from '~/types/userData'
 
 const store = useSideBar()
 const sideBarEl = ref(null)
@@ -128,7 +128,6 @@ const { direction } = useSwipe(sideBarEl, {
   },
 })
 const user = useUser()
-const api = useApi()
 
 const links = ref<{
   name: string
@@ -150,33 +149,31 @@ const links = ref<{
     icon: 'calendar',
     route: '/timetable',
   },
-  {
-    name: 'Сообщения',
-    icon: 'mail',
-    route: '/messenger',
-  },
-  {
-    name: 'Уведомления',
-    icon: 'bell',
-    route: '/notifications',
-  },
+  // {
+  //   name: 'Сообщения',
+  //   icon: 'mail',
+  //   route: '/messenger',
+  // },
+  // {
+  //   name: 'Уведомления',
+  //   icon: 'bell',
+  //   route: '/notifications',
+  // },
   {
     name: 'Галерея',
     icon: 'photo',
     route: '/gallery',
   },
-  {
-    name: 'Оценки',
-    icon: 'chart',
-    route: '/marks',
-  },
+  // {
+  //   name: 'Оценки',
+  //   icon: 'chart',
+  //   route: '/marks',
+  // },
 ])
 const info = ref()
 
 onMounted(
   async () =>
-    (info.value = await api.get<UserData>(
-      `/user/info?access_token=${user.data.access_token}`,
-    )),
+    (info.value = await ApiModules.user.getInfo(user.$state.data.access_token)),
 )
 </script>

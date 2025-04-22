@@ -1,6 +1,7 @@
-import { exec } from 'node:child_process'
+import { exec, spawn } from 'node:child_process'
 import { promisify } from 'node:util'
 import { Listr } from 'listr2'
+import { logLogo } from './logo'
 
 const execAsync = promisify(exec)
 
@@ -39,25 +40,53 @@ async function runCommand(
   }
 }
 
-try {
-  new Listr(
-    [
-      {
-        title: 'Cleaning up cache...',
-        task: async (_, task) => {
-          await runCommand('nuxt cleanup', task)
-        },
+logLogo()
+
+new Listr(
+  [
+    {
+      title: 'Clearing up cache...',
+      task: async (_, task) => {
+        await runCommand('nuxt cleanup', task)
+        await runCommand('nuxt prepare', task)
       },
-      {
-        title: 'Launching server',
-        task: async (_, task) => {
-          task.title = 'Launched at http://localhost:3000'
-          runCommand('nuxt dev --port 3000', null, true)
-        },
+    },
+    {
+      title: 'Launching server',
+      task: async (_, task) => {
+        const shouldStop = false
+        const cmd = spawn('node', ['node_modules/nuxt/bin/nuxt.mjs', 'dev', '--port', '3000'])
+
+        task.title = 'Command spawned'
+
+        cmd.stdout.on('data', (data) => {
+          task.output = `${task.output === undefined ? '-----LOGGING STARTED-----' : task.output}\n${data}`
+        })
+
+        cmd.stderr.on('data', (data) => {
+          task.output = `${task.output === undefined ? '-----LOGGING STARTED-----' : task.output}\n${data}`
+        })
+
+        cmd.on('close', (code) => {
+          task.title = `${task.output}\nProcess stopped with code: ${code}`
+          task.skip()
+          cmd.kill()
+          process.exit()
+        })
+
+        process.on('SIGINT', async function () {
+          task.title = 'Server stopped'
+          task.skip()
+          cmd.kill()
+          process.exit()
+        })
+
+        while (!shouldStop) {
+          await new Promise(resolve => setTimeout(resolve, 500))
+        }
       },
-    ],
-  ).run()
-}
-finally {
-  console.log()
-}
+    },
+  ], {
+    registerSignalListeners: false,
+  },
+).run()

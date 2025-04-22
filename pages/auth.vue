@@ -5,7 +5,7 @@
   />
 
   <form
-    class="w-full h-full flex flex-col items-center justify-between pt-8 text-white"
+    class="w-full h-full flex flex-col items-center justify-between pt-8 text-foreground"
     @submit.prevent="auth"
   >
     <div class="flex flex-col justify-center items-center show">
@@ -13,7 +13,7 @@
         Войдите в аккаунт
       </h1>
       <p class="opacity-50">
-        представьтесь пожалуйста
+        представьтесь, пожалуйста
       </p>
     </div>
     <div>
@@ -154,8 +154,8 @@ async function auth() {
   await api
     .post('/user/login', authData)
     .then((res) => {
-      user.setUserData(res)
-      router.push('/profile')
+      user.setAuthData(res.access_token, res.user_id)
+      router.push('/setup/branch')
       emit('isClosed')
     })
     .catch((err) => {

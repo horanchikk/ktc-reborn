@@ -1,6 +1,6 @@
 <template>
   <form
-    class="w-full h-full flex flex-col items-center justify-between pt-8 text-white"
+    class="w-full h-full flex flex-col items-center justify-between pt-8 text-foreground animate__animated animate__fadeIn"
     @submit.prevent="nextPage"
   >
     <div class="flex flex-col justify-center items-center">
@@ -26,7 +26,7 @@
 
     <div
       v-if="branches"
-      class="mx-10"
+      class="mx-10 show"
     >
       <BaseSelect
         id="id"
@@ -35,10 +35,9 @@
         :data="branches"
       />
     </div>
-    <Icon
+    <ILoader
       v-else
-      name="svg-spinners:ring-resize"
-      class="show w-20 h-20 text-white"
+      class="show w-20 h-20 text-foreground"
     />
 
     <div />
@@ -80,6 +79,8 @@
 </template>
 
 <script setup lang="ts">
+import { useUser } from '~/store/useUser'
+
 definePageMeta({
   layout: 'none',
   middleware: ['user-only'],
@@ -88,18 +89,24 @@ definePageMeta({
 const selectedBranch = ref()
 const api = useApi()
 const router = useRouter()
-const branches = await api.get('/branches', {
-  squeeze: true,
-})
+const user = useUser()
+const branches = ref()
 
 function nextPage() {
   if (selectedBranch.value !== null) {
+    user.data.branch_id = selectedBranch.value
     router.push('/setup/role')
   }
   else {
     alert('Выберите филиал')
   }
 }
+
+onMounted(async () => {
+  branches.value = await api.get('/branches', {
+    squeeze: true,
+  })
+})
 </script>
 
 <style scoped>
@@ -114,5 +121,6 @@ function nextPage() {
 
 .show {
   animation: show ease-in-out 300ms;
+  animation-fill-mode: forwards;
 }
 </style>

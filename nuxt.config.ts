@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@pinia/nuxt',
     '@formkit/auto-animate/nuxt',
+    '@sentry/nuxt/module',
     'nuxt-booster',
     'nuxt-svgo',
   ],
@@ -25,7 +26,12 @@ export default defineNuxtConfig({
       API_URL: process.env.API_URL || 'http://localhost:8000',
       ACCOUNT_LOGIN: process.env.ACCOUNT_LOGIN,
       ACCOUNT_PASSWD: process.env.ACCOUNT_PASSWD,
+      SENTRY_DSN: process.env.SENTRY_DSN,
     },
+  },
+
+  sourcemap: {
+    client: true,
   },
   devServer: {
     port: 3000,
@@ -40,6 +46,14 @@ export default defineNuxtConfig({
     download: true,
     families: {
       Montserrat: '100..900',
+    },
+  },
+
+  sentry: {
+    sourceMapsUploadOptions: {
+      org: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJECT,
+      authToken: process.env.SENTRY_AUTH_TOKEN,
     },
   },
 
@@ -75,4 +89,5 @@ export default defineNuxtConfig({
       },
     },
   },
+
 })

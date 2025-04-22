@@ -9,7 +9,7 @@
     >
       <img
         v-if="news"
-        src="http://www.kansk-tc.ru/UserFiles/2024/10/15/2024-10-08_550px..jpeg"
+        :src="news.preview.length > 0 ? news.preview : './notfound.png'"
         class="w-full object-cover object-center absolute -z-10"
         :style="`height: ${imageHeight}px`"
       >

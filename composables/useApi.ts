@@ -19,9 +19,9 @@ interface TException {
   detail?: Detail[]
 }
 
-export function useApi() {
+export function useApi(module?: string) {
   const { public: { API_URL } } = useRuntimeConfig()
-  const log = useLogger('useApi')
+  const log = useLogger(module ??= 'useApi')
   const user = useUser()
 
   function showError(data: TException) {
@@ -56,13 +56,14 @@ export function useApi() {
           access_token: ctx.request.toString().split('?')[1].split('=')[1],
         })
 
-        user.setUserData(newToken)
+        user.data.access_token = newToken.access_token
       }
       else if (statusCode === 400 && ctx.request !== `${API_URL}/user/login`) {
         user.logout()
       }
     },
   })
+
   const api = {
     get: function<T>(url: string, params?: object): Promise<T> {
       return instance(url, {

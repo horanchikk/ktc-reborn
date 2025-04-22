@@ -1,6 +1,6 @@
 <template>
   <form
-    class="w-full h-full flex flex-col items-center justify-between pt-8 text-white"
+    class="w-full h-full flex flex-col items-center justify-between pt-8 text-foreground animate__animated animate__fadeIn"
     @submit.prevent="nextPage"
   >
     <div class="flex flex-col justify-center items-center">
@@ -26,7 +26,7 @@
 
     <BaseSelect
       id="id"
-      v-model:selected="user.isStudent"
+      v-model:selected="isStudent"
       :data="userTypes"
       name="name"
     />
@@ -90,10 +90,20 @@ const userTypes = [
     name: 'Студент',
   },
 ]
+const isStudent = ref()
+
+delete user.data.teacher_id
+delete user.data.group_id
 
 function nextPage() {
-  if (user.isStudent !== null) {
-    router.push('/timetable')
+  if (isStudent.value !== null) {
+    user.data.is_student = Boolean(isStudent.value)
+    if (isStudent.value) {
+      router.push('/timetable/group')
+    }
+    else {
+      router.push('/timetable/teacher')
+    }
   }
   else {
     alert('Выберите филиал')

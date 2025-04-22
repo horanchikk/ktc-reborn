@@ -1,7 +1,7 @@
 export const useSideBar = defineStore('useSideBar', () => {
   const isVisible = ref(false)
   const isRendered = ref(false)
-  const log = useLogger('sidebar')
+  const log = useLogger('useSidebar')
 
   function show() {
     log.log('show')
