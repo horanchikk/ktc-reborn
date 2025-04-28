@@ -9,7 +9,10 @@
     v-else
     class="flex flex-col gap-2 show py-4 h-full"
   >
-    <div class="grid grid-cols-3 place-items-center mb-5">
+    <div
+      v-if="week"
+      class="grid grid-cols-3 place-items-center mb-5"
+    >
       <img
         v-if="week.current_week !== week.previous_week && week.previous_week !== 0"
         :src="`/icons/chevron-left-alt.svg`"
@@ -36,11 +39,16 @@
       >
         <h1
           class="text-2xl font-semibold"
-          v-text="day.title"
+          v-text="getDayOfWeek(day.title)"
         />
         <p
+          v-if="day.start"
           class="mt-0.5 text-sm opacity-50"
           v-text="`${day.start} - ${day.end} (~ ${day.hours} ${getHourWord(day.hours)})`"
+        />
+        <div
+          v-else
+          class="mt-2"
         />
         <section
           v-for="(lesson, lessonIdx) in day.lessons"
@@ -102,8 +110,8 @@ definePageMeta({
   middleware: ['user-only'],
 })
 
+const { $api } = useNuxtApp()
 const user = useUser()
-const api = useApi()
 const router = useRouter()
 const header = useHeader()
 
@@ -160,13 +168,38 @@ function getHourWord(n: number): string {
 async function updateTimetable(numberOfWeek?: number) {
   timetable.value = null
 
-  timetable.value = await api.get(
-    `/timetable/students/courses/${user.data.branch_id}/group/${user.data.group_id}${numberOfWeek !== undefined ? `/week/${numberOfWeek}` : ''}`,
+  timetable.value = await $api.timetable.getTimetable(
+    user.data.branch_id,
+    user.data.group_id,
+    numberOfWeek,
   )
+
   week.value = {
     next_week: timetable.value.next_week,
     previous_week: timetable.value.previous_week,
     current_week: timetable.value.current_week,
+  }
+}
+
+function getDayOfWeek(name: string) {
+  switch (name) {
+    case 'ПН':
+      return 'Понедельник'
+    case 'ВТ':
+      return 'Вторник'
+    case 'СР':
+      return 'Среда'
+    case 'ЧТ':
+      return 'Четверг'
+    case 'ПТ':
+      return 'Пятница'
+    case 'СБ':
+      return 'Суббота'
+    case 'ВС':
+      return 'Воскресенье'
+
+    default:
+      return name
   }
 }
 
@@ -184,9 +217,7 @@ onMounted(async () => {
       router.push('/timetable/teacher')
     }
     else {
-      timetable.value = await api.get(
-        `/teachers/${user.data.branch_id}/id${user.data.teacher_id}`,
-      )
+      timetable.value = await $api.timetable.getTeacherTimetable(user.data.branch_id, user.data.teacher_id)
     }
   }
 })
