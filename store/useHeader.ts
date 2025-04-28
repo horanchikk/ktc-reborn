@@ -11,7 +11,7 @@ export const useHeader = defineStore('useHeader', () => {
 
   function setAdditionalMenu(params: MenuRoute[]) {
     setTimeout(() => {
-      log.log(`Menu routes: ${JSON.stringify(params)}`)
+      log.info(params)
       menu.value = params
     }, 300)
   }

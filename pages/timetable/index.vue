@@ -114,6 +114,7 @@ const { $api } = useNuxtApp()
 const user = useUser()
 const router = useRouter()
 const header = useHeader()
+const log = useLogger('timetable')
 
 const timetable = ref(null)
 const week = ref(null)
@@ -128,7 +129,7 @@ async function previousWeek() {
 const hasLessons = computed(() => timetable.value.days.length > 0)
 
 watch(week, (val) => {
-  console.log(val)
+  log.info(val)
 })
 
 if (
