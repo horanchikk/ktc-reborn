@@ -23,6 +23,16 @@ class TimetableModule extends API {
   async getClassroom(name: string) {
     return await this.get<TDays>(`/timetable/classrooms/room/${name}`)
   }
+
+  async getTeacherTimetable(branch_id: number, teacher_id: number) {
+    return await this.get(
+      `/teachers/${branch_id}/id${teacher_id}`,
+    )
+  }
+
+  async getTeachers(branch_id: number) {
+    return await this.get(`/teachers/${branch_id}`)
+  }
 }
 
 export default TimetableModule

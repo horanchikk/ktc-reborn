@@ -62,13 +62,7 @@
 
 <script setup lang="ts">
 import { useWindowScroll, useSwipe } from '@vueuse/core'
-
-interface News {
-  content: string
-  date: string
-  id: number
-  title: string
-}
+import type { News } from '~/types/news'
 
 definePageMeta({
   middleware: ['user-only'],
@@ -89,8 +83,8 @@ const lineHeight = ref(32)
 const titleStyles = ref('')
 
 const route = useRoute()
-const api = useApi()
-const news = ref<null | News>()
+const { $api } = useNuxtApp()
+const news = ref<News>()
 
 const { y } = useWindowScroll({ behavior: 'smooth' })
 const { direction, lengthX } = useSwipe(page, {
@@ -115,6 +109,6 @@ watch(y, (val) => {
 })
 
 onMounted(async () => {
-  news.value = await api.get<News>(`/news/id${route.params.id}?md=false`)
+  news.value = await $api.news.getPost(route.params.id)
 })
 </script>
