@@ -1,6 +1,7 @@
 <template>
   <!-- Forms -->
   <FormDebug />
+  <FormOTA />
 
   <NuxtLayout>
     <NuxtPage />
