@@ -68,6 +68,7 @@
     "listr2": "^8.2.5",
     "native-run": "^2.0.1",
     "nuxt-start": "^2.18.1",
+    "oxlint": "^0.16.8",
     "simple-git-hooks": "^2.11.1",
     "tsx": "^4.19.2"
   },
@@ -75,6 +76,6 @@
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": "oxlint --fix"
   }
 }
