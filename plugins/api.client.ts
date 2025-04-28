@@ -3,6 +3,8 @@ import OTAModule from '@/repository/modules/ota'
 import UserModule from '@/repository/modules/user'
 import BranchModule from '@/repository/modules/branch'
 import TimetableModule from '@/repository/modules/timetable'
+import BlogModule from '@/repository/modules/blog'
+import NewsModule from '@/repository/modules/news'
 
 export interface IApiInstance {
   user: UserModule
@@ -10,6 +12,8 @@ export interface IApiInstance {
   ota: OTAModule
   branch: BranchModule
   timetable: TimetableModule
+  blog: BlogModule
+  news: NewsModule
 }
 
 export interface Provide {
@@ -28,6 +32,8 @@ export default defineNuxtPlugin(() => {
     ota: new OTAModule('OTAModule'),
     branch: new BranchModule('BranchModule'),
     timetable: new TimetableModule('TimetableModule'),
+    blog: new BlogModule('BlogModule'),
+    news: new NewsModule('NewsModule'),
   }
 
   return {
