@@ -1,3 +1,35 @@
+# [0.1.0-dev.22](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.21...v0.1.0-dev.22) (2025-04-29)
+
+
+### Bug Fixes
+
+* **markup:** исправлена ссылка на редирект из страницы ошибки ([f7f85d0](https://github.com/horanchikk/ktc-reborn/commit/f7f85d02c162b4b82acb6bdbe1e9e9d26f00455c))
+* **markup:** исправления для расписания преподавателей ([2628fe8](https://github.com/horanchikk/ktc-reborn/commit/2628fe865ef0511a45290eb746e9bbd7671023ae))
+* **modules:** удалён nuxt модуль eslint ([d5c7a1d](https://github.com/horanchikk/ktc-reborn/commit/d5c7a1dec277cce7d606896a376e7a52f61e7a29))
+
+
+### Features
+
+* **api:** добавлен модуль галереи ([015c214](https://github.com/horanchikk/ktc-reborn/commit/015c2145c58a278a022754af5f6e31f9aee80ee7))
+* **api:** добавлены модули блога и новостей в api ([3f09b72](https://github.com/horanchikk/ktc-reborn/commit/3f09b72d6063c98be4a228adfe7aa3bf62d60d70))
+* **api:** обновлена логика взаимодействия с API ([b3baa7e](https://github.com/horanchikk/ktc-reborn/commit/b3baa7e0153d69eb4fa361e76f51c116bb9e9512))
+* **api:** распределены все запросы по модулям ([c3577d7](https://github.com/horanchikk/ktc-reborn/commit/c3577d7b842fa4e38ae50112cfab38e6257c8fcd))
+* **ci:** добавлен gradle перед сборкой APK ([f49d6ee](https://github.com/horanchikk/ktc-reborn/commit/f49d6ee9a51a1064b2fc47410daa84689ec78f34))
+* **ci:** обновлен ci github ([4ae5d21](https://github.com/horanchikk/ktc-reborn/commit/4ae5d219c6f076f4d77538db6fbe0c53e317d601))
+* **component:** добавлен компонент для OTA-обновлений ([7810db9](https://github.com/horanchikk/ktc-reborn/commit/7810db991656a7088103797ea8cfe83999496cfe))
+* **config:** добавлена новая переменная в dotenv ([97f9863](https://github.com/horanchikk/ktc-reborn/commit/97f986306f6bb2363d15a0199b87cf64a554c356))
+* **helpers:** добавлен хелпер для детекта ключей объекта ([ac078d2](https://github.com/horanchikk/ktc-reborn/commit/ac078d21db674caa483978a36aadbcf03dff60c5))
+* **linting:** переход с eslint на oxlint 🚀 ([a61db7d](https://github.com/horanchikk/ktc-reborn/commit/a61db7d29f186bf0e66c84e208457c03c79b978f))
+* **log:** обновили логгирование ([324299b](https://github.com/horanchikk/ktc-reborn/commit/324299be442525f51864e6184a04d24fc6f5f57e))
+* **markup:** добавлен раздел галереи в sidebar ([3ef64ad](https://github.com/horanchikk/ktc-reborn/commit/3ef64adc74158e12850b084267f021ebf5a38273))
+* **markup:** добавлено центрирование текста выбранной недели ([1fb2c12](https://github.com/horanchikk/ktc-reborn/commit/1fb2c12d664f3f0fd1440f400b9956e10241f75b))
+* **markup:** освежил верстку формы ([984d86e](https://github.com/horanchikk/ktc-reborn/commit/984d86e191dd5633e00b179887bad2197e681acb))
+* **packages:** добавлен пакет @capacitor/browser для открытия ссылок ([515f757](https://github.com/horanchikk/ktc-reborn/commit/515f7574e729141433fe81e8c124bfa60dd8ea1b))
+* **page:** добавлена страница с галерей ([00ae09f](https://github.com/horanchikk/ktc-reborn/commit/00ae09f3fdef132a415f7cd7c7eeafceeb5fbe9c))
+* **scripts:** добавлена подготовка nuxt к запуску ([916ad99](https://github.com/horanchikk/ktc-reborn/commit/916ad9972fce093156df516a14c1a9d97cbac00b))
+* **store:** добавлен стор для работы с настройками ([14ed234](https://github.com/horanchikk/ktc-reborn/commit/14ed234029b883db672318fd22d2906a50414f8d))
+* добавлена логика работа OTA-обновлений ([c5c63b1](https://github.com/horanchikk/ktc-reborn/commit/c5c63b15b7d5a36f358451ce5191c675f8b10204))
+
 # [0.1.0-dev.21](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.20...v0.1.0-dev.21) (2025-04-21)
 
 
