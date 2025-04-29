@@ -86,8 +86,8 @@ definePageMeta({
   middleware: ['user-only'],
 })
 
+const { $api } = useNuxtApp()
 const selectedBranch = ref()
-const api = useApi()
 const router = useRouter()
 const user = useUser()
 const branches = ref()
@@ -103,9 +103,7 @@ function nextPage() {
 }
 
 onMounted(async () => {
-  branches.value = await api.get('/branches', {
-    squeeze: true,
-  })
+  branches.value = await $api.branch.getBranches()
 })
 </script>
 

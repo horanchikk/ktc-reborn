@@ -27,8 +27,8 @@ definePageMeta({
   middleware: ['user-only'],
 })
 
+const { $api } = useNuxtApp()
 const user = useUser()
-const api = useApi()
 const router = useRouter()
 const data = ref(null)
 
@@ -37,6 +37,6 @@ if (!(Object.hasOwn(user.data, 'is_student') && Object.hasOwn(user.data, 'branch
 }
 
 onMounted(async () => {
-  data.value = await api.get(`/teachers/${user.data.branch_id}`)
+  data.value = await $api.timetable.getTeachers(user.data.branch_id)
 })
 </script>

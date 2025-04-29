@@ -55,17 +55,19 @@
 </template>
 
 <script setup lang="ts">
+import type { TDays } from '~/types/timetable'
+
 definePageMeta({
   name: 'Расписание аудитории',
   middleware: ['user-only'],
 })
 
-const api = useApi()
+const { $api } = useNuxtApp()
 const { params: { name } } = useRoute()
 
-const data = ref(null)
+const data = ref<TDays>()
 
 onMounted(async () => {
-  data.value = await api.get(`/timetable/classrooms/room/${name}`)
+  data.value = await $api.timetable.getClassroom(name.toString())
 })
 </script>

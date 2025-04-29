@@ -25,15 +25,14 @@
 </template>
 
 <script setup lang="ts">
-import { ApiModules } from '~/repository/api'
-
+const { $api } = useNuxtApp()
 const { params: { id } } = useRoute('gallery-id')
-const photos = ref<null | object>(null)
+const photos = ref<object>()
 
 definePageMeta({
   name: 'Фотографии',
   middleware: ['user-only'],
 })
 
-onMounted(async () => photos.value = await ApiModules.gallery.getPhotos(id))
+onMounted(async () => photos.value = await $api.gallery.getPhotos(id))
 </script>

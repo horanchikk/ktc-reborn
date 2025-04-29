@@ -31,6 +31,19 @@ jobs:
       - name: Install semantic-release packages
         run: pnpm i @semantic-release/changelog @semantic-release/git @semantic-release/github
 
+      - name: Get next release version (dry-run)
+        id: get_version
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          # запустим dry-run, сохраним вывод в файл
+          npx semantic-release --dry-run --no-ci | tee release.log
+          # вытаскиваем версию из сообщения "The next release version is X.Y.Z"
+          NEXT_VERSION=$(grep 'The next release version is' release.log \
+                         | sed -E 's/.* ([0-9]+\.[0-9]+\.[0-9]+)$/\1/')
+          echo "APP_VERSION=$NEXT_VERSION" >> $GITHUB_ENV
+          echo "Got version $NEXT_VERSION"
+
       - name: Build web assets
         run: pnpm nuxt generate
         env:
@@ -39,6 +52,7 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          APP_VERSION: ${{ env.APP_VERSION }}
 
       - name: Add Capacitor Android project
         run: pnpm cap add android
@@ -58,6 +72,9 @@ jobs:
       - name: Accept Android SDK licenses
         run: |
           yes | sdkmanager --licenses
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
       - name: Build Android APK
         working-directory: android

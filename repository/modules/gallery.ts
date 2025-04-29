@@ -1,18 +1,16 @@
-import { useApi } from '~/composables/useApi'
+import { API } from '../api'
 
-class GalleryModule {
-  api = useApi('GalleryModule')
-
+class GalleryModule extends API {
   // TODO: types
   async getAlbums() {
-    return await this.api.get<object>(
+    return await this.get<object>(
       `/photos/albums`,
     )
   }
 
   // TODO: types
   async getPhotos(album_id: string) {
-    return await this.api.get<object>(`/photos/${album_id}`)
+    return await this.get<object>(`/photos/${album_id}`)
   }
 }
 

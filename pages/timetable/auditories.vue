@@ -49,7 +49,10 @@ definePageMeta({
   middleware: ['user-only'],
 })
 
-const api = useApi()
+const { $api } = useNuxtApp()
+const date = new Date()
+const hours = date.getHours().toString().padStart(2, '0')
+const minutes = date.getMinutes().toString().padStart(2, '0')
 const auditories = ref<Array<string> | null>(null)
 const auditoriesFree = ref<Array<string> | null>(null)
 
@@ -66,11 +69,7 @@ const busyAuditories = computed(() => {
 })
 
 onMounted(async () => {
-  const date = new Date()
-  const hours = date.getHours().toString().padStart(2, '0')
-  const minutes = date.getMinutes().toString().padStart(2, '0')
-
-  auditories.value = await api.get(`/timetable/classrooms/`)
-  auditoriesFree.value = await api.get(`/timetable/classrooms/free?time=${hours}:${minutes}`)
+  auditories.value = await $api.timetable.getClassrooms()
+  auditoriesFree.value = await $api.timetable.getFreeClassrooms(`${hours}:${minutes}`)
 })
 </script>

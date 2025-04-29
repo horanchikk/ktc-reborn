@@ -4,7 +4,6 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxtjs/google-fonts',
     '@nuxt/image',
-    '@nuxt/eslint',
     '@pinia/nuxt',
     '@formkit/auto-animate/nuxt',
     '@sentry/nuxt/module',
@@ -27,6 +26,7 @@ export default defineNuxtConfig({
       ACCOUNT_LOGIN: process.env.ACCOUNT_LOGIN,
       ACCOUNT_PASSWD: process.env.ACCOUNT_PASSWD,
       SENTRY_DSN: process.env.SENTRY_DSN,
+      APP_VERSION: process.env.APP_VERSION,
     },
   },
 
