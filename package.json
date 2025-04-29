@@ -12,7 +12,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "sync": "npx cap sync",
-    "lint": "eslint"
+    "lint": "oxlint"
   },
   "dependencies": {
     "@capacitor/android": "^6.2.0",
@@ -54,8 +54,6 @@
   "devDependencies": {
     "@capacitor/cli": "^6.2.0",
     "@formkit/auto-animate": "^0.8.2",
-    "@nuxt/eslint": "^0.6.2",
-    "@nuxt/eslint-config": "^0.6.2",
     "@nuxt/image": "^1.8.1",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/google-fonts": "^3.2.0",
@@ -63,7 +61,6 @@
     "@pinia/nuxt": "^0.5.5",
     "@types/node": "^22.10.4",
     "dotenv": "^16.4.7",
-    "eslint": "9.13.0",
     "lint-staged": "^15.3.0",
     "listr2": "^8.2.5",
     "native-run": "^2.0.1",

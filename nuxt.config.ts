@@ -4,7 +4,6 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxtjs/google-fonts',
     '@nuxt/image',
-    '@nuxt/eslint',
     '@pinia/nuxt',
     '@formkit/auto-animate/nuxt',
     '@sentry/nuxt/module',
