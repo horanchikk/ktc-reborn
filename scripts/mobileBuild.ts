@@ -10,6 +10,7 @@ import {
   createDir,
   runCommand,
   ensureDownloadedAndExtracted,
+  renameWithOverwrite,
 } from './utils'
 
 initDE()
@@ -78,13 +79,10 @@ await new Listr(
                     Record<NodeJS.Platform, Partial<Record<NodeJS.Architecture, string>>>
                   > = {
                     linux: {
-                      x64: 'https://download.oracle.com/java/20/archive/jdk-20.0.2_linux-x64_bin.tar.gz',
-                      arm64: 'https://download.oracle.com/java/20/archive/jdk-20.0.2_linux-aarch64_bin.tar.gz',
+                      x64: `https://download.oracle.com/java/${config.JAVA_VERSION.split('.')[0]}/archive/jdk-${config.JAVA_VERSION}_linux-x64_bin.tar.gz`,
+                      arm64: `https://download.oracle.com/java/${config.JAVA_VERSION.split('.')[0]}/archive/jdk-${config.JAVA_VERSION}_linux-aarch64_bin.tar.gz`,
                     },
                     // TODO: add support for win32
-                    // win32: {
-                    //   x64: 'https://download.oracle.com/java/20/archive/jdk-20.0.2_windows-x64_bin.zip',
-                    // },
                   }
                   const platform = os.platform() as keyof typeof systemConfig
                   const arch = os.arch()
@@ -192,7 +190,8 @@ await new Listr(
                   task: subTask,
                   maxOutputLines: 3,
                 })
-                subTask.title = `APK built at: ${currentPath}/android/app/build/outputs/apk/debug/app-debug.apk`
+                renameWithOverwrite(`${currentPath}/android/app/build/outputs/apk/debug/app-debug.apk`, `${currentPath}/${process.env.APP_VERSION}.apk`)
+                subTask.title = `APK built at: ${currentPath}/${process.env.APP_VERSION}.apk`
               },
             },
             {

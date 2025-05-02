@@ -13,6 +13,25 @@ export async function fileExistsAsync(filePath: string): Promise<boolean> {
   }
 }
 
+export async function renameWithOverwrite(oldPath: string, newPath: string): Promise<void> {
+  try {
+    try {
+      await fs.access(newPath);
+      await fs.unlink(newPath);
+      console.log(`Файл по пути "${newPath}" был удален`);
+    } catch (err) {
+      if ((err as NodeJS.ErrnoException).code !== 'ENOENT') {
+        throw err;
+      }
+    }
+
+    await fs.rename(oldPath, newPath);
+  } catch (err) {
+    const error = err as NodeJS.ErrnoException;
+    throw error;
+  }
+}
+
 export async function removeDir(dir: string): Promise<void> {
   await fs.rm(dir, { recursive: true, force: true })
 }
