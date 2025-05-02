@@ -64,6 +64,7 @@ jobs:
           path: "${{ env.APP_VERSION }}.apk"
           if-no-files-found: 'error'
           retention-days: 1
+          compression-level: 0
         
       # - name: Publishing release
       #   run: npx semantic-release
