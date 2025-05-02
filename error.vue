@@ -24,8 +24,12 @@
 </template>
 
 <script setup lang="ts">
+import * as Sentry from "@sentry/nuxt";
+
 const router = useRouter()
 const error = useError()
+
+Sentry.captureException(error);
 
 definePageMeta({
   layout: 'none',
