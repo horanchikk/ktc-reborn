@@ -1,3 +1,11 @@
+# [0.1.0-dev.23](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.22...v0.1.0-dev.23) (2025-05-02)
+
+
+### Features
+
+* **config:** обновлена версия java ([916210b](https://github.com/horanchikk/ktc-reborn/commit/916210bf95f797560d3f96c5046fe98e6f64baf6))
+* **scripts:** перенос apk в корень проекта ([8f7a332](https://github.com/horanchikk/ktc-reborn/commit/8f7a33200db4652b7c39e0825a626381cf492f7e))
+
 # [0.1.0-dev.22](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.21...v0.1.0-dev.22) (2025-04-29)
 
 
