@@ -62,7 +62,8 @@ jobs:
         with:
           name: "ktc-${{ env.APP_VERSION }}.apk"
           path: "${{ env.APP_VERSION }}.apk"
-        if-no-files-found: 'error'
+          if-no-files-found: 'error'
+          retention-days: 1
 
       - name: Publishing release
         run: npx semantic-release
