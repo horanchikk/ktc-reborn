@@ -33,7 +33,7 @@ jobs:
       - name: Get next release version (dry-run)
         id: get_version
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Run dry-run and save output to file
           npx semantic-release --dry-run --no-ci | tee release.log
