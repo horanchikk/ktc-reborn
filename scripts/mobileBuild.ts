@@ -210,7 +210,7 @@ await new Listr(
                     '-s',
                     process.env.ANDROID_DEVICE_ID,
                     'install',
-                    './android/app/build/outputs/apk/debug/app-debug.apk',
+                    `${currentPath}/${process.env.APP_VERSION}.apk`,
                   ],
                   { task: subTask },
                 )
