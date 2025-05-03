@@ -59,7 +59,7 @@ export class API {
     },
     onResponse: (ctx) => {
       const statusCode = ctx.response.status
-      if (statusCode > 300 && statusCode !== 422)
+      if (statusCode > 300)
         this.throwError(ctx.request.toString(), ctx.response._data)
     },
     onResponseError: async (ctx) => {
