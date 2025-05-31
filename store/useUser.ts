@@ -24,7 +24,7 @@ function findNewKeys(oldObj: object, newObj: object) {
 }
 
 export const useUser = defineStore('useUser', () => {
-  const log = useLogger('useUser')
+  const log = useLogger('userStore')
   const data = ref<TUserData>(JSON.parse(localStorage.getItem('ktc_data')!) || {})
 
   function setAuthData(access_token: string, user_id: number) {

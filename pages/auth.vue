@@ -121,6 +121,7 @@
 </template>
 
 <script setup lang="ts">
+import { SplashScreen } from '@capacitor/splash-screen';
 import { useUser } from '~/store/useUser'
 import { useDebug } from '~/store/useDebug'
 
@@ -167,4 +168,6 @@ async function auth() {
 
   isLoading.value = false
 }
+
+SplashScreen.hide()
 </script>

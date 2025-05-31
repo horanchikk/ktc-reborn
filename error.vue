@@ -29,6 +29,7 @@ import * as Sentry from "@sentry/nuxt";
 const router = useRouter()
 const error = useError()
 
+console.error(error.value)
 Sentry.captureException(error);
 
 definePageMeta({

@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-2 text-foreground bg-background-100 rounded-lg overflow-hidden show">
     <img
       :src="$props.image"
-      :alt="$props.title"
+      :alt="'Возникла проблема с загрузкой фото, попробуйте позже.'"
       class="h-[170px] object-cover object-center"
     >
     <div class="px-2 leading-none text-xl font-semibold">

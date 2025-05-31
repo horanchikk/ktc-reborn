@@ -5,12 +5,11 @@
 </template>
 
 <script setup lang="ts">
-import { SplashScreen } from '@capacitor/splash-screen';
-
 definePageMeta({
   layout: 'none',
 })
 
-SplashScreen.hide()
-navigateTo('/auth')
+const router = useRouter()
+
+router.push('/auth')
 </script>

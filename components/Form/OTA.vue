@@ -4,7 +4,7 @@
     mode="out-in"
   >
     <div
-      v-show="showForm"
+      v-if="showForm"
       class="fixed z-[1000] top-0 left-0 w-screen h-screen bg-black bg-opacity-70 flex justify-center items-end"
     >
       <div
@@ -12,6 +12,11 @@
         :class="showForm ? 'show-up' : 'show-down'"
         class="w-full bg-background-200 flex flex-col gap-1 rounded-t-xl text-foreground p-5 justify-center items-center"
       >
+        <div @click="showForm = false" class="absolute top-3 right-1">
+          <IClose
+            class="h-[48px] w-[48px] fill-red-400 stroke-red-400"
+          />
+        </div>
         <h1 class="text-2xl font-semibold">
           Обновление
         </h1>
@@ -123,16 +128,20 @@ import { Browser } from '@capacitor/browser'
 import { useOTA } from '~/composables/useOTA'
 
 const { needsUpdate, getDescription } = await useOTA()
+const log = useLogger('OTAComponent')
 const update = needsUpdate()
 
 const description = ref()
 const target = ref(null)
 const showForm = ref(false)
 
-if (update[0]) {
+if (update) {
   showForm.value = true
   description.value = getDescription()
 }
+
+log.log(update);
+
 
 async function installUpdate() {
   await Browser.open({ url: update[3] })
