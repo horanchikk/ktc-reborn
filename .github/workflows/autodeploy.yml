@@ -3,7 +3,8 @@ name: AutoDeploy
 on:
   push:
     branches:
-      - 'pre-dev'
+      - 'dev'
+      - 'master'
 
 jobs:
   build:
