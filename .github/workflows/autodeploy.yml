@@ -57,8 +57,8 @@ jobs:
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "ktc-$APP_VERSION.apk"
-          path: "$APP_VERSION.apk"
+          name: "ktc-${{ env.APP_VERSION }}.apk"
+          path: "${{ env.APP_VERSION }}apk"
           if-no-files-found: 'error'
           retention-days: 1
           compression-level: 0
