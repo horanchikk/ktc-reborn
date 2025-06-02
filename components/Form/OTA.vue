@@ -4,7 +4,7 @@
     mode="out-in"
   >
     <div
-      v-if="showForm"
+      v-if="showForm && update"
       class="fixed z-[1000] top-0 left-0 w-screen h-screen bg-black bg-opacity-70 flex justify-center items-end"
     >
       <div
@@ -21,13 +21,13 @@
           Обновление
         </h1>
         <div class="flex text-md opacity-50 gap-2">
-          <p>{{ update[2] }}</p>
+          <p>{{ update[2] || 'Текущая версия' }}</p>
           <img :src="`/icons/right-arrow.svg`">
-          <p>{{ update[1] }}</p>
+          <p>{{ update[1] || 'Новая версия' }}</p>
         </div>
         <div class="w-full border-b-[1px] border-foreground border-opacity-30 my-1" />
         <div class="w-full max-h-[30vh] overflow-y-scroll transition-all">
-          <template v-if="description.features.length > 0">
+          <template v-if="description && description.features && description.features.length > 0">
             <p class="font-bold">
               Нововведения
             </p>
@@ -40,7 +40,7 @@
               </li>
             </ul>
           </template>
-          <template v-if="description.bugfixes.length > 0">
+          <template v-if="description && description.bugfixes && description.bugfixes.length > 0">
             <p class="font-bold">
               Исправления
             </p>
@@ -127,24 +127,41 @@ import { Browser } from '@capacitor/browser'
 
 import { useOTA } from '~/composables/useOTA'
 
+type UpdateInfo = {
+  [key: number]: string | boolean;
+}
+
+interface Description {
+  features: string[];
+  bugfixes: string[];
+}
+
 const { needsUpdate, getDescription } = await useOTA()
 const log = useLogger('OTAComponent')
-const update = needsUpdate()
+const update = ref<UpdateInfo | undefined>(needsUpdate() as UpdateInfo)
 
-const description = ref()
+const description = ref<Description | undefined>()
 const target = ref(null)
 const showForm = ref(false)
 
-if (update) {
+if (update.value) {
   showForm.value = true
-  description.value = getDescription()
+  description.value = getDescription() as Description
 }
 
-log.log(update);
-
+log.log(update.value);
 
 async function installUpdate() {
-  await Browser.open({ url: update[3] })
+  if (!update.value?.[3]) {
+    log.error('Update URL is not available')
+    return
+  }
+  
+  try {
+    await Browser.open({ url: String(update.value[3]) })
+  } catch (error) {
+    log.error('Failed to open update URL:', error)
+  }
 }
 
 onClickOutside(target, () => {
