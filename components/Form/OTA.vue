@@ -56,7 +56,7 @@
         </div>
         <div class="w-full border-b-[1px] border-foreground border-opacity-30 my-1" />
         <div class="w-full flex justify-center items-center mt-2">
-          <NuxtLink>
+          <NuxtLink v-if="update[3]">
             <button
               class="border-[1px] text-xl px-12 py-1 border-primary hover:bg-primary hover:text-black rounded-xl flex gap-3 justify-center items-center duration-150"
               @click="installUpdate"
@@ -115,6 +115,12 @@
               Скачать обновление
             </button>
           </NuxtLink>
+          <button
+            v-else
+            class="border-[1px] text-xl px-12 py-1 border-neutral-600 text-neutral-600 rounded-xl flex gap-3 justify-center items-center duration-150"
+          >
+            Ссылка временно недоступна
+          </button>
         </div>
       </div>
     </div>
@@ -151,14 +157,14 @@ log.log(update.value);
 
 async function installUpdate() {
   if (!update.value?.[3]) {
-    log.error('Update URL is not available')
+    log.error('Не удалось получить ссылку на обновление')
     return
   }
   
   try {
     await Browser.open({ url: String(update.value[3]) })
   } catch (error) {
-    log.error('Failed to open update URL:', error)
+    log.error('Не удалось открыть ссылку на обновление:', error)
   }
 }
 
