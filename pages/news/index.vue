@@ -23,8 +23,9 @@
       /> -->
       <DynamicScroller
         :items="newsList"
-        :min-item-size="20"
+        :min-item-size="230"
         class="h-full"
+        page-mode
       >
         <template v-slot="{ item, index, active }">
           <DynamicScrollerItem
@@ -32,17 +33,18 @@
             :active="active"
             :data-index="index"
             :size-dependencies="[
-              item.title
+              item.description
             ]"
           >
-          <WallPost
-            :key="item.id"
-            :image="item.preview.length > 0 ? item.preview : `/nophoto.png`"
-            :title="item.title"
-            :description="item.description"
-            :date="item.date"
-            @click="navigateTo(`/news/${item.id}`)"
-          />
+            <WallPost
+              :key="item.id"
+              :image="item.preview.length > 0 ? item.preview : `/nophoto.png`"
+              :title="item.title"
+              :description="item.description"
+              :date="item.date"
+              @click="navigateTo(`/news/${item.id}`)"
+            />
+            <div class="h-[30px]" />
           </DynamicScrollerItem>
         </template>
       </DynamicScroller>
@@ -53,6 +55,7 @@
 <script setup lang="ts">
 import type { NewsList } from '~/types/news'
 import { DynamicScroller, DynamicScrollerItem } from 'vue-virtual-scroller'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 definePageMeta({
   name: 'Новости',

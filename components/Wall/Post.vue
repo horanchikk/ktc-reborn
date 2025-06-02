@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-2 text-foreground bg-background-100 rounded-lg overflow-hidden show">
+  <div class="flex flex-col gap-2 text-foreground bg-background-100 rounded-lg overflow-hidden">
     <img
       :src="$props.image"
       :alt="'Возникла проблема с загрузкой фото, попробуйте позже.'"
