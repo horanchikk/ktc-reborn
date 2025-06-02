@@ -121,6 +121,7 @@
 </template>
 
 <script setup lang="ts">
+import { SplashScreen } from '@capacitor/splash-screen';
 import { useUser } from '~/store/useUser'
 import { useDebug } from '~/store/useDebug'
 
@@ -130,6 +131,7 @@ definePageMeta({
 })
 
 const emit = defineEmits(['isClosed'])
+
 
 const { $config: { public: { ACCOUNT_LOGIN, ACCOUNT_PASSWD } }, $api } = useNuxtApp()
 const router = useRouter()
@@ -166,4 +168,6 @@ async function auth() {
 
   isLoading.value = false
 }
+
+SplashScreen.hide()
 </script>

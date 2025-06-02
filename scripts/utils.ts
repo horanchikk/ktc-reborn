@@ -18,7 +18,6 @@ export async function renameWithOverwrite(oldPath: string, newPath: string): Pro
     try {
       await fs.access(newPath);
       await fs.unlink(newPath);
-      console.log(`Файл по пути "${newPath}" был удален`);
     } catch (err) {
       if ((err as NodeJS.ErrnoException).code !== 'ENOENT') {
         throw err;

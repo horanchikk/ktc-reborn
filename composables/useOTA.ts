@@ -1,4 +1,5 @@
 import { useSettings } from '~/store/useSettings';
+import type { Tota } from '~/types/ota';
 
 export async function useOTA() {
   const { 
@@ -8,16 +9,27 @@ export async function useOTA() {
   const { $state: { settings } } = useSettings()
   const log = useLogger('OTA')
 
-  const latestUpdate = await $api.ota.getVersion(settings.dev)
-  log.success(`Последняя актуальная версия: ${latestUpdate.version}`)
+  const latestUpdate = ref<Tota>({} as Tota)
+
+  try {
+    log.info('Получение обновлений...')
+    
+    latestUpdate.value = await $api.ota.getVersion(settings.dev)
+    
+    log.info(`Последняя актуальная версия: ${latestUpdate.value.version}`)
+  } catch (e) {
+    log.error('Ошибка получения обновлений ', e)
+  }
   
   function needsUpdate() {
-    return [
-      latestUpdate.version !== APP_VERSION,
-      latestUpdate.version,
-      APP_VERSION,
-      latestUpdate.apkfile,
-    ]
+    if (latestUpdate.value?.version) {
+      return [
+        latestUpdate.value.version !== APP_VERSION,
+        latestUpdate.value.version,
+        APP_VERSION,
+        latestUpdate.value.apkfile,
+      ]
+    }
   }
 
   function parseUpdateLog(text: string) {
@@ -48,7 +60,7 @@ export async function useOTA() {
   }
 
   function getDescription() {
-    const data = parseUpdateLog(latestUpdate.description)
+    const data = parseUpdateLog(latestUpdate.value.description)
     log.info('Описание обновления:', data)
     return data;
   }
@@ -56,5 +68,6 @@ export async function useOTA() {
   return {
     needsUpdate,
     getDescription,
+    latestUpdate,
   }
 }

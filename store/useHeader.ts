@@ -5,7 +5,7 @@ interface MenuRoute {
 }
 
 export const useHeader = defineStore('useHeader', () => {
-  const log = useLogger('useHeader')
+  const log = useLogger('headerStore')
   const menu = ref<[] | MenuRoute[]>([])
   const router = useRouter()
 

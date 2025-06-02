@@ -44,11 +44,16 @@ const { $api } = useNuxtApp()
 const router = useRouter()
 const data = ref()
 
+interface Group {
+  id: number
+  title: string
+}
+
 if (!(Object.hasOwn(user.data, 'is_student') && Object.hasOwn(user.data, 'branch_id'))) {
   router.push('/setup/branch')
 }
 
-function setGroup(group: object) {
+function setGroup(group: Group) {
   user.data.group_id = group.id
   router.push('/timetable')
 }
