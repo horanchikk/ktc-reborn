@@ -71,6 +71,13 @@ export class API {
         })
 
         this.user.data.access_token = newToken.access_token
+        this.log.log('Access token обновлен:', this.user.data.access_token)
+        
+        return this.instance(ctx.request, {
+          method: ctx.request.method,
+          body: ctx.request.body,
+          params: ctx.request.params,
+        })
       }
       else if (statusCode === 400 && ctx.request !== `${this.API_URL}/user/login`) {
         this.user.logout()
