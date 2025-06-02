@@ -68,5 +68,6 @@ export async function useOTA() {
   return {
     needsUpdate,
     getDescription,
+    latestUpdate,
   }
 }

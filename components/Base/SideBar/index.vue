@@ -97,7 +97,7 @@
           >
             <BaseSideBarElement
               type="alert-circle"
-              text="О программе"
+              text="О приложении"
               :color="useRouter().currentRoute.value.path === '/about' ? '#FF4646' : '#EDE8D8'"
             />
           </NuxtLink>
