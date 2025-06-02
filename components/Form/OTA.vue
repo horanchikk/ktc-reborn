@@ -127,9 +127,7 @@ import { Browser } from '@capacitor/browser'
 
 import { useOTA } from '~/composables/useOTA'
 
-type UpdateInfo = {
-  [key: number]: string | boolean;
-}
+type UpdateInfo = [boolean, string, string, string] | undefined;
 
 interface Description {
   features: string[];
@@ -138,7 +136,7 @@ interface Description {
 
 const { needsUpdate, getDescription } = await useOTA()
 const log = useLogger('OTAComponent')
-const update = ref<UpdateInfo | undefined>(needsUpdate() as UpdateInfo)
+const update = ref<UpdateInfo>(needsUpdate() as UpdateInfo)
 
 const description = ref<Description | undefined>()
 const target = ref(null)

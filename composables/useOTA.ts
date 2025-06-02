@@ -22,7 +22,7 @@ export async function useOTA() {
   }
   
   function needsUpdate() {
-    if (Object.keys(latestUpdate.value).includes('version')) {
+    if (latestUpdate.value?.version) {
       return [
         latestUpdate.value.version !== APP_VERSION,
         latestUpdate.value.version,
