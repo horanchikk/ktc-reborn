@@ -22,7 +22,6 @@
         >
           {{ auditory }}
         </span>
-        <p>Кабинеты отстутствуют</p>
       </div>
     </template>
     <template v-if="auditoriesFree.length > 0">
