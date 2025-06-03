@@ -24,6 +24,7 @@ export class API {
   private module: string = 'API'
   private API_URL: string = useRuntimeConfig().public.API_URL
   private user = useUser()
+  private snackbar = useSnackbar()
 
   constructor(module: string) {
     this.module = module
@@ -48,7 +49,10 @@ export class API {
     }
 
     this.log.error(err)
-    // TODO: добавить уведомление
+    this.snackbar.add({
+      type: 'error',
+      text: 'Возникла ошибка на сервере. Не переживайте, мы уже знаем о проблеме 👌'
+    })
   }
 
   private instance = $fetch.create({
