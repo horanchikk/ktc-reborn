@@ -2,9 +2,10 @@
   <!-- Forms -->
   <FormDebug />
   <FormOTA />
-
+  
   <NuxtLayout>
     <NuxtPage />
+    <NuxtSnackbar />
   </NuxtLayout>
 </template>
 
