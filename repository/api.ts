@@ -30,10 +30,11 @@ export class API {
     this.log = useLogger(this.module)
   }
 
-  private throwError(request: string, data: TException) {
+  private throwError(request: string, data: TException, body?: unknown) {
     const err = {
       info: '',
       request,
+      body,
     }
     if (Object.prototype.hasOwnProperty.call(data, 'code') && Object.prototype.hasOwnProperty.call(data, 'error')) {
       err.info = `${data.error} (${data.code})`
@@ -47,7 +48,7 @@ export class API {
     }
 
     this.log.error(err)
-    showError(data)
+    // TODO: добавить уведомление
   }
 
   private instance = $fetch.create({
@@ -59,8 +60,9 @@ export class API {
     },
     onResponse: (ctx) => {
       const statusCode = ctx.response.status
-      if (statusCode > 300)
-        this.throwError(ctx.request.toString(), ctx.response._data)
+      if (statusCode > 300 && statusCode !== 400) {
+        this.throwError(ctx.request.toString(), ctx.response._data, ctx.options.body)
+      }
     },
     onResponseError: async (ctx) => {
       const statusCode = ctx.response.status
@@ -82,8 +84,8 @@ export class API {
       else if (statusCode === 400 && ctx.request !== `${this.API_URL}/user/login`) {
         this.user.logout()
       }
-      else {
-        this.throwError(ctx.request.toString(), ctx.response._data)
+      else if (statusCode !== 400) {
+        this.throwError(ctx.request.toString(), ctx.response._data, ctx.options.body)
       }
     },
   })

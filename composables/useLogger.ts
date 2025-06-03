@@ -19,12 +19,11 @@ export function useLogger(tag: string) {
           }
 
           if (ctx.type === 'error') {
-            Sentry.captureException(ctx)
+            Sentry.captureException(ctx.args[0])
           }
         },
       },
     ],
-
   })
 
   return log
