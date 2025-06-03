@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@sentry/nuxt/module',
     'nuxt-booster',
     'nuxt-svgo',
+    'nuxt-snackbar',
   ],
   ssr: false,
   devtools: { enabled: true },
@@ -90,4 +91,13 @@ export default defineNuxtConfig({
     },
   },
 
+  snackbar: {
+    bottom: true,
+    duration: 3000,
+    border: 'left',
+    baseBackgroundColor: '#323232',
+    dismissOnActionClick: false,
+    dense: true,
+    shadow: true,
+  }
 })

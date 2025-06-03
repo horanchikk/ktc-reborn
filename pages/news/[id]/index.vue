@@ -9,7 +9,7 @@
     >
       <img
         v-if="news"
-        :src="news.preview.length > 0 ? news.preview : './notfound.png'"
+        :src="news.preview.length > 0 ? news.preview : '/nophoto.png'"
         class="w-full object-cover object-center absolute -z-10"
         :style="`height: ${imageHeight}px`"
       >
