@@ -1,3 +1,47 @@
+# [0.1.0-dev.24](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.23...v0.1.0-dev.24) (2025-06-03)
+
+
+### Bug Fixes
+
+* **about:** обновлено отображение версии приложения ([e66f1ef](https://github.com/horanchikk/ktc-reborn/commit/e66f1efa6aea9bcb7c4ef118b93554c8b43cd17e)), closes [#22](https://github.com/horanchikk/ktc-reborn/issues/22)
+* **about:** обновлено отображение версии приложения с использованием переменной APP_VERSION ([1041b6b](https://github.com/horanchikk/ktc-reborn/commit/1041b6babf07ec69164667afe765297b41d3bfc3))
+* **api:** добавлено исключение для 422 кодов ([7fd55ec](https://github.com/horanchikk/ktc-reborn/commit/7fd55ecf8857673e266703f16c1869d1e4ffff95))
+* **api:** добавлено логирование обновления токена доступа и перезапрос с новым токеном ([2ab7290](https://github.com/horanchikk/ktc-reborn/commit/2ab72909f68c086f94d5ed62dd4d31784e98702f))
+* **api:** добавлено уведомление об ошибке на сервере с использованием компонента Snackbar ([b33aff9](https://github.com/horanchikk/ktc-reborn/commit/b33aff97309bb7ae5342d62ed5b79524c16f7310))
+* **api:** исправлено логирование ошибок, добавлены дополнительные параметры для функции throwError ([4449a63](https://github.com/horanchikk/ktc-reborn/commit/4449a63aaa12e29bf66c20d90ea262a7fe347033))
+* **auditories:** удалено сообщение о отсутствии кабинетов при наличии свободных аудиторий ([5145a05](https://github.com/horanchikk/ktc-reborn/commit/5145a05c7d2f8ff9002109ef511560098a03235a))
+* **autodeploy:** восстановлено выполнение публикации релиза с использованием semantic-release ([da65663](https://github.com/horanchikk/ktc-reborn/commit/da65663f610822d7f0bc1b935bfe31be96303c4f))
+* **ci:** api_url из vars ([d04433c](https://github.com/horanchikk/ktc-reborn/commit/d04433c4cc3c6b9580797c44c234dfdc4a626d08))
+* **ci:** изменено название переменной api ([1b53ea9](https://github.com/horanchikk/ktc-reborn/commit/1b53ea9be55329a99da6945154cf9f58cb5a611c))
+* **ci:** исправлена работа actions/upload-artifact ([509df6a](https://github.com/horanchikk/ktc-reborn/commit/509df6abdeaddd13d4bf185b9985c40d8bbdbd10))
+* **ci:** исправлена табуляция ([a81e103](https://github.com/horanchikk/ktc-reborn/commit/a81e103dce7e3eea66646bc10e6243ce862e7d98))
+* **ci:** обновление конфига артефактов ([223395f](https://github.com/horanchikk/ktc-reborn/commit/223395f409c211eea6a5bf3565958fc6d9724305))
+* **ci:** отключено сжатие файла ([24b7867](https://github.com/horanchikk/ktc-reborn/commit/24b7867e0587fd9dbaa40e49b70f5c5df5c8632d))
+* **ci:** пишем url api напрямую ([917fea9](https://github.com/horanchikk/ktc-reborn/commit/917fea98822f47b8e05af1e2b2e12f6a7b768a33))
+* **ci:** фикс semantic-release ([a96c4ac](https://github.com/horanchikk/ktc-reborn/commit/a96c4ac3fc06a35af57f58a87d8c5fa3e81f159c))
+* **group.vue:** изменен тип параметра функции setGroup на интерфейс Group для улучшения типизации ([73c48e1](https://github.com/horanchikk/ktc-reborn/commit/73c48e153bc3f9eaa3bb7d469b69346fbb665790))
+* **markup:** исправлен баг с ошибкой при загрузке ([8965a9f](https://github.com/horanchikk/ktc-reborn/commit/8965a9fc83b14a8d5e60cd96f959adc29701b815))
+* **news:** исправлен путь к изображению по умолчанию для новостей ([3deab3f](https://github.com/horanchikk/ktc-reborn/commit/3deab3fb5051b7381f4989e9d53831d24cce8a64))
+* **OTA.vue:** добавлена проверка наличия обновления с отображением сообщения о недоступности ссылки ([93bb5c2](https://github.com/horanchikk/ktc-reborn/commit/93bb5c2648178db4afcb367c99ecedf940a41031))
+* **OTA.vue:** изменен тип UpdateInfo для улучшения типизации и улучшена проверка наличия обновлений ([2b89127](https://github.com/horanchikk/ktc-reborn/commit/2b891278b2f05dce5c526cc03e692022026c3b12))
+* **OTA.vue:** улучшена проверка наличия обновлений и добавлены значения по умолчанию для отображения информации о версиях ([ec26da7](https://github.com/horanchikk/ktc-reborn/commit/ec26da7328fee4f45d9dab60e0b9b3693ff7302c))
+* **Post.vue:** удален лишний класс из шаблона; обновлены параметры для динамического скроллера в news/index.vue ([896f6fa](https://github.com/horanchikk/ktc-reborn/commit/896f6faefbf030882e7d1eede712893d395c0044))
+* **release.config:** обновлен путь к APK файлу с использованием версии следующего релиза; исправлены параметры в autodeploy.yml для загрузки артефакта ([21f1be4](https://github.com/horanchikk/ktc-reborn/commit/21f1be45a824d73232ecabc5dd5a1b1d5f15467c))
+* **scripts:** исправлен скрипт для запуска на мобильных устройствах ([5f3fd82](https://github.com/horanchikk/ktc-reborn/commit/5f3fd8275b3979f3360fea12e943cb26d7759315))
+
+
+### Features
+
+* **app:** добавлены мета-теги для управления масштабированием; улучшена обработка ошибок и обновлений ([a873893](https://github.com/horanchikk/ktc-reborn/commit/a873893d1cc5123137a95886f5ef35222a03787f))
+* **ci:** Update autodeploy.yml ([613287e](https://github.com/horanchikk/ktc-reborn/commit/613287e8af3ca2e11154bfb8300aab4c7052d47a))
+* **CI:** Update autodeploy.yml ([c6a8cfc](https://github.com/horanchikk/ktc-reborn/commit/c6a8cfcf00d92ffcc83d6ce71506296b79024d2c))
+* **ci:** добавлен вывод статуса .env ([b62b896](https://github.com/horanchikk/ktc-reborn/commit/b62b896404696217462870515201095a981dbe7d))
+* **markup:** добавлен splash экран ([519231e](https://github.com/horanchikk/ktc-reborn/commit/519231ea40ea1de7c8ac3d97a7f80e7d767906bd))
+* **markup:** добавлены иконки для GitHub, Telegram и VK; добавлен компонент PersonCard для отображения информации о пользователях на странице "О приложении" ([914e17a](https://github.com/horanchikk/ktc-reborn/commit/914e17ac346b8f911aef07aac7a864d0c1076aa0))
+* **scripts:** обновлен скрипт; удалены лишние этапы ([b5885d6](https://github.com/horanchikk/ktc-reborn/commit/b5885d61b0df1dd4e685ad81d8cc7f6d87f26403))
+* **sentry:** записываем ошибки в Sentry ([c0f0bd0](https://github.com/horanchikk/ktc-reborn/commit/c0f0bd080e970c49dd27298935f8226793c84adb))
+* **snackbar:** добавлен компонент Snackbar для отображения уведомлений и интеграция в приложение ([c2b744f](https://github.com/horanchikk/ktc-reborn/commit/c2b744fa16348f8682a7697832c310dab5104bf4))
+
 # [0.1.0-dev.23](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0-dev.22...v0.1.0-dev.23) (2025-05-02)
 
 
