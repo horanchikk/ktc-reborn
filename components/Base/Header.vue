@@ -71,9 +71,11 @@ function hide() {
   setTimeout(() => {
     showMenu.value = false
   }, 100)
+  updateColors('#212121')
 }
 function show() {
   showMenu.value = true
   showAnim.value = true
+  updateColors('#171717')
 }
 </script>
