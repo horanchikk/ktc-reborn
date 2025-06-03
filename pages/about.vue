@@ -23,14 +23,14 @@
             </div>
             <p class="text-center text-2xl text-semibold">с 💖</p>
         </div>
-        <div class="flex justify-center opacity-50">
-            Версия приложения - {{ update.latestUpdate.value.version }}
+        <div class="flex flex-col justify-center gap-1">
+            <p class="opacity-50" v-text="`Версия приложения - ${APP_VERSION}`" />
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-const update = await useOTA()
+const { $config: { public: { APP_VERSION } } } = useNuxtApp()
 
 definePageMeta({
   name: 'О приложении',
