@@ -9,7 +9,5 @@ definePageMeta({
   layout: 'none',
 })
 
-const router = useRouter()
-
-router.push('/auth')
+window.location.href = '/auth'
 </script>
