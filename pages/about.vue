@@ -36,6 +36,8 @@ definePageMeta({
   name: 'О приложении',
   middleware: ['user-only'],
 })
+
+// test
 </script>
 
 <style scoped>
