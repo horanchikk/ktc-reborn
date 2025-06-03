@@ -4,12 +4,12 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxtjs/google-fonts',
     '@nuxt/image',
-    '@nuxt/eslint',
     '@pinia/nuxt',
     '@formkit/auto-animate/nuxt',
     '@sentry/nuxt/module',
     'nuxt-booster',
     'nuxt-svgo',
+    'nuxt-snackbar',
   ],
   ssr: false,
   devtools: { enabled: true },
@@ -27,6 +27,7 @@ export default defineNuxtConfig({
       ACCOUNT_LOGIN: process.env.ACCOUNT_LOGIN,
       ACCOUNT_PASSWD: process.env.ACCOUNT_PASSWD,
       SENTRY_DSN: process.env.SENTRY_DSN,
+      APP_VERSION: process.env.APP_VERSION,
     },
   },
 
@@ -90,4 +91,13 @@ export default defineNuxtConfig({
     },
   },
 
+  snackbar: {
+    bottom: true,
+    duration: 3000,
+    border: 'left',
+    baseBackgroundColor: '#323232',
+    dismissOnActionClick: false,
+    dense: true,
+    shadow: true,
+  }
 })

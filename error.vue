@@ -10,9 +10,9 @@
         </p>
         <button
           class="mt-3 border-[1px] text-md px-10 border-primary hover:bg-primary hover:text-black rounded-xl flex gap-3 justify-center items-center duration-150"
-          @click="router.back()"
+          @click="router.push('/')"
         >
-          Вернуться обратно
+          Вернуться на главную
         </button>
         <p
           class="text-sm opacity-30"
@@ -24,8 +24,13 @@
 </template>
 
 <script setup lang="ts">
+import * as Sentry from "@sentry/nuxt";
+
 const router = useRouter()
 const error = useError()
+
+console.error(error.value)
+Sentry.captureException(error);
 
 definePageMeta({
   layout: 'none',

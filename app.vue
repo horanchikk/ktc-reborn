@@ -1,35 +1,23 @@
 <template>
-  <!-- Debug form -->
-  <Form
-    v-model:is-visible="debug.isVisible"
-    :form-type="-1"
-  >
-    <h1 class="text-xl font-bold text-center">
-      Debug
-    </h1>
-    <p class="text-sm font-mono font-semibold">
-      User: {{ debug.user.data }} <br><br> Sidebar: {{ { isVisible: debug.sidebar.isVisible, isRendered: debug.sidebar.isRendered } }} <br><br> Route: {{ debug.route }}
-    </p>
-  </Form>
-
+  <!-- Forms -->
+  <FormDebug />
+  <FormOTA />
+  
   <NuxtLayout>
     <NuxtPage />
+    <NuxtSnackbar />
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-import { useDebug } from './store/useDebug'
-
-const debug = useDebug()
-window.showDebug = () => {
-  debug.show()
-}
+definePageMeta({
+  head: [
+    { name: 'meta', content: 'width=480, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,target-densitydpi=device-dpi, user-scalable=no' }
+  ]
+})
 </script>
 
 <style>
-/* #__nuxt * {
-  border: 1px solid rgba(255,255,0,0.3)
-} */
 html, body {
   overscroll-behavior-x: none;
 }

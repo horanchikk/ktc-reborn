@@ -40,20 +40,25 @@ definePageMeta({
 })
 
 const user = useUser()
-const api = useApi()
+const { $api } = useNuxtApp()
 const router = useRouter()
-const data = ref(null)
+const data = ref()
+
+interface Group {
+  id: number
+  title: string
+}
 
 if (!(Object.hasOwn(user.data, 'is_student') && Object.hasOwn(user.data, 'branch_id'))) {
   router.push('/setup/branch')
 }
 
-function setGroup(group: string) {
+function setGroup(group: Group) {
   user.data.group_id = group.id
   router.push('/timetable')
 }
 
 onMounted(async () => {
-  data.value = await api.get(`/timetable/students/courses/${user.data.branch_id}`)
+  data.value = await $api.timetable.getCourses(user.data.branch_id)
 })
 </script>

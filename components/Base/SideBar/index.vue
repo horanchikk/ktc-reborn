@@ -97,7 +97,7 @@
           >
             <BaseSideBarElement
               type="alert-circle"
-              text="О программе"
+              text="О приложении"
               :color="useRouter().currentRoute.value.path === '/about' ? '#FF4646' : '#EDE8D8'"
             />
           </NuxtLink>
@@ -115,10 +115,10 @@
 
 <script setup lang="ts">
 import { useSwipe } from '@vueuse/core'
-import { ApiModules } from '~/repository/api'
 import { useSideBar } from '~/store/useSideBar'
 import { useUser } from '~/store/useUser'
 
+const { $api } = useNuxtApp()
 const store = useSideBar()
 const sideBarEl = ref(null)
 const translateTo = ref(null)
@@ -174,6 +174,6 @@ const info = ref()
 
 onMounted(
   async () =>
-    (info.value = await ApiModules.user.getInfo(user.$state.data.access_token)),
+    (info.value = await $api.user.getInfo(user.$state.data.access_token)),
 )
 </script>

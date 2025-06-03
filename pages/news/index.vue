@@ -1,7 +1,7 @@
 <template>
-  <div class="w-full overflow-y-scroll flex flex-col p-2 gap-5">
+  <div class="w-full flex flex-col p-2 gap-5">
     <div
-      v-if="newsList === null"
+      v-if="!newsList"
       class="w-full h-full"
     >
       <div
@@ -12,7 +12,7 @@
       />
     </div>
     <template v-else>
-      <WallPost
+      <!-- <WallPost
         v-for="news in newsList"
         :key="news.id"
         :image="news.preview.length > 0 ? news.preview : `/nophoto.png`"
@@ -20,50 +20,52 @@
         :description="news.description"
         :date="news.date"
         @click="navigateTo(`/news/${news.id}`)"
-      />
+      /> -->
+      <DynamicScroller
+        :items="newsList"
+        :min-item-size="230"
+        class="h-full"
+        page-mode
+      >
+        <template v-slot="{ item, index, active }">
+          <DynamicScrollerItem
+            :item="item"
+            :active="active"
+            :data-index="index"
+            :size-dependencies="[
+              item.description
+            ]"
+          >
+            <WallPost
+              :key="item.id"
+              :image="item.preview.length > 0 ? item.preview : `/nophoto.png`"
+              :title="item.title"
+              :description="item.description"
+              :date="item.date"
+              @click="navigateTo(`/news/${item.id}`)"
+            />
+            <div class="h-[30px]" />
+          </DynamicScrollerItem>
+        </template>
+      </DynamicScroller>
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useDebug } from '~/store/useDebug'
-import { useHeader } from '~/store/useHeader'
-
-interface NewsList {
-  id: number
-  date: string
-  title: string
-  description: string
-  preview: string
-  type: string
-}
+import type { NewsList } from '~/types/news'
+import { DynamicScroller, DynamicScrollerItem } from 'vue-virtual-scroller'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 definePageMeta({
   name: 'Новости',
   middleware: ['user-only'],
 })
 
-const api = useApi()
-const debug = useDebug()
-const header = useHeader()
-const newsList = ref<NewsList | null>(null)
-
-header.setAdditionalMenu([
-  {
-    name: 'Debug',
-    icon: 'bug-report',
-    action: () => debug.show(),
-  },
-  {
-    name: 'Trigger error',
-    icon: 'bug-report',
-    action: () => {
-      throw new Error('Test Error <3')
-    },
-  },
-])
+const { $api } = useNuxtApp()
+const newsList = ref<NewsList>()
 
 onMounted(async () => {
-  newsList.value = await api.get('/news/')
+  newsList.value = await $api.news.getPosts()
 })
 </script>

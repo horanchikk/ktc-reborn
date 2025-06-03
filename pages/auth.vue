@@ -121,6 +121,7 @@
 </template>
 
 <script setup lang="ts">
+import { SplashScreen } from '@capacitor/splash-screen';
 import { useUser } from '~/store/useUser'
 import { useDebug } from '~/store/useDebug'
 
@@ -131,10 +132,10 @@ definePageMeta({
 
 const emit = defineEmits(['isClosed'])
 
-const { $config: { public: { ACCOUNT_LOGIN, ACCOUNT_PASSWD } } } = useNuxtApp()
+
+const { $config: { public: { ACCOUNT_LOGIN, ACCOUNT_PASSWD } }, $api } = useNuxtApp()
 const router = useRouter()
 const user = useUser()
-const api = useApi()
 
 const infoAuthForm = ref(false)
 const isLoading = ref(false)
@@ -151,8 +152,7 @@ async function auth() {
   isLoading.value = true
   errorMsg.show = false
 
-  await api
-    .post('/user/login', authData)
+  await $api.user.login(authData)
     .then((res) => {
       user.setAuthData(res.access_token, res.user_id)
       router.push('/setup/branch')
@@ -168,4 +168,6 @@ async function auth() {
 
   isLoading.value = false
 }
+
+SplashScreen.hide()
 </script>

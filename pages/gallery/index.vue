@@ -33,13 +33,12 @@
 </template>
 
 <script setup lang="ts">
-import { ApiModules } from '~/repository/api'
-
 definePageMeta({
   name: 'Галерея',
   middleware: ['user-only'],
 })
 
-const albums = ref<null | object>(null)
-onMounted(async () => albums.value = await ApiModules.gallery.getAlbums())
+const albums = ref<object>()
+const { $api } = useNuxtApp()
+onMounted(async () => albums.value = await $api.gallery.getAlbums())
 </script>

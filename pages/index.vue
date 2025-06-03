@@ -5,5 +5,11 @@
 </template>
 
 <script setup lang="ts">
-navigateTo('/auth')
+definePageMeta({
+  layout: 'none',
+})
+
+const router = useRouter()
+
+router.push('/auth')
 </script>

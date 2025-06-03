@@ -6,7 +6,7 @@
       </button>
     </NuxtLink> -->
     <div
-      v-if="postList === null"
+      v-if="!postList"
       class="w-full h-full"
     >
       <div
@@ -32,24 +32,17 @@
 </template>
 
 <script setup lang="ts">
-interface PostList {
-  title: string
-  avatar: string
-  author: string
-  date: string
-  raw_content: string
-  attachments: []
-}
+import type { TPosts } from '~/types/posts'
 
 definePageMeta({
   name: 'Блог',
   middleware: ['user-only'],
 })
 
-const api = useApi()
-const postList = ref<{ items: PostList[] } | null>(null)
+const { $api } = useNuxtApp()
+const postList = ref<TPosts>()
 
 onMounted(async () => {
-  postList.value = await api.get('/blogs/')
+  postList.value = await $api.blog.getPosts()
 })
 </script>

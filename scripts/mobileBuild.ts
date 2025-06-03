@@ -10,6 +10,7 @@ import {
   createDir,
   runCommand,
   ensureDownloadedAndExtracted,
+  renameWithOverwrite,
 } from './utils'
 
 initDE()
@@ -26,13 +27,13 @@ await new Listr(
         new Listr(
           [
             {
-              title: 'Removing old build directories',
+              title: 'Removing old Nuxt build',
               task: async () => {
-                await Promise.all([removeDir('.nuxt'), removeDir('.output')])
+                await Promise.all([removeDir('.output')])
               },
             },
             {
-              title: 'Generating static build using Nuxt.js',
+              title: 'Generating static build using Nuxt',
               task: async (_, task) => {
                 await runCommand('nuxt', ['generate'], { task })
               },
@@ -43,26 +44,23 @@ await new Listr(
     },
     {
       title: 'Configuring Capacitor Platforms',
-      task: () =>
-        new Listr(
-          [
-            {
-              title: 'Removing outdated mobile platform directories',
-              task: async () => {
-                await Promise.all([removeDir('android'), removeDir('ios')])
-              },
-            },
-            {
-              title: 'Adding Capacitor mobile platforms',
-              task: async (_, task) => {
-                await runCommand('npx', ['cap', 'add', 'android'], { task })
-                await runCommand('npx', ['cap', 'add', 'ios'], { task })
-                await runCommand('npx', ['cap', 'sync'], { task })
-              },
-            },
-          ],
-          { concurrent: false },
-        ),
+      task: async (_, task) => {
+        try {
+          await runCommand('npx', ['cap', 'add', 'android'], { task })
+          await runCommand('npx', ['cap', 'add', 'ios'], { task })
+        } catch {
+          await runCommand('npx', ['cap', 'sync'], { task })
+        }
+      },
+    },
+    {
+      title: "Generating assets",
+      task: async (ctx, subTask) => {
+        await runCommand('npx', ["@capacitor/assets", "generate", "--iconBackgroundColor", "'#323232'", "--iconBackgroundColorDark", "'#323232'", "--splashBackgroundColor", "'#323232'", "--splashBackgroundColorDark", "'#323232'"], {
+          task: subTask,
+          maxOutputLines: 3,
+        })
+      }
     },
     {
       title: 'Assembling Android Application',
@@ -78,13 +76,10 @@ await new Listr(
                     Record<NodeJS.Platform, Partial<Record<NodeJS.Architecture, string>>>
                   > = {
                     linux: {
-                      x64: 'https://download.oracle.com/java/20/archive/jdk-20.0.2_linux-x64_bin.tar.gz',
-                      arm64: 'https://download.oracle.com/java/20/archive/jdk-20.0.2_linux-aarch64_bin.tar.gz',
+                      x64: `https://download.oracle.com/java/${config.JAVA_VERSION.split('.')[0]}/archive/jdk-${config.JAVA_VERSION}_linux-x64_bin.tar.gz`,
+                      arm64: `https://download.oracle.com/java/${config.JAVA_VERSION.split('.')[0]}/archive/jdk-${config.JAVA_VERSION}_linux-aarch64_bin.tar.gz`,
                     },
                     // TODO: add support for win32
-                    // win32: {
-                    //   x64: 'https://download.oracle.com/java/20/archive/jdk-20.0.2_windows-x64_bin.zip',
-                    // },
                   }
                   const platform = os.platform() as keyof typeof systemConfig
                   const arch = os.arch()
@@ -192,7 +187,8 @@ await new Listr(
                   task: subTask,
                   maxOutputLines: 3,
                 })
-                subTask.title = `APK built at: ${currentPath}/android/app/build/outputs/apk/debug/app-debug.apk`
+                renameWithOverwrite(`${currentPath}/android/app/build/outputs/apk/debug/app-debug.apk`, `${currentPath}/${process.env.APP_VERSION}.apk`)
+                subTask.title = `APK built at: ${currentPath}/${process.env.APP_VERSION}.apk`
               },
             },
             {
@@ -204,6 +200,21 @@ await new Listr(
 
                 subTask.title = 'Checking connected devices'
                 await runCommand(adb, ['devices'], { task: subTask })
+                try {
+                  subTask.title = 'Uninstall old package'
+                  await runCommand(
+                    adb,
+                    [
+                      '-s',
+                      process.env.ANDROID_DEVICE_ID,
+                      'uninstall',
+                      'app.hapticx.procollege',
+                    ],
+                    { task: subTask },
+                  )
+                } catch {
+                  subTask.title = "Package not found";
+                }
                 subTask.title = 'Installing APK on device'
                 await runCommand(
                   adb,
@@ -211,7 +222,7 @@ await new Listr(
                     '-s',
                     process.env.ANDROID_DEVICE_ID,
                     'install',
-                    './android/app/build/outputs/apk/debug/app-debug.apk',
+                    `${currentPath}/${process.env.APP_VERSION}.apk`,
                   ],
                   { task: subTask },
                 )

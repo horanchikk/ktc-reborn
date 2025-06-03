@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/nuxt'
 import { createConsola, consola } from 'consola'
 
 export function useLogger(tag: string) {
@@ -15,6 +16,10 @@ export function useLogger(tag: string) {
           // Logging only on DEV
           if (import.meta.dev) {
             consola._log(ctx)
+          }
+
+          if (ctx.type === 'error') {
+            Sentry.captureException(ctx.args[0])
           }
         },
       },

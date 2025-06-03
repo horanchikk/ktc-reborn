@@ -11,7 +11,7 @@
           class="w-full h-full backdrop-blur-md animate__animated animate__duration"
         />
         <div
-          class="absolute top-0 left-0 w-full h-full flex justify-center items-center"
+          class="absolute top-0 left-0 w-full p-1 h-full flex justify-center items-center"
           :class="isAnimate ? 'fadeInUp' : 'fadeOutDown'"
         >
           <div
@@ -19,7 +19,7 @@
             :class="{
               'p-5': formType !== 1,
             }"
-            class="w-[440px] flex flex-col gap-3 rounded-[32px] bg-background-100 text-foreground shadow-xl"
+            class="w-[440px] flex flex-col gap-3 rounded-lg bg-background-100 text-foreground shadow-xl"
           >
             <div
               v-if="formType === -1"

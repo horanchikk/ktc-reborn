@@ -12,15 +12,18 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "sync": "npx cap sync",
-    "lint": "eslint"
+    "lint": "oxlint"
   },
   "dependencies": {
     "@capacitor/android": "^6.2.0",
     "@capacitor/app": "^6.0.2",
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/browser": "^7.0.1",
     "@capacitor/core": "^6.2.0",
     "@capacitor/haptics": "^6.0.2",
     "@capacitor/ios": "^6.2.0",
     "@capacitor/keyboard": "^6.0.3",
+    "@capacitor/splash-screen": "^7.0.1",
     "@capacitor/status-bar": "^6.0.2",
     "@capgo/capacitor-navigation-bar": "^6.1.75",
     "@listr2/prompt-adapter-enquirer": "^2.0.12",
@@ -42,19 +45,19 @@
     "fs": "0.0.1-security",
     "nuxt": "^3.15.0",
     "nuxt-booster": "^3.1.9",
+    "nuxt-snackbar": "1.3.0",
     "nuxt-svgo": "^4.0.10",
     "ofetch": "^1.4.1",
     "pako": "^2.1.0",
     "turndown": "^7.2.0",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "vue-virtual-scroller": "2.0.0-beta.8"
   },
   "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c",
   "devDependencies": {
     "@capacitor/cli": "^6.2.0",
     "@formkit/auto-animate": "^0.8.2",
-    "@nuxt/eslint": "^0.6.2",
-    "@nuxt/eslint-config": "^0.6.2",
     "@nuxt/image": "^1.8.1",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/google-fonts": "^3.2.0",
@@ -62,11 +65,11 @@
     "@pinia/nuxt": "^0.5.5",
     "@types/node": "^22.10.4",
     "dotenv": "^16.4.7",
-    "eslint": "9.13.0",
     "lint-staged": "^15.3.0",
     "listr2": "^8.2.5",
     "native-run": "^2.0.1",
     "nuxt-start": "^2.18.1",
+    "oxlint": "^0.16.8",
     "simple-git-hooks": "^2.11.1",
     "tsx": "^4.19.2"
   },
@@ -74,6 +77,6 @@
     "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": "oxlint --fix"
   }
 }

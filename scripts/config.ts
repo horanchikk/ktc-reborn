@@ -1,6 +1,6 @@
 export const currentPath = process.cwd()
 export const config = {
-  JAVA_VERSION: '20.0.2',
+  JAVA_VERSION: '21.0.6',
   JAVA_DIR: './jdk',
   get JAVA_BIN() {
     return `${this.JAVA_DIR}/jdk-${this.JAVA_VERSION}/bin/java`
