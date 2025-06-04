@@ -1,3 +1,11 @@
+# [0.2.0-dev.3](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.2...v0.2.0-dev.3) (2025-06-04)
+
+
+### Features
+
+* **android, ios:** добавлены файлы конфигурации для Android и iOS, включая настройки Gradle, манифесты, и ресурсы для приложения ProCollege ([2fe49f2](https://github.com/horanchikk/ktc-reborn/commit/2fe49f288fbd8bed0cfae4f6324b90ec0863a82c))
+* **scripts:** добавлено обновление версии приложения для Android и iOS, ([b87c54c](https://github.com/horanchikk/ktc-reborn/commit/b87c54cee114b4d28104592bbda9b1eb9167d2fa))
+
 # [0.2.0-dev.2](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.1...v0.2.0-dev.2) (2025-06-04)
 
 
