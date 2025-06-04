@@ -187,17 +187,9 @@ await new Listr(
                   throw new Error('APP_VERSION environment variable is not set')
                 }
             
-                // 1. Обновляем build.gradle
                 const gradlePath = `${currentPath}/android/app/build.gradle`
                 let gradleContent = await fs.readFile(gradlePath, 'utf8')
             
-                // Инкрементируем versionCode
-                gradleContent = gradleContent.replace(
-                  /(versionCode\s+)(\d+)/,
-                  (_, prefix, code) => prefix + (Number.parseInt(code) + 1)
-                )
-            
-                // Обновляем versionName
                 gradleContent = gradleContent.replace(
                   /(versionName\s+["'])([^"']*)(["'])/,
                   `$1${process.env.APP_VERSION}$3`
@@ -205,11 +197,9 @@ await new Listr(
             
                 await fs.writeFile(gradlePath, gradleContent)
             
-                // 2. Обновляем config.xml
                 const configPath = `${currentPath}/ios/App/App/config.xml`
                 let configContent = await fs.readFile(configPath, 'utf8')
                 
-                // Добавляем/обновляем атрибут ios-CFBundleVersion
                 if (configContent.includes('ios-CFBundleVersion')) {
                   configContent = configContent.replace(
                     /(ios-CFBundleVersion=)(["'][^"']*["'])/,
