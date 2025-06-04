@@ -24,7 +24,6 @@ export class API {
   private module: string = 'API'
   private API_URL: string = useRuntimeConfig().public.API_URL
   private user = useUser()
-  private snackbar = useSnackbar()
 
   constructor(module: string) {
     this.module = module
@@ -32,11 +31,13 @@ export class API {
   }
 
   private throwError(request: string, data: TException, body?: unknown) {
+    const snackbar = useSnackbar()
     const err = {
       info: '',
       request,
       body,
     }
+
     if (Object.prototype.hasOwnProperty.call(data, 'code') && Object.prototype.hasOwnProperty.call(data, 'error')) {
       err.info = `${data.error} (${data.code})`
     }
@@ -49,7 +50,7 @@ export class API {
     }
 
     this.log.error(err)
-    this.snackbar.add({
+    snackbar.add({
       type: 'error',
       text: 'Возникла ошибка на сервере. Не переживайте, мы уже знаем о проблеме 👌'
     })
@@ -64,7 +65,7 @@ export class API {
     },
     onResponse: (ctx) => {
       const statusCode = ctx.response.status
-      if (statusCode > 300 && statusCode !== 400) {
+      if (statusCode > 300 && statusCode !== 400 && statusCode !== 401) {
         this.throwError(ctx.request.toString(), ctx.response._data, ctx.options.body)
       }
     },
