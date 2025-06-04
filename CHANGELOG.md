@@ -1,3 +1,10 @@
+# [0.2.0-dev.4](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.3...v0.2.0-dev.4) (2025-06-04)
+
+
+### Bug Fixes
+
+* **workflows:** исправлено форматирование версии приложения в конфигурации автодеплоя ([789cd86](https://github.com/horanchikk/ktc-reborn/commit/789cd86a8e40cc55cc9a63c8aa17b92c74cb56ed))
+
 # [0.2.0-dev.3](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.2...v0.2.0-dev.3) (2025-06-04)
 
 
