@@ -5,6 +5,7 @@ import BranchModule from '@/repository/modules/branch'
 import TimetableModule from '@/repository/modules/timetable'
 import BlogModule from '@/repository/modules/blog'
 import NewsModule from '@/repository/modules/news'
+import ContactsModule from '~/repository/modules/contacts'
 
 export interface IApiInstance {
   user: UserModule
@@ -14,6 +15,7 @@ export interface IApiInstance {
   timetable: TimetableModule
   blog: BlogModule
   news: NewsModule
+  contacts: ContactsModule
 }
 
 export interface Provide {
@@ -34,6 +36,7 @@ export default defineNuxtPlugin(() => {
     timetable: new TimetableModule('TimetableModule'),
     blog: new BlogModule('BlogModule'),
     news: new NewsModule('NewsModule'),
+    contacts: new ContactsModule('ContactsModule'),
   }
 
   return {
