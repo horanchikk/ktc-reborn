@@ -11,7 +11,7 @@
       <img
         v-for="(photo, idx) of photos.photos"
         :key="idx"
-        :src="`https://hapticx.ru/api/media/proxy/file?link=${photo}`"
+        :src="photo"
         class="rounded-md"
       >
     </div>
