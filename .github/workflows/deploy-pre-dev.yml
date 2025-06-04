@@ -93,5 +93,5 @@ jobs:
             --data-urlencode 'message_thread_id=${{ secrets.TELEGRAM_MESSAGE_THREAD_ID }}' \
             --data-urlencode 'link_preview_options={"url":"${{ github.event.head_commit.url }}"}' \
             --data-urlencode 'parse_mode=markdownv2' \
-            --data-urlencode $'text=🔨 *Frontend deploy* 🔨\n\nBranch: pre-dev\n\n>${{ env.escaped_message }}\n_by [${{ env.escaped_actor }}](https://github.com/${{ env.escaped_actor }})_ at `${{ env.escaped_branch }}`\n\n[commit link](${{ github.event.head_commit.url }})' \
+            --data-urlencode $'text=🔨 *Frontend deploy* 🔨\n\n>${{ env.escaped_message }}\n_by [${{ env.escaped_actor }}](https://github.com/${{ env.escaped_actor }})_ at `${{ env.escaped_branch }}`\n\n[commit link](${{ github.event.head_commit.url }})' \
             curl "https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage"
