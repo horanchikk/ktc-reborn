@@ -1,6 +1,7 @@
 import os from 'node:os'
 import { Listr } from 'listr2'
 import { config as initDE } from 'dotenv'
+import fs from 'node:fs/promises'
 import { logLogo } from './logo'
 import { downloadFile } from './download'
 import { config, currentPath } from './config'
@@ -178,6 +179,51 @@ await new Listr(
                 }
                 subTask.title = 'Additional Android SDK components installed'
               },
+            },
+            {
+              title: 'Updating version for Android and IOS application',
+              task: async () => {
+                if (!process.env.APP_VERSION) {
+                  throw new Error('APP_VERSION environment variable is not set')
+                }
+            
+                // 1. Обновляем build.gradle
+                const gradlePath = `${currentPath}/android/app/build.gradle`
+                let gradleContent = await fs.readFile(gradlePath, 'utf8')
+            
+                // Инкрементируем versionCode
+                gradleContent = gradleContent.replace(
+                  /(versionCode\s+)(\d+)/,
+                  (_, prefix, code) => prefix + (Number.parseInt(code) + 1)
+                )
+            
+                // Обновляем versionName
+                gradleContent = gradleContent.replace(
+                  /(versionName\s+["'])([^"']*)(["'])/,
+                  `$1${process.env.APP_VERSION}$3`
+                )
+            
+                await fs.writeFile(gradlePath, gradleContent)
+            
+                // 2. Обновляем config.xml
+                const configPath = `${currentPath}/ios/App/App/config.xml`
+                let configContent = await fs.readFile(configPath, 'utf8')
+                
+                // Добавляем/обновляем атрибут ios-CFBundleVersion
+                if (configContent.includes('ios-CFBundleVersion')) {
+                  configContent = configContent.replace(
+                    /(ios-CFBundleVersion=)(["'][^"']*["'])/,
+                    `$1"${process.env.APP_VERSION}"`
+                  )
+                } else {
+                  configContent = configContent.replace(
+                    /(<widget[^>]*)/,
+                    `$1 ios-CFBundleVersion="${process.env.APP_VERSION}"`
+                  )
+                }
+            
+                await fs.writeFile(configPath, configContent)
+              }
             },
             {
               title: 'Compiling Android Project using Gradle',
