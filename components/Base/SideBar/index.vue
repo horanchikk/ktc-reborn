@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="store.isRendered"
+    v-show="store.isRendered"
     ref="sideBarEl"
     class="w-screen h-screen fixed top-0 left-0 z-30"
   >
@@ -131,7 +131,7 @@ const user = useUser()
 
 const links = ref<{
   name: string
-  icon: 'home' | 'license' | 'calendar' | 'mail' | 'bell' | 'photo' | 'chart'
+  icon: 'home' | 'license' | 'calendar' | 'mail' | 'bell' | 'photo' | 'chart' | 'contacts'
   route: string
 }[]>([
   {
@@ -159,6 +159,11 @@ const links = ref<{
   //   icon: 'bell',
   //   route: '/notifications',
   // },
+  {
+    name: 'Контакты',
+    icon: 'contacts',
+    route: '/contacts'
+  },
   {
     name: 'Галерея',
     icon: 'photo',

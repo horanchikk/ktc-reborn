@@ -1,16 +1,16 @@
 <template>
   <div
-    v-if="!timetable"
+    v-show="!timetable"
     class="w-full h-full flex items-center justify-center show"
   >
     <ILoader class="w-16 h-16 text-foreground" />
   </div>
   <div
-    v-else
+    v-if="timetable"
     class="flex flex-col gap-2 show py-4 h-full"
   >
     <div
-      v-if="week"
+      v-show="week"
       class="grid grid-cols-3 place-items-center mb-5"
     >
       <img
@@ -31,7 +31,7 @@
         @click="nextWeek"
       >
     </div>
-    <template v-if="hasLessons">
+    <template v-show="hasLessons">
       <div
         v-for="(day, dayIdx) in timetable.days"
         :key="day.title"
@@ -91,7 +91,7 @@
       </div>
     </template>
     <div
-      v-else
+      v-show="!hasLessons"
       class="w-full h-full flex items-center justify-center"
     >
       <p class="text-2xl font-semibold text-center">

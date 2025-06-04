@@ -3,7 +3,7 @@
     <img
       :src="$props.image"
       :alt="'Возникла проблема с загрузкой фото, попробуйте позже.'"
-      class="h-[170px] object-cover object-center"
+      class="h-[250px] object-cover object-center"
     >
     <div class="px-2 leading-none text-xl font-semibold">
       {{ $props.title }}
