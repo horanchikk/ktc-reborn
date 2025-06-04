@@ -12,10 +12,6 @@ module.exports = {
       name: 'dev',
       prerelease: 'dev',
     },
-    {
-      name: 'pre-dev',
-      prerelease: 'pre-dev',
-    },
   ],
   plugins: [
     '@semantic-release/commit-analyzer',
@@ -34,8 +30,8 @@ module.exports = {
       {
         assets: [
           {
-            path: '${nextRelease.version}.apk',
-            label: 'Android APK [${nextRelease.version}]',
+            path: `${process.env.APP_VERSION}.apk`,
+            label: `Android APK [${process.env.APP_VERSION}]`,
           },
         ],
       },
