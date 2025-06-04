@@ -1,3 +1,10 @@
+# [0.2.0-dev.7](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.6...v0.2.0-dev.7) (2025-06-04)
+
+
+### Bug Fixes
+
+* **workflows:** удален текст ветки из сообщений о развертывании в Telegram для dev, master и pre-dev ([a30f720](https://github.com/horanchikk/ktc-reborn/commit/a30f720c8d2424336efc25638839af287a59c226))
+
 # [0.2.0-dev.6](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.5...v0.2.0-dev.6) (2025-06-04)
 
 
