@@ -68,7 +68,7 @@ jobs:
         run: npx semantic-release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
+  
   telegram_notification:
     name: "Уведомление в Telegram 🔔"
     runs-on: ubuntu-latest
@@ -76,7 +76,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
       - name: Escape bad symbols in variables
         id: escape_vars
         run: |
