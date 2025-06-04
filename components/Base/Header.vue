@@ -1,7 +1,9 @@
 <template>
   <header
-    class="w-full flex justify-between gap-5 bg-background-100 p-3 animate__animated animate__fadeInDown animate__faster z-10"
+  class="w-full flex justify-between gap-5 bg-background-100 p-3 animate__animated animate__fadeInDown animate__faster z-10"
   >
+    <NuxtLoadingIndicator class="w-full" :height="2" color="#e5e7eb" />
+    
     <ISandwich
       class="w-8 h-8 hover:opacity-50 cursor-pointer duration-150"
       @click="sideBar.show()"

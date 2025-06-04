@@ -6,7 +6,7 @@
       </button>
     </NuxtLink> -->
     <div
-      v-if="!postList"
+      v-show="postList?.items.length === 0"
       class="w-full h-full"
     >
       <div
@@ -16,18 +16,17 @@
         class="w-full h-32 loading rounded-md opacity-30"
       />
     </div>
-    <template v-else>
-      <BlogPost
-        v-for="(post, idx) in postList.items"
-        :key="idx"
-        :avatar="post.avatar"
-        :title="post.title"
-        :raw_content="post.raw_content"
-        :date="post.date"
-        :author="post.author"
-        :attachments="post.attachments"
-      />
-    </template>
+    <BlogPost
+      v-show="postList?.items.length > 0"
+      v-for="(post, idx) in postList.items"
+      :key="idx"
+      :avatar="post.avatar"
+      :title="post.title"
+      :raw_content="post.raw_content"
+      :date="post.date"
+      :author="post.author"
+      :attachments="post.attachments"
+    />
   </div>
 </template>
 
@@ -40,7 +39,9 @@ definePageMeta({
 })
 
 const { $api } = useNuxtApp()
-const postList = ref<TPosts>()
+const postList = ref<TPosts>({
+  items: []
+})
 
 onMounted(async () => {
   postList.value = await $api.blog.getPosts()
