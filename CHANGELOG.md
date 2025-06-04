@@ -1,3 +1,21 @@
+# [0.2.0-dev.2](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.1...v0.2.0-dev.2) (2025-06-04)
+
+
+### Bug Fixes
+
+* **api:** удален ненужный экземпляр snackbar из класса API и исправлено использование snackbar в методе throwError ([45f924c](https://github.com/horanchikk/ktc-reborn/commit/45f924ced3bee9b6dba391ef1c08432795e01f83))
+* **markup:** заменен метод перенаправления на использование window.location.href вместо router.push ([47de994](https://github.com/horanchikk/ktc-reborn/commit/47de994f55f9872e152565b9e95cf2dc0f249390))
+* **markup:** исправлен баг с двойным проскроллом новости ([32df2f2](https://github.com/horanchikk/ktc-reborn/commit/32df2f247223a33a64c49811e1e0bd6916caed3c))
+* **markup:** увеличено время отображения splash-экрана и добавлены параметры для отображения спиннера ([b3ce272](https://github.com/horanchikk/ktc-reborn/commit/b3ce272cf9ea67d21c3d352b782fb7a3bff37555))
+
+
+### Features
+
+* **markup:** исправлена работа цветов navigationbar и backgroundcolor при открытии дополнительных пунктов ([1c1be86](https://github.com/horanchikk/ktc-reborn/commit/1c1be8606cf4b32422385038f391243c3136d3f1))
+* **markup:** увеличена высота блоков в разделе "новости" ([765f012](https://github.com/horanchikk/ktc-reborn/commit/765f01253ea8d139af6a9b5a43f72fffbccc1a6a))
+* **optimize:** оптимизация рендеринга на странице блога и расписания; добавлен лоадер, если загрузка страницы требует много ресурсов ([0bf97d5](https://github.com/horanchikk/ktc-reborn/commit/0bf97d58e1a3727d225550e34534a3ab66073e13))
+* **page:** добавлен раздел "Контакты" ([9dbef25](https://github.com/horanchikk/ktc-reborn/commit/9dbef256c8e5158b103f37d9236e3c2cf3a8ba1f))
+
 # [0.2.0-dev.1](https://github.com/horanchikk/ktc-reborn/compare/v0.1.0...v0.2.0-dev.1) (2025-06-03)
 
 
