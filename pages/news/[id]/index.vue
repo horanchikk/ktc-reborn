@@ -46,7 +46,7 @@
     </div>
     <div
       v-if="news"
-      class="flex flex-col min-h-screen h-[2000px] news-content"
+      class="flex flex-col min-h-screen h-[2000px] news-content overflow-y-hidden"
       :style="`padding-top: ${headerHeightMax}px`"
       v-html="news.content"
     />
