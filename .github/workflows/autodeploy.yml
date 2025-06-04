@@ -50,7 +50,7 @@ jobs:
         run: |
           echo "Writing..."
           echo "API_URL=https://hapticx.ru/api" >> .env
-          echo "APP_VERSION=${APP_VERSION}" >> .env
+          echo "APP_VERSION=v${APP_VERSION}" >> .env
 
       - name: Build android
         run: pnpm build:mobile
