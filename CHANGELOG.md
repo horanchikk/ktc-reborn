@@ -1,3 +1,10 @@
+# [0.2.0-dev.6](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.5...v0.2.0-dev.6) (2025-06-04)
+
+
+### Features
+
+* **ci:** Добавлены новые файлы конфигурации для автоматического развертывания на ветках dev, master и pre-dev ([11b3a23](https://github.com/horanchikk/ktc-reborn/commit/11b3a2364246759b4dedee623b12e6b8b5a849a3))
+
 # [0.2.0-dev.5](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.4...v0.2.0-dev.5) (2025-06-04)
 
 
