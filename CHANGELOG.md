@@ -1,3 +1,10 @@
+# [0.2.0-dev.5](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.4...v0.2.0-dev.5) (2025-06-04)
+
+
+### Bug Fixes
+
+* **gallery:** обновлен путь к изображению в галерее для корректного отображения ([9e8d195](https://github.com/horanchikk/ktc-reborn/commit/9e8d19592243c6e1b4c27c8c439878c069d4d72f))
+
 # [0.2.0-dev.4](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.3...v0.2.0-dev.4) (2025-06-04)
 
 
