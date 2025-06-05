@@ -10,7 +10,7 @@
     class="flex flex-col gap-2 show py-4 h-full"
   >
     <div
-      v-show="week"
+      v-if="week"
       class="grid grid-cols-3 place-items-center mb-5"
     >
       <img
@@ -31,7 +31,7 @@
         @click="nextWeek"
       >
     </div>
-    <template v-show="hasLessons">
+    <template v-if="hasLessons">
       <div
         v-for="(day, dayIdx) in timetable.days"
         :key="day.title"
