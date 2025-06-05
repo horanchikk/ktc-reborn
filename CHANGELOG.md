@@ -1,3 +1,10 @@
+# [0.2.0-dev.10](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.9...v0.2.0-dev.10) (2025-06-05)
+
+
+### Bug Fixes
+
+* **markup:** исправлен рендер расп исания ([69f2615](https://github.com/horanchikk/ktc-reborn/commit/69f2615d18fe8c255dea5b79807584ee2b6df842))
+
 # [0.2.0-dev.9](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.8...v0.2.0-dev.9) (2025-06-05)
 
 
