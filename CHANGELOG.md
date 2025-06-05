@@ -1,3 +1,10 @@
+# [0.2.0-dev.9](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.8...v0.2.0-dev.9) (2025-06-05)
+
+
+### Features
+
+* **tests:** добавлены типы для Vitest и обновлены зависимости, улучшена структура компонентов и добавлены новые функции ([1117e02](https://github.com/horanchikk/ktc-reborn/commit/1117e020312ac51bd5de2200b05b01ac573384a7))
+
 # [0.2.0-dev.8](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.7...v0.2.0-dev.8) (2025-06-04)
 
 
