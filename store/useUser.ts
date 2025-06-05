@@ -1,3 +1,8 @@
+import { defineStore } from 'pinia'
+import { ref, watch } from 'vue'
+import { useLogger } from '~/composables/useLogger'
+import { useRouter } from '#imports'
+
 interface TUserData {
   user_id: number
   group_id?: number
@@ -7,8 +12,8 @@ interface TUserData {
   is_student: boolean
 }
 
-function findNewKeys(oldObj: object, newObj: object) {
-  const newKeys = {}
+function findNewKeys(oldObj: Record<string, unknown>, newObj: Record<string, unknown>) {
+  const newKeys: Record<string, unknown> = {}
 
   for (const key in newObj) {
     if (!(key in oldObj)) {
@@ -26,6 +31,7 @@ function findNewKeys(oldObj: object, newObj: object) {
 export const useUser = defineStore('useUser', () => {
   const log = useLogger('userStore')
   const data = ref<TUserData>(JSON.parse(localStorage.getItem('ktc_data')!) || {})
+  const router = useRouter()
 
   function setAuthData(access_token: string, user_id: number) {
     data.value.access_token = access_token
@@ -34,7 +40,7 @@ export const useUser = defineStore('useUser', () => {
 
   function logout() {
     localStorage.removeItem('ktc_data')
-    return navigateTo('/auth', { external: true, replace: true })
+    return router.push('/auth')
   }
 
   watch(() => ({ ...data.value }), (upd, prev) => {

@@ -59,8 +59,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useSideBar } from '~/store/useSideBar'
 import { useHeader } from '~/store/useHeader'
+
+import { updateColors } from '~/composables/useColors'
 
 const sideBar = useSideBar()
 const header = useHeader()

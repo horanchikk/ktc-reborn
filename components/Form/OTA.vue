@@ -128,10 +128,11 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { Browser } from '@capacitor/browser'
-
-import { useOTA } from '~/composables/useOTA'
+import { useOTA } from '../../composables/useOTA'
+import { useLogger } from '../../composables/useLogger'
 
 type UpdateInfo = [boolean, string, string, string] | undefined;
 

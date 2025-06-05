@@ -1,3 +1,6 @@
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+
 export const useSideBar = defineStore('useSideBar', () => {
   const isVisible = ref(false)
   const isRendered = ref(false)

@@ -1,20 +1,24 @@
 <template>
   <div
-    class="px-6 flex gap-3 items-center rounded-xl duration-150"
-    :class="color"
+    :class="[
+      'px-6 flex gap-3 items-center rounded-xl duration-150',
+      color(),
+    ]"
   >
-    <ICheckAlt
-      v-if="props.type === 'done'"
-      class="h-[48px] w-[48px] fill-red-400"
-    />
-    <IAlert
-      v-else-if="props.type === 'warn'"
-      class="h-[48px] w-[48px] fill-red-400 stroke-red-400"
-    />
-    <IClose
-      v-else-if="props.type === 'danger'"
-      class="h-[48px] w-[48px] fill-red-400 stroke-red-400"
-    />
+    <template v-if="props.icon">
+      <ICheckAlt
+        v-if="props.type === 'done'"
+        class="h-[48px] w-[48px] fill-red-400"
+      />
+      <IAlert
+        v-else-if="props.type === 'warn'"
+        class="h-[48px] w-[48px] fill-red-400 stroke-red-400"
+      />
+      <IClose
+        v-else-if="props.type === 'danger'"
+        class="h-[48px] w-[48px] fill-red-400 stroke-red-400"
+      />
+    </template>
     <p
       v-if="props.text"
       class="text-sm font-semibold"
@@ -37,11 +41,11 @@ const props = withDefaults(
   },
 )
 
-const color = computed(() => {
+const color = () => {
   if (props.type === 'done') return 'text-green-500'
   if (props.type === 'warn') return 'text-yellow-500'
   if (props.type === 'danger') return 'text-red-500'
 
   return 'text-green-500'
-})
+}
 </script>

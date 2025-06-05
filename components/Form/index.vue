@@ -59,6 +59,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 
 const target = ref(null)
