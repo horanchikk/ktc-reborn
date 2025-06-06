@@ -117,6 +117,8 @@
 import { useSwipe } from '@vueuse/core'
 import { useSideBar } from '~/store/useSideBar'
 import { useUser } from '~/store/useUser'
+import { useUserApi } from '~/composables/useUserApi'
+import { useLogger } from '~/composables/useLogger'
 
 const { $api } = useNuxtApp()
 const store = useSideBar()
@@ -128,6 +130,8 @@ const { direction } = useSwipe(sideBarEl, {
   },
 })
 const user = useUser()
+const { user: userApi } = useUserApi()
+const log = useLogger('SideBar')
 
 const links = ref<{
   name: string
@@ -177,8 +181,15 @@ const links = ref<{
 ])
 const info = ref()
 
-onMounted(
-  async () =>
-    (info.value = await $api.user.getInfo(user.$state.data.access_token)),
-)
+onMounted(async () => {
+  try {
+    if (!userApi || !user.data.access_token) {
+      log.error('Не удалось получить данные пользователя')
+      return
+    }
+    info.value = await userApi.getInfo(user.data.access_token)
+  } catch (e) {
+    log.error('Ошибка при получении информации о пользователе:', e)
+  }
+})
 </script>

@@ -1,10 +1,21 @@
 <template>
   <div class="flex flex-col gap-2 text-foreground bg-background-100 rounded-lg overflow-hidden">
-    <img
+    <NuxtImg
       :src="$props.image"
       :alt="'Возникла проблема с загрузкой фото, попробуйте позже.'"
-      class="h-[250px] object-cover object-center"
-    >
+      class="h-[200px] object-cover object-center"
+      :height="200"
+      :custom="true"
+      :quality="10"
+      v-slot="{ src, isLoaded, imgAttrs }"
+    > 
+      <img
+        v-if="isLoaded"
+        v-bind="imgAttrs"
+        :src="src"
+      >
+      <div v-else class="w-full h-[200px] loading" />
+    </NuxtImg>
     <div class="px-2 leading-none text-xl font-semibold">
       {{ $props.title }}
     </div>

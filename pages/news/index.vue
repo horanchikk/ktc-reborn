@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-col p-2 gap-5">
+  <div class="w-screen flex flex-col p-2 gap-5">
     <div
       v-if="!newsList"
       class="w-full h-full"
@@ -12,15 +12,6 @@
       />
     </div>
     <template v-else>
-      <!-- <WallPost
-        v-for="news in newsList"
-        :key="news.id"
-        :image="news.preview.length > 0 ? news.preview : `/nophoto.png`"
-        :title="news.title"
-        :description="news.description"
-        :date="news.date"
-        @click="navigateTo(`/news/${news.id}`)"
-      /> -->
       <DynamicScroller
         :items="newsList"
         :min-item-size="230"
@@ -38,7 +29,7 @@
           >
             <WallPost
               :key="item.id"
-              :image="item.preview.length > 0 ? item.preview : `/nophoto.png`"
+              :image="item.preview.length > 0 || item.preview.includes('base64') ? item.preview : `/nophoto.png`"
               :title="item.title"
               :description="item.description"
               :date="item.date"

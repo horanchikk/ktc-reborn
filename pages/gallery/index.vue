@@ -1,28 +1,47 @@
 <template>
   <div
     v-if="albums"
-    class="w-screen h-full flex flex-col gap-5 mt-3"
-  >
-    <NuxtLink
-      v-for="album in albums"
-      :key="album.id"
-      :to="`/gallery/${album.id}`"
-      class="bg-background-100 bg-opacity-80 rounded-md mx-1 select-none hover:opacity-60 duration-150 transition-all"
+    class="w-screen flex flex-col gap-5 pt-3"
+  >  
+    <DynamicScroller
+      :items="albums"
+      :min-item-size="230"
+      class="h-full"
+      page-mode
     >
-      <img
-        class="w-full rounded-t-md"
-        :src="album.preview"
-        alt="Фото"
-      >
-      <p
-        class="text-center text-sm font-semibold my-3"
-        v-text="album.title"
-      />
-      <p
-        class="text-xs text-right mb-2 pr-2"
-        v-text="album.date"
-      />
-    </NuxtLink>
+      <template v-slot="{ item, index, active }">
+        <DynamicScrollerItem
+          :item="item"
+          :active="active"
+          :data-index="index"
+          :min-item-size="500"
+          :size-dependencies="[
+            item.title
+          ]"
+        >
+          <div class="bg-background-100 rounded-md mx-2">
+            <NuxtLink
+              :to="`/gallery/${item.id}`"
+            >
+              <NuxtImg
+                class="w-full rounded-t-md min-h-[300px] max-h-[300px] object-cover"
+                :src="item.preview"
+                alt="Фото"
+              />
+              <p
+                class="text-center text-sm font-semibold my-3 px-3"
+                v-text="item.title"
+              />
+              <p
+                class="text-xs text-right mb-2 pr-2 pb-1"
+                v-text="item.date"
+              />
+            </NuxtLink>
+          </div>
+          <div class="h-[16px]" />
+        </DynamicScrollerItem>
+      </template>
+    </DynamicScroller> 
   </div>
   <div
     v-else
@@ -33,12 +52,29 @@
 </template>
 
 <script setup lang="ts">
+import { DynamicScroller, DynamicScrollerItem } from 'vue-virtual-scroller'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
+import { useGalleryApi } from '~/composables/useGalleryApi'
+import { useLogger } from '~/composables/useLogger'
+
 definePageMeta({
   name: 'Галерея',
   middleware: ['user-only'],
 })
 
 const albums = ref<object>()
-const { $api } = useNuxtApp()
-onMounted(async () => albums.value = await $api.gallery.getAlbums())
+const { gallery } = useGalleryApi()
+const log = useLogger('Gallery')
+
+onMounted(async () => {
+  try {
+    if (!gallery) {
+      log.error('Модуль галереи не инициализирован')
+      return
+    }
+    albums.value = await gallery.getAlbums()
+  } catch (e) {
+    log.error('Ошибка при получении альбомов:', e)
+  }
+})
 </script>
