@@ -1,3 +1,11 @@
+# [0.2.0-dev.11](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.10...v0.2.0-dev.11) (2025-06-06)
+
+
+### Features
+
+* оптимизация производительности ([e8475ee](https://github.com/horanchikk/ktc-reborn/commit/e8475ee18f66d154895f2412d79d15c5fb804d4d))
+* улучшение системы OTA обновлений ([44d9c0f](https://github.com/horanchikk/ktc-reborn/commit/44d9c0f8ca6d91de10a742aa987acb01437f4e59))
+
 # [0.2.0-dev.10](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.9...v0.2.0-dev.10) (2025-06-05)
 
 
