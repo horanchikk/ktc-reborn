@@ -1,6 +1,7 @@
 import { $fetch } from 'ofetch'
 import { useLogger } from '@/composables/useLogger'
 import { useUser } from '~/store/useUser'
+import { useSnackbar } from '#imports'
 
 interface TUserData {
   user_id: number
@@ -24,6 +25,7 @@ export class API {
   private module: string = 'API'
   private API_URL: string = useRuntimeConfig().public.API_URL
   private user = useUser()
+  private snackbar = useSnackbar()
 
   constructor(module: string) {
     this.module = module
@@ -31,7 +33,6 @@ export class API {
   }
 
   private throwError(request: string, data: TException, body?: unknown) {
-    const snackbar = useSnackbar()
     const err = {
       info: '',
       request,
@@ -50,10 +51,13 @@ export class API {
     }
 
     this.log.error(err)
-    snackbar.add({
-      type: 'error',
-      text: 'Возникла ошибка на сервере. Не переживайте, мы уже знаем о проблеме 👌'
-    })
+    
+    setTimeout(() => {
+      this.snackbar.add({
+        type: 'error',
+        text: 'Возникла ошибка на сервере. Не переживайте, мы уже знаем о проблеме 👌'
+      })
+    }, 1000);
   }
 
   private instance = $fetch.create({
