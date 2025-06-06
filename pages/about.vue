@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-between items-center h-full py-2">
         <div />
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4 p-5">
             <p class="text-center text-2xl text-semibold">Создано выпускниками колледжа</p>
             <div class="flex gap-4">
                 <PersonCard 
