@@ -38,6 +38,9 @@
   background-position-x: 180%;
   animation: 1s loading ease-in-out infinite;
   animation-delay: 1s;
+  transform: translateZ(0);
+  will-change: background-position;
+  backface-visibility: hidden;
 }
 
 .show {
