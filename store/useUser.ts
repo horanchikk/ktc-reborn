@@ -4,12 +4,12 @@ import { useLogger } from '~/composables/useLogger'
 import { useRouter } from '#imports'
 
 interface TUserData {
-  user_id: number
+  user_id?: number
   group_id?: number
   teacher_id?: number
-  branch_id: number
-  access_token: string
-  is_student: boolean
+  branch_id?: number
+  access_token?: string
+  is_student?: boolean
 }
 
 function findNewKeys(oldObj: Record<string, unknown>, newObj: Record<string, unknown>) {
@@ -30,8 +30,19 @@ function findNewKeys(oldObj: Record<string, unknown>, newObj: Record<string, unk
 
 export const useUser = defineStore('useUser', () => {
   const log = useLogger('userStore')
-  const data = ref<TUserData>(JSON.parse(localStorage.getItem('ktc_data')!) || {})
   const router = useRouter()
+  
+  let initialData: TUserData = {}
+  try {
+    const storedData = localStorage.getItem('ktc_data')
+    if (storedData) {
+      initialData = JSON.parse(storedData)
+    }
+  } catch (e) {
+    log.error('Ошибка при чтении данных пользователя из localStorage:', e)
+  }
+  
+  const data = ref<TUserData>(initialData)
 
   function setAuthData(access_token: string, user_id: number) {
     data.value.access_token = access_token
@@ -40,12 +51,17 @@ export const useUser = defineStore('useUser', () => {
 
   function logout() {
     localStorage.removeItem('ktc_data')
+    data.value = {}
     return router.push('/auth')
   }
 
   watch(() => ({ ...data.value }), (upd, prev) => {
-    localStorage.setItem('ktc_data', JSON.stringify(upd))
-    log.success('Store was updated:', findNewKeys(prev, upd))
+    try {
+      localStorage.setItem('ktc_data', JSON.stringify(upd))
+      log.success('Store was updated:', findNewKeys(prev, upd))
+    } catch (e) {
+      log.error('Ошибка при сохранении данных пользователя в localStorage:', e)
+    }
   }, {
     deep: true,
   })
