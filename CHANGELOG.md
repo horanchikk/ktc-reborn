@@ -1,3 +1,10 @@
+# [0.2.0-dev.13](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.12...v0.2.0-dev.13) (2025-06-06)
+
+
+### Features
+
+* **about:** добавлена проверка обновлений с уведомлением о последней версии приложения ([b21a999](https://github.com/horanchikk/ktc-reborn/commit/b21a999c2fb7f100b1664c9d9a12e9195e7ad354))
+
 # [0.2.0-dev.12](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.11...v0.2.0-dev.12) (2025-06-06)
 
 
