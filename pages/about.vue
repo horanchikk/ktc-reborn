@@ -23,7 +23,7 @@
             </div>
             <p class="text-center text-2xl text-semibold">с 💖</p>
         </div>
-        <div class="flex flex-col justify-center gap-1">
+        <div class="flex flex-col justify-center items-center gap-1">
             <p class="opacity-50 text-center" v-text="`Версия приложения - ${APP_VERSION}`" />
             <button 
                 @click="checkUpdates" 
@@ -48,13 +48,23 @@
 <script setup lang="ts">
 import { useOTAStore } from '~/store/useOTAStore'
 import { ref } from 'vue'
+import { useOTA } from '~/composables/useOTA'
 
 const { $config: { public: { APP_VERSION } } } = useNuxtApp()
 const otaStore = useOTAStore()
 const isLoading = ref(false)
+const snackbar = useSnackbar()
 
 async function checkUpdates() {
     isLoading.value = true
+    const { needsUpdate } = await useOTA()
+    const updateInfo = needsUpdate()
+    if (updateInfo && !updateInfo[0]) {
+        snackbar.add({
+            type: 'success',
+            text: 'У вас установлена последняя версия приложения'
+        })
+    }
     await otaStore.checkForUpdates()
     isLoading.value = false
 }

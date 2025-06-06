@@ -1,7 +1,6 @@
 import { $fetch } from 'ofetch'
 import { useLogger } from '@/composables/useLogger'
 import { useUser } from '~/store/useUser'
-import { useSnackbar } from '#imports'
 
 interface TUserData {
   user_id: number

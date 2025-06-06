@@ -13,15 +13,16 @@ export const useOTAStore = defineStore('ota', () => {
     try {
       const { needsUpdate, getDescription } = await useOTA()
       const updateInfo = needsUpdate()
-      log.info('Получена информация об обновлении:', updateInfo)
-      
       if (updateInfo) {
-        update.value = updateInfo as [boolean, string, string, string]
-        description.value = getDescription()
-        showForm.value = true
-        log.info('Форма обновления открыта')
-      } else {
-        log.info('Обновлений не найдено')
+        log.info('Получена информация об обновлении:', updateInfo)
+        if (updateInfo[0]) {
+          update.value = updateInfo as [boolean, string, string, string]
+          description.value = getDescription()
+          showForm.value = true
+          log.info('Форма обновления открыта')
+        } else {
+          log.info('Обновлений не обнаружено')
+        }
       }
     } catch (error) {
       log.error('Ошибка проверки обновлений:', error)
