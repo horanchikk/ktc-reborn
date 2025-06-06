@@ -1,3 +1,16 @@
+# [0.2.0-dev.12](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.11...v0.2.0-dev.12) (2025-06-06)
+
+
+### Bug Fixes
+
+* **markup:** исправлениа работа snackbar в api.ts ([03fa7bc](https://github.com/horanchikk/ktc-reborn/commit/03fa7bc318fc02bc32abbc1bab3b853265b0cdf4))
+* **snackbar:** увеличена продолжительность отображения уведомлений до 5000 мс ([127696a](https://github.com/horanchikk/ktc-reborn/commit/127696ac15303862d68b06ac132f8a71049d52e7))
+
+
+### Features
+
+* **markup:** добавлены отступы в разделе /about ([df0ac07](https://github.com/horanchikk/ktc-reborn/commit/df0ac0756a73e42c92f07980e64903395294f620))
+
 # [0.2.0-dev.11](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.10...v0.2.0-dev.11) (2025-06-06)
 
 
