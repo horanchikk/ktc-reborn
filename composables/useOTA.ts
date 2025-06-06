@@ -1,20 +1,22 @@
 import { useSettings } from '~/store/useSettings';
 import type { Tota } from '~/types/ota';
+import { useApi } from './useApi';
 
 export async function useOTA() {
   const { 
     $config: { public: { APP_VERSION } },
-    $api
   } = useNuxtApp()
   const { $state: { settings } } = useSettings()
+  const { checkModule } = useApi()
   const log = useLogger('OTA')
 
   const latestUpdate = ref<Tota>({} as Tota)
 
   try {
+    const otaModule = checkModule('ota')
     log.info('Получение обновлений...')
     
-    latestUpdate.value = await $api.ota.getVersion(settings.dev)
+    latestUpdate.value = await otaModule.getVersion(settings.dev)
     
     log.info(`Последняя актуальная версия: ${latestUpdate.value.version}`)
   } catch (e) {
@@ -33,12 +35,12 @@ export async function useOTA() {
   }
 
   function parseUpdateLog(text: string) {
-    const result = { features: [], bugfixes: [] };
+    const result = { features: [] as string[], bugfixes: [] as string[] };
   
-    const getSection = (title) =>
+    const getSection = (title: string): string =>
       (text.match(new RegExp(`###\\s*${title}([\\s\\S]*?)(?=\\n###\\s*|$)`, 'i')) || [])[1] || '';
   
-    const normalize = (line) =>
+    const normalize = (line: string): string =>
       line
         .replace(/^\s*[*-]\s*/, '')                     
         .replace(/\*\*/g, '')                           

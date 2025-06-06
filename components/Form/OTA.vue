@@ -25,6 +25,10 @@
           <img :src="`/icons/right-arrow.svg`">
           <p>{{ update[1] || 'Новая версия' }}</p>
         </div>
+        <div v-if="update[1].includes('dev')" class="my-2 flex justify-center items-center border-[1px] border-yellow-700 bg-yellow-700 bg-opacity-50 py-2 px-4 rounded-lg transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="5" y="5" rx="4"/><path stroke-linecap="round" d="M12 9v3m0 3.02v-.01"/></g></svg>
+          <p class="text-sm w-fit ml-3">Данная версия нестабильна, возможны ошибки. Используйте на свой страх и риск.</p>
+        </div>
         <div class="w-full border-b-[1px] border-foreground border-opacity-30 my-1" />
         <div class="w-full max-h-[30vh] overflow-y-scroll transition-all">
           <template v-if="description && description.features && description.features.length > 0">
@@ -58,7 +62,7 @@
         <div class="w-full flex justify-center items-center mt-2">
           <NuxtLink v-if="update[3]">
             <button
-              class="border-[1px] text-xl px-12 py-1 border-primary hover:bg-primary hover:text-black rounded-xl flex gap-3 justify-center items-center duration-150"
+              class="border-[1px] text-xl px-12 py-1 border-green-400 hover:bg-green-400 hover:text-black rounded-xl flex gap-3 justify-center items-center duration-150"
               @click="installUpdate"
             >
               <svg
@@ -131,30 +135,15 @@
 import { ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 import { Browser } from '@capacitor/browser'
-import { useOTA } from '../../composables/useOTA'
+import { useOTAStore } from '../../store/useOTAStore'
 import { useLogger } from '../../composables/useLogger'
+import { storeToRefs } from 'pinia'
 
-type UpdateInfo = [boolean, string, string, string] | undefined;
-
-interface Description {
-  features: string[];
-  bugfixes: string[];
-}
-
-const { needsUpdate, getDescription } = await useOTA()
 const log = useLogger('OTAComponent')
-const update = ref<UpdateInfo>(needsUpdate() as UpdateInfo)
-
-const description = ref<Description | undefined>()
+const otaStore = useOTAStore()
 const target = ref(null)
-const showForm = ref(false)
 
-if (update.value) {
-  showForm.value = true
-  description.value = getDescription() as Description
-}
-
-log.log(update.value);
+const { showForm, update, description } = storeToRefs(otaStore)
 
 async function installUpdate() {
   if (!update.value?.[3]) {
@@ -163,14 +152,16 @@ async function installUpdate() {
   }
   
   try {
-    await Browser.open({ url: String(update.value[3]) })
+    const downloadUrl = String(update.value[3])
+    const releaseUrl = downloadUrl.replace('/releases/download/', '/releases/tag/').replace(/\/[^/]+\.apk$/, '')
+    await Browser.open({ url: releaseUrl })
   } catch (error) {
     log.error('Не удалось открыть ссылку на обновление:', error)
   }
 }
 
 onClickOutside(target, () => {
-  showForm.value = false
+  otaStore.closeForm()
 })
 </script>
 
