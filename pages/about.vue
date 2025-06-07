@@ -50,17 +50,16 @@ import { useOTAStore } from '~/store/useOTAStore'
 import { ref } from 'vue'
 import { useOTA } from '~/composables/useOTA'
 
-const { $config: { public: { APP_VERSION } } } = useNuxtApp()
+const { $config: { public: { APP_VERSION } }, $snackbar } = useNuxtApp()
 const otaStore = useOTAStore()
 const isLoading = ref(false)
-const snackbar = useSnackbar()
 
 async function checkUpdates() {
     isLoading.value = true
     const { needsUpdate } = await useOTA()
     const updateInfo = needsUpdate()
     if (updateInfo && !updateInfo[0]) {
-        snackbar.add({
+        $snackbar.add({
             type: 'success',
             text: 'У вас установлена последняя версия приложения'
         })

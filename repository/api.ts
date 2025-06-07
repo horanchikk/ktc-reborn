@@ -24,7 +24,6 @@ export class API {
   private module: string = 'API'
   private API_URL: string = useRuntimeConfig().public.API_URL
   private user = useUser()
-  private snackbar = useSnackbar()
 
   constructor(module: string) {
     this.module = module
@@ -32,6 +31,7 @@ export class API {
   }
 
   private throwError(request: string, data: TException, body?: unknown) {
+    const { $snackbar } = useNuxtApp()
     const err = {
       info: '',
       request,
@@ -51,12 +51,10 @@ export class API {
 
     this.log.error(err)
     
-    setTimeout(() => {
-      this.snackbar.add({
-        type: 'error',
-        text: 'Возникла ошибка на сервере. Не переживайте, мы уже знаем о проблеме 👌'
-      })
-    }, 1000);
+    $snackbar.add({
+      type: 'error',
+      text: 'Возникла ошибка на сервере. Не переживайте, мы уже знаем о проблеме 👌'
+    })
   }
 
   private instance = $fetch.create({
@@ -91,6 +89,10 @@ export class API {
       }
       else if (statusCode === 400 && ctx.request !== `${this.API_URL}/user/login`) {
         this.user.logout()
+        $snackbar.add({
+          type: 'error',
+          text: 'Ваша сессия устарела. Войдите заново.'
+        })
       }
       else if (statusCode !== 400) {
         this.throwError(ctx.request.toString(), ctx.response._data, ctx.options.body)

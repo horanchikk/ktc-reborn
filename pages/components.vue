@@ -12,12 +12,16 @@
 </template>
 
 <script setup lang="ts">
-const snackbar = useSnackbar();
+const { $snackbar } = useNuxtApp()
+
+definePageMeta({
+  layout: 'none'
+})
 
 function testSnackBar() {
-  snackbar.add({
+  $snackbar.add({
     type: 'success',
     text: 'This is a snackbar message'
-})
+  })
 }
 </script>
