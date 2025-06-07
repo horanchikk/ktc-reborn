@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col gap-2 text-foreground bg-background-100 rounded-lg overflow-hidden">
     <NuxtImg
-      :src="$props.image"
+      v-if="cachedSrc"
+      :src="cachedSrc"
       :alt="'Возникла проблема с загрузкой фото, попробуйте позже.'"
       class="h-[200px] object-cover object-center"
       :height="200"
       :custom="true"
-      :quality="10"
       v-slot="{ src, isLoaded, imgAttrs }"
     > 
       <img
@@ -16,6 +16,8 @@
       >
       <div v-else class="w-full h-[200px] loading" />
     </NuxtImg>
+    <div v-else class="w-full h-[200px] loading" />
+
     <div class="px-2 leading-none text-xl font-semibold">
       {{ $props.title }}
     </div>
@@ -29,10 +31,15 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+const { $getCachedUrl } = useNuxtApp()
+
+const props = defineProps<{
   image?: string
   title?: string
   description?: string
   date?: string
 }>()
+
+const cachedSrc = ref()
+onMounted(async () => cachedSrc.value = await $getCachedUrl(props.image))
 </script>
