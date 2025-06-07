@@ -23,14 +23,12 @@
         :class="store.isVisible ? 'opacity-100' : 'opacity-0'"
       >
         <div class="flex items-center gap-4 mb-4">
-          <img
+          <Image
             v-if="info"
-            :src="info.user_info.image"
-            class="w-[72px] h-[72px] rounded-full show"
-          >
-          <div
-            v-else
-            class="w-[72px] h-[72px] rounded-full loading"
+            :src="`https://hapticx.ru/api/media/proxy/file?link=${info.user_info.image}`"
+            :height="72"
+            :width="72"
+            rounded="full"
           />
           <div class="w-fit flex flex-col text-foreground">
             <h1

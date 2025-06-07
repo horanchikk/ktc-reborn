@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col justify-center items-center">
-        <img :src="`/${$props.avatar}`" alt="avatar" height="200" width="200" class="rounded-full mb-3">
+        <Image :src="`/${$props.avatar}`" :height="200" rounded="full" class="mb-3 !w-[200px]" />
         <p class="text-xl font-semibold" v-text="$props.name" />
         <p class="text-2xl mb-2" v-text="$props.nickname" />
         <div class="flex justify-between px-8 w-full">

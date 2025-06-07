@@ -1,11 +1,13 @@
 <template>
   <div class="flex flex-col gap-2 text-foreground bg-background-100 rounded-lg overflow-hidden show">
     <div class="flex gap-4 items-center m-2">
-      <img
-        :src="props.avatar"
-        :alt="`Avatar of ${props.author}`"
-        class="bg-white rounded-full"
-      >
+      <Image
+        :src="`https://hapticx.ru/api/media/proxy/file?link=${props.avatar}`"
+        :width="40"
+        :height="40"
+        class="bg-white"
+        rounded="full"
+      />
       <p v-text="props.author" />
     </div>
     <div

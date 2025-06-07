@@ -7,19 +7,19 @@
       ref="header"
       class="right-0 left-0 top-0 fixed"
     >
-      <img
+      <Image 
         v-if="news"
         :src="news.preview.length > 0 ? news.preview : '/nophoto.png'"
-        class="w-full object-cover object-center absolute -z-10"
-        :style="`height: ${imageHeight}px`"
-      >
+        class="w-full absolute -z-10"
+        :height="imageHeight"
+      />
       <div
         v-else
         class="w-full object-cover object-center absolute -z-10 loading"
         :style="`height: ${imageHeight}px`"
       />
       <div
-        class="flex w-full flex-col"
+        class="fixed top-0 left-0 flex w-full flex-col"
         :style="`
           height: ${imageHeight}px;
           background: linear-gradient(to bottom, #212121, rgba(33,33,33,${blur/10.5}), #212121)

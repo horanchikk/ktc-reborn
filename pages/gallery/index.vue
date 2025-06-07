@@ -19,25 +19,7 @@
             item.title
           ]"
         >
-          <div class="bg-background-100 rounded-md mx-2">
-            <NuxtLink
-              :to="`/gallery/${item.id}`"
-            >
-              <NuxtImg
-                class="w-full rounded-t-md min-h-[300px] max-h-[300px] object-cover"
-                :src="item.preview"
-                alt="Фото"
-              />
-              <p
-                class="text-center text-sm font-semibold my-3 px-3"
-                v-text="item.title"
-              />
-              <p
-                class="text-xs text-right mb-2 pr-2 pb-1"
-                v-text="item.date"
-              />
-            </NuxtLink>
-          </div>
+          <NewsItem :item="item" />
           <div class="h-[16px]" />
         </DynamicScrollerItem>
       </template>

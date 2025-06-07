@@ -8,12 +8,13 @@
       v-text="photos.title"
     />
     <div class="flex flex-col gap-5 p-1 mb-2">
-      <img
+      <Image
         v-for="(photo, idx) of photos.photos"
         :key="idx"
         :src="photo"
-        class="rounded-md"
-      >
+        :min-height="300"
+        rounded="md"
+      />
     </div>
   </div>
   <div
