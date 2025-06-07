@@ -31,7 +31,6 @@ export class API {
   }
 
   private throwError(request: string, data: TException, body?: unknown) {
-    const { $snackbar } = useNuxtApp()
     const err = {
       info: '',
       request,
