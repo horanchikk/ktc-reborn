@@ -11,6 +11,9 @@ export function useContactsApi() {
     }
   } catch (e) {
     log.error('Ошибка инициализации ContactsApi:', e)
+    reloadNuxtApp({
+      force: true
+    })
     return {
       contacts: null,
     }

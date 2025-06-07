@@ -11,7 +11,10 @@ export function useBranchApi() {
     }
   } catch (e) {
     log.error('Ошибка инициализации BranchApi:', e)
-    return {
+    reloadNuxtApp({
+      force: true
+    })
+    return { 
       branch: null,
     }
   }

@@ -11,6 +11,9 @@ export function useUserApi() {
     }
   } catch (e) {
     log.error('Ошибка инициализации UserApi:', e)
+    reloadNuxtApp({
+      force: true
+    })
     return {
       user: null,
     }

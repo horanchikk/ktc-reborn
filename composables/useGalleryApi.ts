@@ -11,6 +11,9 @@ export function useGalleryApi() {
     }
   } catch (e) {
     log.error('Ошибка инициализации GalleryApi:', e)
+    reloadNuxtApp({
+      force: true
+    })
     return {
       gallery: null,
     }

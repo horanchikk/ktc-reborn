@@ -11,6 +11,9 @@ export function useTimetableApi() {
     }
   } catch (e) {
     log.error('Ошибка инициализации TimetableApi:', e)
+    reloadNuxtApp({
+      force: true
+    })
     return {
       timetable: null,
     }
