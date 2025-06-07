@@ -19,7 +19,7 @@
             item.title
           ]"
         >
-          <NewsItem :item="item" />
+          <GalleryItem :item="item" />
           <div class="h-[16px]" />
         </DynamicScrollerItem>
       </template>

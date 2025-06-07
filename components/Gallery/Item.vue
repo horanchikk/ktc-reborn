@@ -1,7 +1,7 @@
 <template>
   <div class="bg-background-100 rounded-md mx-2">
     <NuxtLink :to="`/gallery/${$props.item.id}`">
-      <Image :height="300" :src="props.item.preview" />
+      <Image :height="300" :src="props.item.preview" rounded="t-md" />
       <p
         class="text-center text-sm font-semibold my-3 px-3"
         v-text="$props.item.title"
