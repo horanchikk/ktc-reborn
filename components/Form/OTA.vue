@@ -60,9 +60,9 @@
         </div>
         <div class="w-full border-b-[1px] border-foreground border-opacity-30 my-1" />
         <div class="w-full flex justify-center items-center mt-2">
-          <NuxtLink v-if="update[3]">
+          <NuxtLink v-if="update[3]" class="no-underline">
             <button
-              class="border-[1px] text-xl px-12 py-1 border-green-400 hover:bg-green-400 hover:text-black rounded-xl flex gap-3 justify-center items-center duration-150"
+              class="border-[1px] text-xl px-12 py-1 border-green-400 hover:bg-green-400 hover:text-black rounded-xl flex gap-3 justify-center items-center duration-150 group"
               @click="installUpdate"
             >
               <svg
@@ -72,7 +72,7 @@
                 viewBox="0 0 24 24"
               ><g
                 fill="none"
-                stroke="currentColor"
+                class="stroke-white group-hover:stroke-black duration-150"
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
@@ -116,7 +116,7 @@
                 dur="0.2s"
                 values="6;0"
               /></path></g></svg>
-              Скачать обновление
+              <p class="text-foreground group-hover:text-black">Скачать обновление</p>
             </button>
           </NuxtLink>
           <button
