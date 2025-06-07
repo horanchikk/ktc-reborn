@@ -1,3 +1,13 @@
+# [0.2.0-dev.15](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.14...v0.2.0-dev.15) (2025-06-07)
+
+
+### Features
+
+* **gallery:** добавлен компонент GalleryItem для отображения элементов галереи ([d1174ed](https://github.com/horanchikk/ktc-reborn/commit/d1174ed0b639dbeed8a657d8bede82ce74f97085))
+* **Image:** добавлено свойство maxHeight для ограничения максимальной высоты изображения и исправлен стиль загрузки ([bc8f118](https://github.com/horanchikk/ktc-reborn/commit/bc8f118d5885194f569890200cfd811ef174bab0))
+* **news:** добавлено кэширование для картинок в посте ([56f417d](https://github.com/horanchikk/ktc-reborn/commit/56f417d8e93ebe856c384948c2ff4fd8a897c81d))
+* **Post:** добавлена обработка контента поста с поддержкой текста, изображений и аудио ([c05faba](https://github.com/horanchikk/ktc-reborn/commit/c05fabae585f2e7f3d0d549f7b4af222075519f1))
+
 # [0.2.0-dev.14](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.13...v0.2.0-dev.14) (2025-06-07)
 
 
