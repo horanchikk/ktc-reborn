@@ -14,52 +14,60 @@ export default defineNuxtPlugin((nuxtApp) => {
     request.onerror = () => reject(request.error)
   })
 
-  // Функция получения Blob URL из кэша или возвращения оригинальной ссылки
+  /**
+   * Возвращает blob-URL только после полной загрузки и кэширования.
+   * Если в кэше есть Blob, сразу возвращает blob-URL.
+   * Если нет, загружает картинку, сохраняет в IndexedDB и возвращает blob-URL.
+   * При ошибке возвращает оригинальный URL.
+   */
   async function getCachedUrl(url: string): Promise<string> {
     if (!url) return ''
-    const db = await dbPromise
-    return new Promise<string>((resolve) => {
-      const tx = db.transaction('images', 'readonly')
-      const store = tx.objectStore('images')
-      const req = store.get(url)
-      req.onsuccess = async () => {
-        if (req.result) {
-          // Уже в кэше — возвращаем blob URL
-          const blob: Blob = req.result.blob
-          resolve(URL.createObjectURL(blob))
-        } else {
-          // Нет в кэше — возвращаем оригинал и сохраняем
-          resolve(url)
-          try {
-            const resp = await fetch(url)
-            const blob = await resp.blob()
-            const tx2 = db.transaction('images', 'readwrite')
-            tx2.objectStore('images').put({ url, blob })
-          } catch (e) {
-            console.error('Failed to cache image:', e)
-          }
-        }
+    try {
+      const db = await dbPromise
+      // Проверяем наличие в кэше
+      const cached = await new Promise<{ url: string; blob: Blob } | undefined>((resolve, reject) => {
+        const tx = db.transaction('images', 'readonly')
+        const store = tx.objectStore('images')
+        const req = store.get(url)
+        req.onsuccess = () => resolve(req.result)
+        req.onerror = () => reject(req.error)
+      })
+      if (cached) {
+        return URL.createObjectURL(cached.blob)
       }
-      req.onerror = () => {
-        // При ошибке возвращаем оригинальный URL
-        resolve(url)
+      // Загружаем из сети
+      const response = await fetch(url)
+      if (!response.ok) throw new Error(`HTTP error ${response.status}`)
+      const blob = await response.blob()
+      // Сохраняем в кэш
+      try {
+        const tx2 = db.transaction('images', 'readwrite')
+        tx2.objectStore('images').put({ url, blob })
+      } catch (e) {
+        console.error('Ошибка при сохранении в кэш:', e)
       }
-    })
+      return URL.createObjectURL(blob)
+    } catch (e) {
+      console.error('getCachedUrl error:', e)
+      // Возвращаем оригинальный URL при любой ошибке
+      return url
+    }
   }
 
   // Делаем функцию доступной через useNuxtApp().$getCachedUrl
   nuxtApp.provide('getCachedUrl', getCachedUrl)
 })
 
-// В компонентах используйте так:
-/*
+/**
+Пример использования в компонентах:
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 const props = defineProps<{ image: string }>()
-const cachedSrc = ref<string>(props.image)
+const cachedSrc = ref('')
 const { $getCachedUrl } = useNuxtApp()
 
 onMounted(async () => {
+  // функция вернёт только после загрузки
   cachedSrc.value = await $getCachedUrl(props.image)
 })
 </script>
