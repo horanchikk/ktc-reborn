@@ -1,3 +1,19 @@
+# [0.2.0-dev.14](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.13...v0.2.0-dev.14) (2025-06-07)
+
+
+### Bug Fixes
+
+* **api:** добавлено принудительное перезагрузку приложения при ошибках инициализации API ([be7783c](https://github.com/horanchikk/ktc-reborn/commit/be7783c4bd677f3d1794e7d65432608e4c293640))
+* **OTA:** добавлены классы для улучшения стилей кнопки обновления и текста ([8a7202e](https://github.com/horanchikk/ktc-reborn/commit/8a7202ef1a438e6aa73007ceb9382c2b9d612d55))
+
+
+### Features
+
+* **cache:** улучшена функция получения кэшированного URL с обработкой ошибок и оптимизацией кода ([55c0b54](https://github.com/horanchikk/ktc-reborn/commit/55c0b54dd59e7b999af70c884213c048776a32de))
+* **Image:** добавлен новый компонент Image для обработки изображений с кэшированием и улучшенной загрузкой ([0968b3b](https://github.com/horanchikk/ktc-reborn/commit/0968b3bbbc6c60f5baf56a03d79a8fce653ae653))
+* **indexedDB:** добавлен плагин для кэширования изображений ([17ccd2f](https://github.com/horanchikk/ktc-reborn/commit/17ccd2fab725208cda2ad3b1c00aa85274729206))
+* **Post:** добавлено кэширование изображений для компонента Post ([4416308](https://github.com/horanchikk/ktc-reborn/commit/44163086c08c23df6f4a66385f9417d36455b9af))
+
 # [0.2.0-dev.13](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.12...v0.2.0-dev.13) (2025-06-06)
 
 
