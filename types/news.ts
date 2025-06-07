@@ -12,4 +12,5 @@ export interface News {
   date: string
   id: number
   title: string
+  preview: string
 }
