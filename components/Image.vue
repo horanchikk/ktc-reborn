@@ -17,7 +17,6 @@
       <div v-else class="w-full h-full loading" />
     </NuxtImg>
     <div
-      v-else
       class="loading"
       :class="roundedClass"
       :style="containerStyles"
@@ -30,6 +29,7 @@ interface ImageProps {
   src: string;
   height?: number;
   minHeight?: number;
+  maxHeight?: number;
   width?: number;
   minWidth?: number;
   rounded?: string;
@@ -46,6 +46,10 @@ const containerStyles = computed(() => {
     styles.push(`height: ${props.height}px;`);
   } else if (props.minHeight) {
     styles.push(`min-height: ${props.minHeight}px`);
+  }
+  
+  if (props.maxHeight) {
+    styles.push(`max-height: ${props.maxHeight}px`);
   }
   
   if (props.width) {
@@ -76,7 +80,7 @@ onMounted(async () => {
 
 <style scoped>
 .loading {
-  background-color: #f3f4f6;
+  background-color: #f3f4f656;
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
