@@ -92,7 +92,7 @@ export default defineNuxtConfig({
   },
 
   snackbar: {
-    bottom: true,
+    top: true,
     duration: 5000,
     border: 'left',
     baseBackgroundColor: '#323232',
