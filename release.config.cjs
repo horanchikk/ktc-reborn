@@ -10,7 +10,8 @@ module.exports = {
     },
     {
       name: 'dev',
-      prerelease: 'dev',
+      channel: 'dev',
+      prerelease: true,
     },
   ],
   plugins: [
