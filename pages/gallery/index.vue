@@ -3,27 +3,7 @@
     v-if="albums"
     class="w-screen flex flex-col gap-5 pt-3"
   >  
-    <DynamicScroller
-      :items="albums"
-      :min-item-size="230"
-      class="h-full"
-      page-mode
-    >
-      <template v-slot="{ item, index, active }">
-        <DynamicScrollerItem
-          :item="item"
-          :active="active"
-          :data-index="index"
-          :min-item-size="500"
-          :size-dependencies="[
-            item.title
-          ]"
-        >
-          <GalleryItem :item="item" />
-          <div class="h-[16px]" />
-        </DynamicScrollerItem>
-      </template>
-    </DynamicScroller> 
+    <GalleryItem v-for="item in albums" :key="item.id" :item="item" />
   </div>
   <div
     v-else
