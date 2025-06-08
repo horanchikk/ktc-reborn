@@ -1,3 +1,12 @@
+# [0.2.0-dev.18](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.17...v0.2.0-dev.18) (2025-06-08)
+
+
+### Bug Fixes
+
+* **contact:** улучшено отображение телефонов контакта с добавлением ссылки для звонка и фильтрацией по наличию 'доб' ([1c01c24](https://github.com/horanchikk/ktc-reborn/commit/1c01c24626952b19846d8ec2ade720ff8070675d))
+* **gallery:** заменен компонент DynamicScroller на простой рендеринг элементов галереи для улучшения производительности ([89b28a9](https://github.com/horanchikk/ktc-reborn/commit/89b28a96d276a174783019e496af40442e67caea))
+* **ota, about:** улучшена логика проверки версии приложения, добавлено отображение 'DEVELOPMENT' для пустой версии ([7db9f0d](https://github.com/horanchikk/ktc-reborn/commit/7db9f0d08be6d5a38125a29755ecbe72f5079945))
+
 # [0.2.0-dev.17](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.16...v0.2.0-dev.17) (2025-06-08)
 
 
