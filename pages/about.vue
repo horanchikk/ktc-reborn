@@ -28,7 +28,7 @@
             <button 
                 @click="checkUpdates" 
                 :class="[
-                    'h-[42px] w-[262px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-foreground hover:bg-foreground hover:text-black transition-colors',
+                    'h-[42px] w-[262px] flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-foreground active:bg-foreground active:text-black transition-colors',
                     { 'loading': isLoading }
                 ]"
                 :disabled="isLoading"
@@ -48,23 +48,20 @@
 <script setup lang="ts">
 import { useOTAStore } from '~/store/useOTAStore'
 import { ref } from 'vue'
-import { useOTA } from '~/composables/useOTA'
 
 const { $config: { public: { APP_VERSION } }, $snackbar } = useNuxtApp()
-const otaStore = useOTAStore()
 const isLoading = ref(false)
 
 async function checkUpdates() {
+    const otaStore = useOTAStore()
+    
     isLoading.value = true
-    const { needsUpdate } = await useOTA()
-    const updateInfo = needsUpdate()
-    if (updateInfo && !updateInfo[0]) {
+    if (await otaStore.checkForUpdates() === false) {
         $snackbar.add({
             type: 'success',
             text: 'У вас установлена последняя версия приложения'
         })
     }
-    await otaStore.checkForUpdates()
     isLoading.value = false
 }
 
