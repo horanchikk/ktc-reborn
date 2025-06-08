@@ -21,6 +21,10 @@ export async function useOTA() {
     log.info(`Последняя актуальная версия: ${latestUpdate.value.version}`)
   } catch (e) {
     log.error('Ошибка получения обновлений ', e)
+    $snackbar.add({
+      type: 'error',
+      text: 'Не удалось получить обновления'
+    })
   }
   
   function needsUpdate() {

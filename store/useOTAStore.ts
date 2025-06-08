@@ -22,6 +22,7 @@ export const useOTAStore = defineStore('ota', () => {
           log.info('Форма обновления открыта')
         } else {
           log.info('Обновлений не обнаружено')
+          return false
         }
       }
     } catch (error) {

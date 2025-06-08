@@ -58,10 +58,18 @@ export class API {
 
   private instance = $fetch.create({
     baseURL: this.API_URL,
+    retry: false,
 
     onRequest: (ctx) => {
       if (!this.user.data.access_token && ctx.request !== '/login')
         navigateTo('/auth')
+    },
+    onRequestError: (ctx) => {
+      this.log.error(ctx.error.message.includes('Failed to fetch'))
+      $snackbar.add({
+        type: 'error',
+        text: 'Нет соединения с интернетом'
+      })
     },
     onResponse: (ctx) => {
       const statusCode = ctx.response.status
