@@ -12,7 +12,7 @@ export function useTimetableApi() {
   } catch (e) {
     log.error('Ошибка инициализации TimetableApi:', e)
     reloadNuxtApp({
-      force: true
+      persistState: true
     })
     return {
       timetable: null,
