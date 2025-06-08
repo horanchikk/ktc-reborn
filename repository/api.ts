@@ -90,7 +90,7 @@ export class API {
         this.user.logout()
         $snackbar.add({
           type: 'error',
-          text: 'Ваша сессия устарела. Войдите заново.'
+          text: 'Ваша сессия устарела. Войдите ещё раз.'
         })
       }
       else if (statusCode !== 400) {
