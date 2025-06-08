@@ -1,3 +1,21 @@
+# [0.2.0-dev.17](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.16...v0.2.0-dev.17) (2025-06-08)
+
+
+### Bug Fixes
+
+* **about:** обновлен стиль кнопки и улучшена логика проверки обновлений приложения ([b32d33a](https://github.com/horanchikk/ktc-reborn/commit/b32d33aa0224874b73dc7e575426420e32dd7c57))
+* **api:** заменено принудительное перезагрузку на сохранение состояния при ошибках инициализации API ([d6b18eb](https://github.com/horanchikk/ktc-reborn/commit/d6b18eb7ba23784f09357cb79b8a82837db5d7f3))
+* **api:** изменено сохранение состояния на перезагрузку при ошибках инициализации API ([817e209](https://github.com/horanchikk/ktc-reborn/commit/817e209e4aaaf686eacd461345987fd73a1f5a5c))
+* **logger:** добавлена проверка на сообщение об ошибке "Failed to fetch" перед отправкой исключения в Sentry ([17485b2](https://github.com/horanchikk/ktc-reborn/commit/17485b2fa61ba52e076c00024769ee13dcb37fe4))
+* **ota:** добавлено уведомление об ошибке при получении обновлений и улучшена обработка ошибок соединения в API ([597a657](https://github.com/horanchikk/ktc-reborn/commit/597a657e710d9b70373992612fd3c8a5fccf4d6d))
+* **release:** изменено название канала на 'dev' и добавлено свойство prerelease ([1497752](https://github.com/horanchikk/ktc-reborn/commit/14977528b643cb0ee6a01fb2b48f938f649cc99b))
+* **snackbar:** изменено положение уведомления с нижнего на верхнее ([667d1fb](https://github.com/horanchikk/ktc-reborn/commit/667d1fb9a59ae8d2dec256f9f92b4b310b13626e))
+
+
+### Features
+
+* **Image:** добавлено свойство animate для анимации изображений и обновлены компоненты, использующие его ([de13ea8](https://github.com/horanchikk/ktc-reborn/commit/de13ea808b409f45ac1ffc584ecb8dc95e1aaf57))
+
 # [0.2.0-dev.16](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.15...v0.2.0-dev.16) (2025-06-08)
 
 
