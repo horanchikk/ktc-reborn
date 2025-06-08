@@ -30,7 +30,7 @@ export async function useOTA() {
   function needsUpdate() {
     if (latestUpdate.value?.version) {
       return [
-        latestUpdate.value.version !== APP_VERSION,
+        APP_VERSION.length === 0 ? false : latestUpdate.value.version !== APP_VERSION,
         latestUpdate.value.version,
         APP_VERSION,
         latestUpdate.value.apkfile,

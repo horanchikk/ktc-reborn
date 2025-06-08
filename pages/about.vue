@@ -24,7 +24,7 @@
             <p class="text-center text-2xl text-semibold">с 💖</p>
         </div>
         <div class="flex flex-col justify-center items-center gap-1">
-            <p class="opacity-50 text-center" v-text="`Версия приложения - ${APP_VERSION}`" />
+            <p class="opacity-50 text-center" v-text="`Версия приложения - ${APP_VERSION.length === 0 ? 'DEVELOPMENT' : APP_VERSION}`" />
             <button 
                 @click="checkUpdates" 
                 :class="[
