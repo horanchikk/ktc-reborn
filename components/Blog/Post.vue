@@ -7,6 +7,7 @@
         :height="40"
         class="bg-white"
         rounded="full"
+        animate
       />
       <p v-text="props.author" />
     </div>
@@ -19,6 +20,7 @@
           <Image
             :src="`https://hapticx.ru/api/media/proxy/file?link=${node.src}`"
             :height="node.height > 300 ? 300 : node.height"
+            animate
           />
         </template>
         <template v-else-if="node.type === 'audio'">

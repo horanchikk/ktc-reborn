@@ -14,6 +14,7 @@
         :src="photo"
         :min-height="300"
         rounded="md"
+        animate
       />
     </div>
   </div>

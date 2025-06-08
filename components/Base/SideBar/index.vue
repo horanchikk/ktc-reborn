@@ -29,6 +29,7 @@
             :height="72"
             :width="72"
             rounded="full"
+            animate
           />
           <div class="w-fit flex flex-col text-foreground">
             <h1

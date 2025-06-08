@@ -8,8 +8,8 @@
       v-if="cachedSrc"
       :src="cachedSrc"
       :alt="errorMessage"
-      class="absolute z-10 top-0 left-0 w-full h-full object-cover object-center show"
-      :class="roundedClass"
+      class="absolute z-10 top-0 left-0 w-full h-full object-cover object-center"
+      :class="[roundedClass, animateClass]"
       :custom="true"
       v-slot="{ src, isLoaded, imgAttrs }"
     >
@@ -32,6 +32,7 @@ interface ImageProps {
   width?: number;
   minWidth?: number;
   rounded?: string;
+  animate?: boolean;
 }
 
 const props = defineProps<ImageProps>();
@@ -62,6 +63,10 @@ const containerStyles = computed(() => {
 
 const roundedClass = computed(() => 
   props.rounded ? `rounded-${props.rounded}` : ''
+);
+
+const animateClass = computed(() => 
+  props.animate ? 'show' : ''
 );
 
 const { $getCachedUrl } = useNuxtApp();
