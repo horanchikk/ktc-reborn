@@ -14,7 +14,6 @@
       v-slot="{ src, isLoaded, imgAttrs }"
     >
       <img v-if="isLoaded" v-bind="imgAttrs" :src="src" />
-      <div v-else class="w-full h-full loading" />
     </NuxtImg>
     <div
       class="loading"
