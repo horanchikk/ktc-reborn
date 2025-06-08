@@ -1,3 +1,11 @@
+# [0.2.0-dev.16](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.15...v0.2.0-dev.16) (2025-06-08)
+
+
+### Bug Fixes
+
+* **api:** исправлен текст сообщения об устаревшей сессии ([2e90dcf](https://github.com/horanchikk/ktc-reborn/commit/2e90dcf825c10912adc107708b055a0ed17ba61a))
+* **Image:** удален элемент загрузки при отображении изображения ([781b652](https://github.com/horanchikk/ktc-reborn/commit/781b6524d3998d53e616cbf8921a2ba19b39f19e))
+
 # [0.2.0-dev.15](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.14...v0.2.0-dev.15) (2025-06-07)
 
 
