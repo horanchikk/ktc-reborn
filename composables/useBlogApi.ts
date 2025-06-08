@@ -12,7 +12,7 @@ export function useBlogApi() {
   } catch (e) {
     log.error('Ошибка инициализации BlogApi:', e)
     reloadNuxtApp({
-      force: true
+      persistState: true,
     })
     return {
       blog: null,

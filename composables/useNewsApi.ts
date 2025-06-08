@@ -12,7 +12,7 @@ export function useNewsApi() {
   } catch (e) {
     log.error('Ошибка инициализации NewsApi:', e)
     reloadNuxtApp({
-      force: true
+      persistState: true
     })
     return {
       news: null,

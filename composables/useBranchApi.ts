@@ -12,7 +12,7 @@ export function useBranchApi() {
   } catch (e) {
     log.error('Ошибка инициализации BranchApi:', e)
     reloadNuxtApp({
-      force: true
+      persistState: true
     })
     return { 
       branch: null,
