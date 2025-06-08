@@ -5,11 +5,17 @@
         <a :href="`mailto:${contact.email}`" v-text="`Почта: ${contact.email}`" />
         <div>
             <p v-text="`Телефон${ contact.phones.length > 1 ? 'ы' : '' }:`" />
-            <p 
-                v-for="(phone, idx) in contact.phones" 
-                :key="idx" 
-                v-text="phone"
-            />
+            <template v-for="(phone, idx) in contact.phones" :key="idx">
+                <p
+                    v-if="phone.includes('доб')"
+                    v-text="phone"
+                />
+                <a
+                    v-else
+                    v-text="phone"
+                    :href="`tel:${phone}`"
+                />
+            </template>
         </div>
     </div>
 </template>
