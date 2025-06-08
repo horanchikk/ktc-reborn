@@ -19,7 +19,11 @@ export function useLogger(tag: string) {
           }
 
           if (ctx.type === 'error') {
-            Sentry.captureException(ctx.args[0])
+            const error = ctx.args[0]
+            if (error?.message?.includes('Failed to fetch')) {
+              return
+            }
+            Sentry.captureException(error)
           }
         },
       },
