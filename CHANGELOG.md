@@ -1,3 +1,10 @@
+# [0.2.0-dev.23](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.22...v0.2.0-dev.23) (2025-06-09)
+
+
+### Bug Fixes
+
+* **tests:** обновлены тесты для компонентов ContactItem, Form, Header и PersonCard, улучшена проверка количества отображаемых элементов ([f6104b8](https://github.com/horanchikk/ktc-reborn/commit/f6104b8bbbacad9121ce61c643fe191af5b93d97))
+
 # [0.2.0-dev.22](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.21...v0.2.0-dev.22) (2025-06-09)
 
 
