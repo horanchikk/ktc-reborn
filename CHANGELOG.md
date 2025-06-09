@@ -1,3 +1,10 @@
+# [0.2.0-dev.20](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.19...v0.2.0-dev.20) (2025-06-09)
+
+
+### Bug Fixes
+
+* **layouts:** упрощен вызов функции updateColors в нескольких компонентах, удалены лишние обертки onMounted ([9246cae](https://github.com/horanchikk/ktc-reborn/commit/9246cae696fc44ffa8541223a56ad0301c584ff7))
+
 # [0.2.0-dev.19](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.18...v0.2.0-dev.19) (2025-06-09)
 
 
