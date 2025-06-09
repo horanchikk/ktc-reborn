@@ -8,6 +8,11 @@ import Header from '../Base/Header.vue'
 const pinia = createPinia()
 setActivePinia(pinia)
 
+// Мокаем компоненты
+const NuxtLoadingIndicator = { template: '<div class="loading-indicator"></div>' }
+const ISandwich = { template: '<div class="sandwich-icon"></div>' }
+const IMoreVertical = { template: '<div class="more-vertical-icon"></div>' }
+
 // Мокаем useRouter
 vi.mock('vue-router', () => ({
     useRouter: () => ({
@@ -42,6 +47,7 @@ describe('Header', () => {
         const wrapper = mount(Header, {
             global: {
                 plugins: [pinia],
+                components: { NuxtLoadingIndicator, ISandwich, IMoreVertical },
                 mocks: {
                     $router: {
                         currentRoute: {
@@ -60,6 +66,7 @@ describe('Header', () => {
         const wrapper = mount(Header, {
             global: {
                 plugins: [pinia],
+                components: { NuxtLoadingIndicator, ISandwich, IMoreVertical },
                 mocks: {
                     $router: {
                         currentRoute: {

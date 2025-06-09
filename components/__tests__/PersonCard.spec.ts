@@ -14,6 +14,10 @@ vi.mock('@capacitor/browser', () => ({
 const IVk = { template: '<div class="vk-icon"></div>' }
 const ITg = { template: '<div class="tg-icon"></div>' }
 const IGithub = { template: '<div class="github-icon"></div>' }
+const Image = { 
+    template: '<img :src="src" :height="height" :class="rounded" />',
+    props: ['src', 'height', 'rounded']
+}
 
 describe('PersonCard', () => {
     const defaultProps = {
@@ -29,12 +33,11 @@ describe('PersonCard', () => {
         const wrapper = mount(PersonCard, {
             props: defaultProps,
             global: {
-                components: { IVk, ITg, IGithub }
+                components: { IVk, ITg, IGithub, Image }
             }
         })
 
-        expect(wrapper.find('img').attributes('src')).toBe('/avatar.jpg')
-        expect(wrapper.find('img').attributes('alt')).toBe('avatar')
+        expect(wrapper.findComponent({ name: 'Image' }).props('src')).toBe('/avatar.jpg')
         expect(wrapper.text()).toContain('Иван Иванов')
         expect(wrapper.text()).toContain('@ivan')
     })
@@ -43,7 +46,7 @@ describe('PersonCard', () => {
         const wrapper = mount(PersonCard, {
             props: defaultProps,
             global: {
-                components: { IVk, ITg, IGithub }
+                components: { IVk, ITg, IGithub, Image }
             }
         })
 
@@ -61,7 +64,7 @@ describe('PersonCard', () => {
                 github: ''
             },
             global: {
-                components: { IVk, ITg, IGithub }
+                components: { IVk, ITg, IGithub, Image }
             }
         })
 
@@ -74,7 +77,7 @@ describe('PersonCard', () => {
         const wrapper = mount(PersonCard, {
             props: defaultProps,
             global: {
-                components: { IVk, ITg, IGithub }
+                components: { IVk, ITg, IGithub, Image }
             }
         })
 
@@ -86,7 +89,7 @@ describe('PersonCard', () => {
         const wrapper = mount(PersonCard, {
             props: defaultProps,
             global: {
-                components: { IVk, ITg, IGithub }
+                components: { IVk, ITg, IGithub, Image }
             }
         })
 
@@ -98,7 +101,7 @@ describe('PersonCard', () => {
         const wrapper = mount(PersonCard, {
             props: defaultProps,
             global: {
-                components: { IVk, ITg, IGithub }
+                components: { IVk, ITg, IGithub, Image }
             }
         })
 

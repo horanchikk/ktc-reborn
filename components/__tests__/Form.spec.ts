@@ -1,13 +1,21 @@
 import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import Form from '../Form/index.vue'
+import { shallowRef } from 'vue'
 
 // Мокаем анимации
 vi.mock('animate.css', () => ({
     default: {}
 }))
 
+// Мокаем onClickOutside
+vi.mock('@vueuse/core', () => ({
+    onClickOutside: vi.fn()
+}))
+
 describe('Form', () => {
+    const targetRef = shallowRef(null)
+
     it('рендерит форму с типом 0 (простое сообщение)', async () => {
         const wrapper = mount(Form, {
             props: {
@@ -20,6 +28,9 @@ describe('Form', () => {
                     Teleport: {
                         template: '<div><slot /></div>'
                     }
+                },
+                components: {
+                    target: targetRef
                 }
             }
         })
@@ -48,6 +59,9 @@ describe('Form', () => {
                     Teleport: {
                         template: '<div><slot /></div>'
                     }
+                },
+                components: {
+                    target: targetRef
                 }
             }
         })
@@ -74,6 +88,9 @@ describe('Form', () => {
                     Teleport: {
                         template: '<div><slot /></div>'
                     }
+                },
+                components: {
+                    target: targetRef
                 }
             }
         })
@@ -99,6 +116,9 @@ describe('Form', () => {
                     Teleport: {
                         template: '<div><slot /></div>'
                     }
+                },
+                components: {
+                    target: targetRef
                 }
             }
         })
