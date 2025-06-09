@@ -1,3 +1,10 @@
+# [0.2.0-dev.21](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.20...v0.2.0-dev.21) (2025-06-09)
+
+
+### Bug Fixes
+
+* **colors:** добавлено логирование ошибок при установке цвета статус-бара и навигационной панели на Android ([4f96908](https://github.com/horanchikk/ktc-reborn/commit/4f9690855099ee351cc9717374943a5e1530c7f4))
+
 # [0.2.0-dev.20](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.19...v0.2.0-dev.20) (2025-06-09)
 
 
