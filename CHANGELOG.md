@@ -1,3 +1,17 @@
+# [0.2.0-dev.19](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.18...v0.2.0-dev.19) (2025-06-09)
+
+
+### Bug Fixes
+
+* **layouts:** упрощен код вызова функции updateColors в нескольких компонентах ([fb96578](https://github.com/horanchikk/ktc-reborn/commit/fb9657848bb6b5d675c775ca1724badaeea68d8e))
+
+
+### Features
+
+* **components:** добавлены новые кнопки для тестирования snackbar и вызова ошибки ([6fafc92](https://github.com/horanchikk/ktc-reborn/commit/6fafc925e9550abb0ff30c336d605945244a8a94))
+* **sentry:** добавлена новая конфигурация Sentry для улучшения отслеживания ошибок и производительности, удален устаревший плагин ([b3cd7d6](https://github.com/horanchikk/ktc-reborn/commit/b3cd7d6cafe96c55707808d7829085a5ea29d2e5))
+* **snackbar:** добавлено логирование при предоставлении snackbar и перезагрузка приложения при ошибках ([d33c440](https://github.com/horanchikk/ktc-reborn/commit/d33c44006ce68f168d27af5a23d62089d5159e55))
+
 # [0.2.0-dev.18](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.17...v0.2.0-dev.18) (2025-06-08)
 
 
