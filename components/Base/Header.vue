@@ -84,5 +84,5 @@ function show() {
   updateColors('#171717')
 }
 
-onMounted(() => updateColors('#212121'))
+updateColors('#212121')
 </script>

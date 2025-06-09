@@ -25,5 +25,5 @@ const { direction, lengthX } = useSwipe(globalWindow, {
   },
 })
 
-onMounted(() => updateColors('#212121'))
+updateColors('#212121')
 </script>
