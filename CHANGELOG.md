@@ -1,3 +1,17 @@
+# [0.2.0-dev.22](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.21...v0.2.0-dev.22) (2025-06-09)
+
+
+### Bug Fixes
+
+* **ci:** заменен GITHUB_TOKEN на GH_TOKEN в конфигурации GitHub Actions для деплоя ([4ed3886](https://github.com/horanchikk/ktc-reborn/commit/4ed3886e7c29aa26465f8f9b1a5b6f8d466d553d))
+
+
+### Features
+
+* **ci:** добавлено кэширование хранилища PNPM в конфигурации GitHub Actions для улучшения производительности ([0a3124a](https://github.com/horanchikk/ktc-reborn/commit/0a3124a00b13d023649fa1767795d7c06829c634))
+* **ci:** обновлен .env у github pipeline ([ee8cb8d](https://github.com/horanchikk/ktc-reborn/commit/ee8cb8d467b0bc9e47343ef32f6d4b940433934d))
+* **ci:** обновлен .env у github pipeline (master ветка) ([13729c8](https://github.com/horanchikk/ktc-reborn/commit/13729c808d6e32e3e6d490cf34f72f8aea60aa44))
+
 # [0.2.0-dev.21](https://github.com/horanchikk/ktc-reborn/compare/v0.2.0-dev.20...v0.2.0-dev.21) (2025-06-09)
 
 
