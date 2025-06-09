@@ -4,6 +4,7 @@ export default defineNuxtPlugin(() => {
     const log = useLogger('snackbarPlugin')
     try {
         const snackbar = useSnackbar()
+        log.info('Provided!', snackbar)
         return {
             provide: {
                 snackbar: snackbar
@@ -11,5 +12,8 @@ export default defineNuxtPlugin(() => {
         }
     } catch (e) {
         log.error(e)
+        reloadNuxtApp({
+            persistState: true,
+        })
     }
 })
