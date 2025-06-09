@@ -6,7 +6,13 @@
       class="mt-3 w-full border-[1px] font-semibold text-md border-primary hover:bg-primary hover:text-black rounded-xl flex gap-3 justify-center items-center duration-150"
       @click="testSnackBar"
     >
-      SnackBar
+      Тест snackbar
+    </button>
+    <button
+      class="mt-3 w-full border-[1px] font-semibold text-md border-primary hover:bg-primary hover:text-black rounded-xl flex gap-3 justify-center items-center duration-150"
+      @click="throwNewError"
+    >
+      Вызвать ошибку
     </button>
   </div>
 </template>
@@ -24,4 +30,6 @@ function testSnackBar() {
     text: 'This is a snackbar message'
   })
 }
+
+const throwNewError = () => {throw new Error('test')}
 </script>
