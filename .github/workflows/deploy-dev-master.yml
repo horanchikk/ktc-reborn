@@ -51,6 +51,10 @@ jobs:
           echo "Writing..."
           echo "API_URL=https://hapticx.ru/api" >> .env
           echo "APP_VERSION=${APP_VERSION}" >> .env
+          echo "SENTRY_ORG=${{ secrets.SENTRY_ORG }}" >> .env
+          echo "SENTRY_PROJECT=${{ secrets.SENTRY_PROJECT}}" >> .env
+          echo "SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}" >> .env
+          echo "SENTRY_DSN=${{ secrets.SENTRY_DSN }}" >> .env
 
       - name: Build android
         run: pnpm build:mobile
