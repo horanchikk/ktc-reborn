@@ -83,4 +83,6 @@ function show() {
   showAnim.value = true
   updateColors('#171717')
 }
+
+onMounted(() => updateColors('#212121'))
 </script>

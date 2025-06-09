@@ -9,7 +9,5 @@
 <script setup lang="ts">
 import { updateColors } from '~/composables/useColors'
 
-onMounted(() => {
-  updateColors('#212121')
-})
+onMounted(() => updateColors('#212121'))
 </script>
